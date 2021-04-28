@@ -65,6 +65,12 @@ if (defined('G5_IS_ADMIN')) {
     echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/'.(G5_IS_MOBILE?'mobile':'default').$shop_css.'.css?ver='.G5_CSS_VER, G5_URL).'">'.PHP_EOL;
 }
 ?>
+
+<!-- VICTOR-SHOP CSS 추가 -->
+<link rel="stylesheet" href="<?=G5_CSS_URL?>/scss/victor.css"/>
+<link rel="stylesheet" href="<?=G5_CSS_URL?>/bootstrap-grid.css"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.4.0/fonts/remixicon.css" rel="stylesheet">
+
 <!--[if lte IE 8]>
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>
 <![endif]-->
@@ -84,6 +90,8 @@ var g5_shop_url = "<?php echo G5_SHOP_URL; ?>";
 var g5_admin_url = "<?php echo G5_ADMIN_URL; ?>";
 <?php } ?>
 </script>
+
+
 <?php
 add_javascript('<script src="'.G5_JS_URL.'/jquery-1.12.4.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/jquery-migrate-1.4.1.min.js"></script>', 0);

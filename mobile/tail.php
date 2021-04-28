@@ -10,10 +10,10 @@ if(defined('G5_THEME_PATH')) {
 </div>
 
 
-<?php echo poll('basic'); // 설문조사 ?>
-<?php echo visit('basic'); // 방문자수 ?>
+<!-- <?php echo poll('basic'); // 설문조사 ?> -->
+<!-- <?php echo visit('basic'); // 방문자수 ?> -->
 
-
+<!-- 
 <div id="ft">
     <div id="ft_copy">
         <div id="ft_company">
@@ -45,7 +45,7 @@ if(defined('G5_THEME_PATH')) {
         echo $config['cf_analytics'];
     }
     ?>
-</div>
+</div> -->
 <script>
 jQuery(function($) {
 

@@ -13,6 +13,8 @@ include_once(G5_LIB_PATH.'/poll.lib.php');
 include_once(G5_LIB_PATH.'/visit.lib.php');
 include_once(G5_LIB_PATH.'/connect.lib.php');
 include_once(G5_LIB_PATH.'/popular.lib.php');
+
+include_once(G5_PATH.'/util/coin_config.php');
 ?>
 
 <header id="hd">
@@ -28,12 +30,17 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
     <div id="hd_wrapper">
 
         <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/m_logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
+            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/victor/logo_header.png" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
 
-        <button type="button" id="gnb_open" class="hd_opener"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only"> 메뉴열기</span></button>
+        <?php if (defined("_INDEX_")) { ?>
+            <button type="button" id="gnb_open" class="hd_opener"><i class="fa fa-bars" aria-hidden="true" style="color:black"></i><span class="sound_only"> 메뉴열기</span></button>
+        <?}else{?>
+            <div class="back_btn"><a href="javascript:history.back();"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sound_only">뒤로가기</span></a></div>
+        <?}?>
 
         <div id="gnb" class="hd_div">
+            
             <button type="button" id="gnb_close" class="hd_closer"><span class="sound_only">메뉴 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button>
 			<?php echo outlogin('basic'); // 외부 로그인 ?>
             <ul id="gnb_1dul">
@@ -182,8 +189,14 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 <div id="wrapper">
 
     <div id="container">
-    <?php if (!defined("_INDEX_")) { ?>
+
+   <!--  <?php if (!defined("_INDEX_")) { ?>
     	<h2 id="container_title" class="top" title="<?php echo get_text($g5['title']); ?>">
     		<a href="javascript:history.back();"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sound_only">뒤로가기</span></a> <?php echo get_head_title($g5['title']); ?>
     	</h2>
-    <?php }
+    <?php } ?> -->
+
+
+   
+
+       
