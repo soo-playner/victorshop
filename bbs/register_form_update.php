@@ -8,6 +8,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 // 리퍼러 체크
 referer_check();
 
+
 if (!($w == '' || $w == 'u')) {
     alert('w 값이 제대로 넘어오지 않았습니다.');
 }
@@ -17,9 +18,9 @@ if ($w == 'u' && $is_admin == 'super') {
         alert('데모 화면에서는 하실(보실) 수 없는 작업입니다.');
 }
 
-if (!chk_captcha()) {
+/* if (!chk_captcha()) {
     alert('자동등록방지 숫자가 틀렸습니다.');
-}
+} */
 
 if($w == 'u')
     $mb_id = isset($_SESSION['ss_mb_id']) ? trim($_SESSION['ss_mb_id']) : '';
@@ -79,7 +80,7 @@ run_event('register_form_update_before', $mb_id, $w);
 if ($w == '' || $w == 'u') {
 
     if ($msg = empty_mb_id($mb_id))         alert($msg, "", true, true); // alert($msg, $url, $error, $post);
-    if ($msg = valid_mb_id($mb_id))         alert($msg, "", true, true);
+    if ($msg = valid_mb_id($mb_id,'email'))         alert($msg, "", true, true);
     if ($msg = count_mb_id($mb_id))         alert($msg, "", true, true);
 
     // 이름, 닉네임에 utf-8 이외의 문자가 포함됐다면 오류
@@ -88,6 +89,7 @@ if ($w == '' || $w == 'u') {
     if($tmp_mb_name != $mb_name) {
         alert('이름을 올바르게 입력해 주십시오.');
     }
+
     $tmp_mb_nick = iconv('UTF-8', 'UTF-8//IGNORE', $mb_nick);
     if($tmp_mb_nick != $mb_nick) {
         alert('닉네임을 올바르게 입력해 주십시오.');
@@ -151,7 +153,7 @@ if ($w == '' || $w == 'u') {
 
     run_event('register_form_update_valid', $w, $mb_id, $mb_nick, $mb_email);
 
-    if ($msg = exist_mb_nick($mb_nick, $mb_id))     alert($msg, "", true, true);
+    // if ($msg = exist_mb_nick($mb_nick, $mb_id))     alert($msg, "", true, true);
     if ($msg = exist_mb_email($mb_email, $mb_id))   alert($msg, "", true, true);
 }
 

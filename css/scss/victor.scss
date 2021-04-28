@@ -3,8 +3,9 @@ $victor-color: #f6bd14;
 
 $img_ : "/img/victor";
 
-#hd{background:white}
 
+/* Header */
+#hd{background:white}
 #hd_wrapper{
     .back_btn{
         position: absolute;
@@ -22,6 +23,32 @@ $img_ : "/img/victor";
     
 }
 
+/* 회원가입 */
+.mbskin .btn_submit, .btn_submit{background:$victor-color;border-radius: 0 !important;}
+
+#mb_login .frm_input{
+    border:1px solid #eeeeee;
+    text-indent :44px;
+    line-height: 45px;
+    margin:0;
+}
+
+
+.email_box .input_img{
+    position: relative;
+    width:17px;height: 12px;
+    left: 15px;
+    top:-35px;
+  }
+  
+.pw_box .input_img{
+    position: relative;
+    width:13px;height: 16px;
+    left: 15px;
+    top:-35px;
+}
+
+.input_img img{width:100%;height:100%;}
 
 
 

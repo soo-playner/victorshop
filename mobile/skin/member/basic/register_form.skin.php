@@ -18,20 +18,26 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     <input type="hidden" name="agree2" value="<?php echo $agree2 ?>">
     <input type="hidden" name="cert_type" value="<?php echo $member['mb_certify']; ?>">
     <input type="hidden" name="cert_no" value="">
+    
+
     <?php if (isset($member['mb_sex'])) { ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex'] ?>"><?php } ?>
     <?php if (isset($member['mb_nick_date']) && $member['mb_nick_date'] > date("Y-m-d", G5_SERVER_TIME - ($config['cf_nick_modify'] * 86400))) { // 닉네임수정일이 지나지 않았다면 ?>
     <input type="hidden" name="mb_nick_default" value="<?php echo get_text($member['mb_nick']) ?>">
     <input type="hidden" name="mb_nick" value="<?php echo get_text($member['mb_nick']) ?>">
-    <?php } ?>
+    <?php }else{?>
+    <input type="hidden" name="mb_nick" id="reg_mb_nick" value="">
+    <?} ?>
+
+    <input type="hidden" name="mb_email" id="reg_mb_email" value="">
 
     <div class="form_01">
         <h2>사이트 이용정보 입력</h2>
         <ul>
 	        <li>
 	            <label for="reg_mb_id" class="sound_only">아이디<strong>필수</strong></label>
-	            <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input full_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $required ?> <?php echo $readonly ?> placeholder="아이디">
+	            <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input email full_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $required ?> <?php echo $readonly ?> placeholder="아이디(이메일)">
 	            <span id="msg_mb_id"></span>
-	            <span class="frm_info">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
+	            <span class="frm_info">인증가능한 이메일주소를 입력해주세요.</span>
 	        </li>
 	        <li class="password">
 	            <label for="reg_mb_password" class="sound_only">비밀번호<strong>필수</strong></label>
@@ -75,7 +81,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            </div>
 	            <?php } ?>
 	        </li>
-	        <?php if ($req_nick) { ?>
+            
+
+            
+	        <!-- <?php if ($req_nick) { ?>
 	        <li>
 	            <label for="reg_mb_nick" class="sound_only">닉네임<strong>필수</strong></label>
 	            
@@ -87,6 +96,17 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input full_input required nospace" maxlength="20" placeholder="닉네임">
 	            <span id="msg_mb_nick"></span>
 	        </li>
+	        <?php } ?> -->
+
+            <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
+	        <li>
+	            <label for="reg_mb_hp" class="sound_only">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong>필수</strong><?php } ?></label>
+	            
+	            <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input full_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="휴대폰번호">
+	            <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
+	            <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
+	            <?php } ?>
+	        </li>
 	        <?php } ?>
 
 			<li>
@@ -97,8 +117,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                     <?php if ($w=='u') { echo "E-mail 주소를 변경하시면 다시 인증하셔야 합니다."; }  ?>
                 </span>
                 <?php }  ?>
-                <input type="hidden" name="old_email" value="<?php echo $member['mb_email'] ?>">
-                <input type="email" name="mb_email" value="<?php echo isset($member['mb_email'])?$member['mb_email']:''; ?>" id="reg_mb_email" required class="frm_input email required" size="50" maxlength="100" placeholder="E-mail">
+                <!-- <input type="hidden" name="old_email" value="<?php echo $member['mb_email'] ?>">
+                <input type="email" name="mb_email" value="<?php echo isset($member['mb_email'])?$member['mb_email']:''; ?>" id="reg_mb_email" required class="frm_input email required" size="50" maxlength="100" placeholder="E-mail"> -->
 			</li>
 
 	        <?php if ($config['cf_use_homepage']) { ?>
@@ -115,17 +135,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	        </li>
 	        <?php } ?>
 	
-	        <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
-	        <li>
-	            <label for="reg_mb_hp" class="sound_only">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong>필수</strong><?php } ?></label>
-	            
-	            <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input full_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="휴대폰번호">
-	            <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
-	            <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
-	            <?php } ?>
-	            
-	        </li>
-	        <?php } ?>
+	        
 	
 	        <?php if ($config['cf_use_addr']) { ?>
 	        <li>
@@ -209,7 +219,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            <span class="chk_li">정보 메일을 받겠습니다.</span>
 	        </li>
 
-	        <?php if ($config['cf_use_hp']) { ?>
+	        <!-- <?php if ($config['cf_use_hp']) { ?>
 	        <li class="chk_box">
 	            <input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php echo ($w=='' || $member['mb_sms'])?'checked':''; ?> class="selec_chk">
 	        	<label for="reg_mb_sms">
@@ -218,9 +228,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            </label>        
 	            <span class="chk_li">휴대폰 문자메세지를 받겠습니다.</span>
 	        </li>
-	        <?php } ?>
+	        <?php } ?> -->
 
-	        <?php if (isset($member['mb_open_date']) && $member['mb_open_date'] <= date("Y-m-d", G5_SERVER_TIME - ($config['cf_open_modify'] * 86400)) || empty($member['mb_open_date'])) { // 정보공개 수정일이 지났다면 수정가능 ?>
+	        <!-- <?php if (isset($member['mb_open_date']) && $member['mb_open_date'] <= date("Y-m-d", G5_SERVER_TIME - ($config['cf_open_modify'] * 86400)) || empty($member['mb_open_date'])) { // 정보공개 수정일이 지났다면 수정가능 ?>
 	        <li class="chk_box">
 	            <input type="checkbox" name="mb_open" value="1" id="reg_mb_open" <?php echo ($w=='' || $member['mb_open'])?'checked':''; ?> class="selec_chk">
 	      		<label for="reg_mb_open">
@@ -243,7 +253,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                이렇게 하는 이유는 잦은 정보공개 수정으로 인하여 쪽지를 보낸 후 받지 않는 경우를 막기 위해서 입니다.
 	            </span>
 	        </li>
-	        <?php } ?>
+	        <?php } ?> -->
 
 	        <?php
 	        //회원정보 수정인 경우 소셜 계정 출력
@@ -349,7 +359,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     {
         // 회원아이디 검사
         if (f.w.value == "") {
-            var msg = reg_mb_id_check();
+            var msg = reg_mb_email_check();
             if (msg) {
                 alert(msg);
                 f.mb_id.select();
@@ -381,6 +391,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
         // 이름 검사
         if (f.w.value=='') {
+            
             if (f.mb_name.value.length < 1) {
                 alert('이름을 입력하십시오.');
                 f.mb_name.focus();
@@ -397,24 +408,28 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         <?php } ?>
 
         // 닉네임 검사
-        if ((f.w.value == "") || (f.w.value == "u" && f.mb_nick.defaultValue != f.mb_nick.value)) {
+        /* if ((f.w.value == "") || (f.w.value == "u" && f.mb_nick.defaultValue != f.mb_nick.value)) {
             var msg = reg_mb_nick_check();
             if (msg) {
                 alert(msg);
                 f.reg_mb_nick.select();
                 return false;
             }
-        }
-
+        } */
+        // 닉네임대신 이름사용
+        f.mb_nick.value = f.mb_name.value;
+        
         // E-mail 검사
-        if ((f.w.value == "") || (f.w.value == "u" && f.mb_email.defaultValue != f.mb_email.value)) {
+        /* if ((f.w.value == "") || (f.w.value == "u" && f.mb_email.defaultValue != f.mb_email.value)) {
             var msg = reg_mb_email_check();
             if (msg) {
                 alert(msg);
                 f.reg_mb_email.select();
                 return false;
             }
-        }
+        } */
+        // 아이디로 이메일 대체
+        f.mb_email.value = f.mb_id.value;
 
         <?php if (($config['cf_use_hp'] || $config['cf_cert_hp']) && $config['cf_req_hp']) {  ?>
         // 휴대폰번호 체크
@@ -461,7 +476,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
             }
         }
 
-        <?php echo chk_captcha_js(); ?>
+        // <?php echo chk_captcha_js(); ?>
 
         document.getElementById("btn_submit").disabled = "disabled";
 

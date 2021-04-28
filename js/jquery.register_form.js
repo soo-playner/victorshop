@@ -60,7 +60,7 @@ var reg_mb_email_check = function() {
         type: "POST",
         url: g5_bbs_url+"/ajax.mb_email.php",
         data: {
-            "reg_mb_email": $("#reg_mb_email").val(),
+            "reg_mb_email": $("#reg_mb_id").val(),
             "reg_mb_id": encodeURIComponent($("#reg_mb_id").val())
         },
         cache: false,

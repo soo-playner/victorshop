@@ -9,12 +9,27 @@ function empty_mb_id($reg_mb_id)
         return "";
 }
 
-function valid_mb_id($reg_mb_id)
+function valid_mb_id($reg_mb_id,$email_use = false)
 {
-    if (preg_match("/[^0-9a-z_]+/i", $reg_mb_id))
-        return "회원아이디는 영문자, 숫자, _ 만 입력하세요.";
-    else
+    if($email_use){
+        
+        $valid_error = "회원아이디(이메일) 형식이 정확하지 않습니다.";
+
+        if (!preg_match("/([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)\.([0-9a-zA-Z_-]+)/", $reg_mb_id))
+        return $valid_error;
+        else
         return "";
+
+    }else{
+       
+        $valid_error = "회원아이디는 영문자, 숫자, _ 만 입력하세요.";
+
+        if (preg_match("/[^0-9a-z_]+/i", $reg_mb_id))
+        return $valid_error;
+        else
+        return "";
+    }
+
 }
 
 function count_mb_id($reg_mb_id)
