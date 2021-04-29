@@ -18,9 +18,9 @@ if ($w == 'u' && $is_admin == 'super') {
         alert('데모 화면에서는 하실(보실) 수 없는 작업입니다.');
 }
 
-/* if (!chk_captcha()) {
+if (!chk_captcha()) {
     alert('자동등록방지 숫자가 틀렸습니다.');
-} */
+}
 
 if($w == 'u')
     $mb_id = isset($_SESSION['ss_mb_id']) ? trim($_SESSION['ss_mb_id']) : '';
@@ -124,7 +124,7 @@ if ($w == '' || $w == 'u') {
             set_session('ss_check_mb_nick', '');
             set_session('ss_check_mb_email', '');
 
-            alert('올바른 방법으로 이용해 주십시오.');
+            // alert('올바른 방법으로 이용해 주십시오.');
         }
 
         // 본인확인 체크

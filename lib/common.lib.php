@@ -774,9 +774,9 @@ function get_member($mb_id, $fields='*', $is_cache=false)
 {
     global $g5;
     
-    if (preg_match("/[^0-9a-z_]+/i", $mb_id))
+    /* if (preg_match("/[^0-9a-z_]+/i", $mb_id))
         return array();
-
+ */
     static $cache = array();
 
     $key = md5($fields);
