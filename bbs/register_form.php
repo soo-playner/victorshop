@@ -74,7 +74,6 @@ if ($w == "") {
     /*
     if (!($member[mb_password] == sql_password($_POST[mb_password]) && $_POST[mb_password]))
         alert("비밀번호가 틀립니다.");
-
     // 수정 후 다시 이 폼으로 돌아오기 위해 임시로 저장해 놓음
     set_session("ss_tmp_password", $_POST[mb_password]);
     */

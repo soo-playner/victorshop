@@ -4,6 +4,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
 ?>
+<?php if(strpos($_SERVER['HTTP_USER_AGENT'],'webview//1.0') !== false){ ?>
+    <style>
+    body{width:100%;position:fixed;}
+    .logo{align-items: center;display: flex;justify-content: center;width: 100%;}
+    </style>
+ <?php } ?> 
 
 <div id="mb_login" class="mbskin">
     <h1><img class="logo" src="<?=G5_IMG_URL?>/victor/logo.png" alt="logo" /></h1>

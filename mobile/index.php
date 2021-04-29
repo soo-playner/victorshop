@@ -1,6 +1,13 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
+if(!$is_member){
+	alert("로그인 페이지로 이동합니다.",G5_BBS_URL."/login.php");
+}else{
+	echo "<script>App.sendUserId('{$member['mb_id']}')</script>";
+}
+
+
 if(defined('G5_THEME_PATH')) {
     require_once(G5_THEME_PATH.'/index.php');
     return;
@@ -12,14 +19,14 @@ include_once(G5_MOBILE_PATH.'/head.php');
 
 
 <section class="breadcomp">
-    <h2 class="greeting"><span><?=$member['mb_id']?>관리자</span> 님 안녕하세요</h2>
+    <h2 class="greeting"><span><?=$member['mb_name']?></span> 님 안녕하세요</h2>
     <div class='row'>
         <dt class='col-4 coin_img'>
             <img src="<?=$token_img?>" alt="<?=$token_symbol?>">
         </dt>
         <dd class='col-8 balance'>
-            <p class="token_balance">200.00 VCT-K</p>
-            <p class="eth_balance">0.06990411 ETH</p>
+            <p class="token_balance"></p>
+            <p class="eth_balance"></p>
         </dd>
     </div>
 </section>
@@ -28,7 +35,7 @@ include_once(G5_MOBILE_PATH.'/head.php');
 <main>
 
     <div id="main_card">
-            <a href="./deposit.php"><div class='dual left'><img src="<?=$token_symbol_img?>" alt=""> <?=$token_symbol?></div></a>
+            <a href="/page.php?id=deposit"><div class='dual left'><img src="<?=$token_symbol_img?>" alt=""> <?=$token_symbol?></div></a>
             <a href="/shop"><div class='dual right'><img src="<?=$point_symbol_img?>" alt=""> VCT - SHOP</div></a>
             <!-- <div class="wallet_link_bar"></div> -->
     </div>
@@ -47,25 +54,25 @@ include_once(G5_MOBILE_PATH.'/head.php');
     
 	<section class="menu">
 		<div class="menu_box row1">
-			<a href="./deposit.php" class='menu_card'>
+			<a href="/page.php?id=deposit" class='menu_card'>
 				<div class="deposit ">
 					<i class="ri-login-circle-line main_icon"></i>
 				</div>
 				<p>입금</p>
 			</a>
-			<a href="./exchange.php" class='menu_card'>
+			<a href="/shop" class='menu_card'>
 				<div class="exchange">
 				<i class="ri-store-2-line main_icon"></i>
 				</div>
 				<p>주문하기</p>
 			</a>
-			<a href="./withdraw.php" class='menu_card'>
+			<a href="/page.php?id=withdraw" class='menu_card'>
 				<div class="withdrawl">
 				<i class="ri-logout-circle-r-line main_icon"></i>
 				</div>
 				<p>출금하기</p>
 			</a>
-			<a href="./history.php" class='menu_card'>
+			<a href="/page.php?id=history" class='menu_card'>
 				<div class="history">
 					<i class="ri-scan-line main_icon"></i>
 				</div>
@@ -75,12 +82,12 @@ include_once(G5_MOBILE_PATH.'/head.php');
 
 
         <div class="menu_box sysbtnset">
-			<a href="./mypage.php">
+			<a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">
 				<div class="my_info">
 				</div>
 				<p>내 정보</p>
 			</a>
-			<a href="/member/logout.php">
+			<a href="<?=G5_BBS_URL?>/logout.php">
 				<div class="logout">
 				</div>
 				<p>로그아웃</p>

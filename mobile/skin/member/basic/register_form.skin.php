@@ -36,8 +36,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	        <li>
 	            <label for="reg_mb_id" class="sound_only">아이디<strong>필수</strong></label>
 	            <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input email full_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $required ?> <?php echo $readonly ?> placeholder="아이디(이메일)">
-	            <span id="msg_mb_id"></span>
-	            <span class="frm_info">인증가능한 이메일주소를 입력해주세요.</span>
+                <span id="msg_mb_id"></span>
+                <?php if($w == ""){?>
+                <span class="frm_info">인증가능한 이메일주소를 입력해주세요.</span>
+                <?php } ?>
 	        </li>
 	        <li class="password">
 	            <label for="reg_mb_password" class="sound_only">비밀번호<strong>필수</strong></label>
@@ -114,7 +116,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                 <?php if ($config['cf_use_email_certify']) {  ?>
                 <span class="frm_info">
                     <?php if ($w=='') { echo "E-mail 로 발송된 내용을 확인한 후 인증하셔야 회원가입이 완료됩니다."; }  ?>
-                    <?php if ($w=='u') { echo "E-mail 주소를 변경하시면 다시 인증하셔야 합니다."; }  ?>
+                    <!-- <?php if ($w=='u') { echo "E-mail 주소를 변경하시면 다시 인증하셔야 합니다."; }  ?> -->
                 </span>
                 <?php }  ?>
                 <!-- <input type="hidden" name="old_email" value="<?php echo $member['mb_email'] ?>">
@@ -160,7 +162,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     </div>
 
     <div class="form_01">  
-        <h2>기타 개인설정</h2>
+        <!-- <h2>기타 개인설정</h2>
 		<ul>
 			<?php if ($config['cf_use_signature']) { ?>
 	        <li>
@@ -208,7 +210,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            <label for="del_mb_img">삭제</label>
 	            <?php }  ?>
 	        </li>
-	        <?php } ?>
+	        <?php } ?> -->
 
 	        <li class="chk_box">
 	        	<input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo ($w=='' || $member['mb_mailling'])?'checked':''; ?> class="selec_chk">

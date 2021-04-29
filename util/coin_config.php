@@ -4,6 +4,11 @@ if(isset($_GET['debug'])){
   $is_debug = 1;
 }
 
+ if(strpos($_SERVER['HTTP_USER_AGENT'],'webview//1.0') !== false){ 
+    $is_webview = true;
+ }else{ 
+    $is_webview = false;
+ }
 
 $Ether_API_KEY ="V3G3VI316K8BCTGDFQG6QGUAZ4MM1GN9WJ";
 
@@ -11,12 +16,12 @@ $Ether_API_KEY ="V3G3VI316K8BCTGDFQG6QGUAZ4MM1GN9WJ";
 $title = "VCT :: Victor wallet";
 $header_logo ="/wallet/images/victor/logo_header.png";
 $main_logo = "";
-
+$encrypt = "Y"; // 암호화 설정 Y:사용, N: 사용안함
 
 /* 모드 설정*/
 $pre_sql = "SELECT * FROM wallet_setting ";
-$pre_result = sql_query($pre_sql);
-$pre_row = sql_fetch($pre_result);
+$pre_row = sql_fetch($pre_sql);
+
 if(strtolower($pre_row['mode']) == 'test'){
     $mode = 'test';
 }
@@ -26,21 +31,20 @@ if(isset($pre_row['exchange_rate'])){
     $exchange_rate =1;
 }
 
-// if(!isset($mode)) $mode = '';
-// $mode = 'test';
-$encrypt = "Y";
-
 if(strtolower($mode) == 'test'){
     //  테스트모드일때
     define('NETWORK','ropsten');
-    define('ETHERSCAN_ENDPOINT','ropsten');
+    define('ETHERSCAN_ENDPOINT','api-ropsten');
     define('VCT_COMPANY_ADDR','0x5Cc8C164F0cB14bf72E15C8021c27fdEb3313c8a');
-    define('VCT_CONTRACT', '0x0b49e59bc424e9f616eb86fd3002757eab4c8a28');
+    define('VCT_CONTRACT', '0x0b49e59bc424e9f616eb86fd3002757eab4c8a28'); // victor 테스트
+    // define('VCT_CONTRACT', '0xcd20bc3d4fc1f5654ec8aca99a9c5b412b4f1696'); // GIO 테스트
 }else{
   define('NETWORK','mainnet');
   define('ETHERSCAN_ENDPOINT','API');
   define('VCT_COMPANY_ADDR','0xAB4f0AaAf747CeFB015D7E21C498aB1f63a06D48');
   define('VCT_CONTRACT', '0x31C785fcbA8429e1E566a0110D75ee42687aac9B');
+  // define('VCT_CONTRACT', '0x35ec9cd695fdd9b3af678a7a199f00aae1ad87d8');
+
 }
 
 define('Ether_API_KEY','V3G3VI316K8BCTGDFQG6QGUAZ4MM1GN9WJ');
@@ -67,6 +71,7 @@ $point_arr = array(
   'point_symbol_img'=>'/img/victor/point_symbol_circle.png',
   'color'=>'royalblue',
   'id'=>'mask'
+
 );
 
 
@@ -84,7 +89,6 @@ $token_decimal = $_token['decimal']; // 자릿수
 $token_color = $_token['color']; // 토큰컬러
 $token_id = $_token['id']; // 토큰명
 $token_decimal_numeric = $_token['decimal_numeric']; // 데시멜 0 갯수
-
 // 포인트
 $point_symbol = $point_arr['symbol'];
 $point_img = $point_arr['point_img'];

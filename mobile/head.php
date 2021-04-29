@@ -14,7 +14,10 @@ include_once(G5_LIB_PATH.'/visit.lib.php');
 include_once(G5_LIB_PATH.'/connect.lib.php');
 include_once(G5_LIB_PATH.'/popular.lib.php');
 
+if($is_member){
 include_once(G5_PATH.'/util/coin_config.php');
+include_once(G5_PATH."/util/callOneCoin.php");
+}
 ?>
 
 <header id="hd">
