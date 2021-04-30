@@ -17,7 +17,6 @@ include_once(G5_MOBILE_PATH.'/head.php');
 
 ?>
 
-
 <section class="breadcomp">
     <h2 class="greeting"><span><?=$member['mb_name']?></span> 님 안녕하세요</h2>
     <div class='row'>
@@ -66,13 +65,13 @@ include_once(G5_MOBILE_PATH.'/head.php');
 				</div>
 				<p>주문하기</p>
 			</a>
-			<a href="/page.php?id=withdraw" class='menu_card'>
+			<a href="javascript:make_wallet('1')" class='menu_card'>
 				<div class="withdrawl">
 				<i class="ri-logout-circle-r-line main_icon"></i>
 				</div>
 				<p>출금하기</p>
 			</a>
-			<a href="/page.php?id=history" class='menu_card'>
+			<a href="javascript:make_wallet('2')" class='menu_card'>
 				<div class="history">
 					<i class="ri-scan-line main_icon"></i>
 				</div>
@@ -97,6 +96,28 @@ include_once(G5_MOBILE_PATH.'/head.php');
 		</div>
 
 </main>
+
+<script>
+
+function make_wallet(num){
+
+	if('<?=$wallet_addr?>' == ''){
+		alert("입금페이지에서 VCT-K 지갑생성후 이용해주세요")
+		return
+	}
+
+	if(num == '1'){
+		window.location.href='/page.php?id=withdraw'
+	}
+
+	if(num == '2'){
+		window.location.href='/page.php?id=history'
+	}
+
+
+}
+
+</script>
 
 
 
