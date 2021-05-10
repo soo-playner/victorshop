@@ -53,7 +53,7 @@ jQuery(function($) {
 
         // 폰트 리사이즈 쿠키있으면 실행
         font_resize("container", get_cookie("ck_font_resize_rmv_class"), get_cookie("ck_font_resize_add_class"));
-        
+   
         //상단고정
         if( $(".top").length ){
             var jbOffset = $(".top").offset();

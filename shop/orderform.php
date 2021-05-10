@@ -1,6 +1,5 @@
 <?php
 include_once('./_common.php');
-
 // add_javascript('js 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
@@ -44,6 +43,7 @@ if(G5_IS_MOBILE)
 else
     include_once(G5_SHOP_PATH.'/_head.php');
 
+
 // 희망배송일 지정
 if ($default['de_hope_date_use']) {
     include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
@@ -62,3 +62,4 @@ if(G5_IS_MOBILE)
     include_once(G5_MSHOP_PATH.'/_tail.php');
 else
     include_once(G5_SHOP_PATH.'/_tail.php');
+    

@@ -114,7 +114,7 @@
 .sct_10 .sct_icon {margin:0 0 10px}
 .li_more {text-align:center}
 
-.sct_10 .sct_op_btn {position:absolute;right:5px;bottom:0}
+.sct_10 .sct_op_btn {position:absolute;right:5px;}
 .sct_10 .sct_op_btn>button {border:0;width:25px;height:20px;font-size:1.25em;text-align:center;color:#949494;background:transparent}
 
 #item_load_msg {display:none}

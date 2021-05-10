@@ -29,7 +29,7 @@ if($encrypt == "N"){
 <script src="/lib/wallet/erc_wallet.js"></script>
 <link rel="stylesheet" href="<?=G5_MOBILE_URL?>/css/withdraw.css">
 
-
+<body scroll=auto style="overflow-x:hidden">
 	<header class="header">
 		<a href="javascript:history.back()"><img class="left" src="img/icon_back_bk.png" alt="back_arrow"></a>
 		<p class="hd_title">보내기 / 출금하기</p>
@@ -97,7 +97,7 @@ if($encrypt == "N"){
 		</div>
 
 	</form>
-
+	</body>
 	<!-- callOneCoin.php 의 자바스크립트 변수 받아오려고 적어놓은것  -->
 	<div id ="balData" style="visibility:hidden;"></div>
 
@@ -115,6 +115,7 @@ if($encrypt == "N"){
 		var high_gas_fee = "";
 		var normal_gas_fee = "";
 		var low_gas_fee = "";
+ 
 		// console.log(`토큰컨트렉트: ${contract_address}\ndecimal: ${decimal}\naddress: ${address}`);
 		$.ajax({
    			type: "GET",
@@ -128,8 +129,17 @@ if($encrypt == "N"){
 				high_gas_fee = res.result.FastGasPrice
 				normal_gas_fee= res.result.ProposeGasPrice
 				low_gas_fee = res.result.SafeGasPrice 
- 
-				estimate_pre_gas(address,contract_address,decimal);
+
+				erc20_contract.methods.balanceOf(address).call().then(bal => {
+					if(bal/decimal <= 0){
+						alert("<?=$token_symbol?>"+" 잔고를 확인해주세요.(서비스 이용불가)")
+						$('#exchange').prop("disabled",true)
+						return false
+					}else{
+						estimate_pre_gas(address,contract_address,decimal);
+					}
+
+				});	
       		}
 		});
 
@@ -163,6 +173,7 @@ if($encrypt == "N"){
 				alert("출금액은 보유량을 넘을수 없습니다");
 				return false;
 			}
+			
 
 
 			// // 보유량 1000개 이상일때
@@ -201,9 +212,18 @@ if($encrypt == "N"){
 
 				function estimate_pre_gas(address,contract_address,decimal){
 					var to_wallet =  "<?=VCT_COMPANY_ADDR?>";
-					var send_coin = 0.000001;
+					var send_coin = 0.000000001;
 					
 					estimate_gas(address,to_wallet,contract_address,decimal,send_coin, (estimateGas,estimateData) => { // 추가
+
+
+						var estimate_bal = $('.eth_balance').text().split(" ")
+					
+						if(estimateGas*web3.utils.toWei(high_gas_fee.toString(), 'gwei') / 1000000000000000000 > Number(estimate_bal[0])){
+							alert("수수료(ETH)가 부족하여 전송 수수료를 불러올수 없습니다.(서비스 이용불가)")
+						return false;
+						}
+				
 						$("#cb").val(low_gas_fee.toString());
 						$("#cb1").val(normal_gas_fee.toString());
 						$("#cb2").val(high_gas_fee.toString());

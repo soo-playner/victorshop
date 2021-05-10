@@ -74,7 +74,7 @@ $result = sql_query($sql);
     ?>
     </ul>
 
-    <div class="win_btn"><button type="button" onclick="window.close();" class="btn_close">창닫기</button></div>
+    <div class="win_btn"><button type="button" onclick="javascript:history.back()" class="btn_close">창닫기</button></div>
 </div>
 
 <?php

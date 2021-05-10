@@ -167,7 +167,7 @@ if($od['od_pg'] == 'lg') {
         <div class="sod_ta_wr">
             <dl id="m_sod_bsk_tot">
                 <dt class="sod_bsk_dvr">주문총액</dt>
-                <dd class="sod_bsk_dvr"><strong><?php echo number_format($od['od_cart_price']); ?> 원</strong></dd>
+                <dd class="sod_bsk_dvr"><strong><?php echo number_format($od['od_cart_price']); ?> 원 (<?php echo number_format($od['od_token_price']); ?> <?=$token_symbol?>)</strong></dd>
 
                 <?php if($od['od_cart_coupon'] > 0) { ?>
                 <dt class="sod_bsk_dvr">상품할인</dt>
@@ -203,7 +203,7 @@ if($od['od_pg'] == 'lg') {
                 <dd class="sod_bsk_point"><strong><?php echo number_format($tot_point); ?> 점</strong></dd>
 
                 <dt class="sod_bsk_cnt">총계</dt>
-                <dd class="sod_bsk_cnt"><strong><?php echo number_format($tot_price); ?> 원</strong></dd>
+                <dd class="sod_bsk_cnt"><strong><?php echo number_format($tot_price); ?> 원 (<?php echo number_format($od['od_token_price']); ?> <?=$token_symbol?>)</strong></dd>
 
             </dl>
         </div>
@@ -225,7 +225,7 @@ if($od['od_pg'] == 'lg') {
         }
         else
         {
-            $wanbul = display_price($receipt_price);
+            $wanbul = display_price($receipt_price,false);
         }
 
         // 결제정보처리
@@ -233,7 +233,7 @@ if($od['od_pg'] == 'lg') {
             $od_receipt_price = display_price($od['od_receipt_price']);
         else
             $od_receipt_price = '아직 입금되지 않았거나 입금정보를 입력하지 못하였습니다.';
-
+         
         $app_no_subj = '';
         $disp_bank = true;
         $disp_receipt = false;
@@ -271,17 +271,43 @@ if($od['od_pg'] == 'lg') {
                     <th scope="row">주문번호</th>
                     <td><?php echo $od_id; ?></td>
                 </tr>
+
+
+                <tr>
+                    <?php if(NETWORK == "mainnet"){
+                           $NETWORK = "";
+                        }else{
+                           $NETWORK = NETWORK.".";
+                        }
+                        $txn_url = "https://".$NETWORK."etherscan.io/tx/".$od['od_hash'];
+                        if(strpos($_SERVER['HTTP_USER_AGENT'],'webview//1.0') !== false){ 
+                            $call_txn = "javascript:App.openNewWebView('$txn_url')";
+                         }else{ 
+                            $call_txn = $txn_url;
+                         }
+                        ?>
+                    <th scope="row">결제ID</th>
+                    <td><a href="<?=$call_txn?>" style="color:grey; font-style:italic">
+                        <?php echo substr($od['od_hash'],0,12)." ... ".substr($od['od_hash'],strlen($od['od_hash'])-12,12) ?>
+                    </a></td>
+                  </tr>
+
+
                 <tr>
                     <th scope="row">주문일시</th>
                     <td><?php echo $od['od_time']; ?></td>
                 </tr>
-                <tr>
+      
+              
+
+                <!-- <tr>
                     <th scope="row">결제방식</th>
                     <td><?php echo check_pay_name_replace($od['od_settle_case'], $od, 1); ?></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <th scope="row">결제금액</th>
-                    <td><?php echo $od_receipt_price; ?></td>
+                    <td><?php echo display_price_2($od['od_cart_price'],false,$od['od_token_price']); ?></td>
+                    <!-- <td><?php echo $od_receipt_price; ?></td> -->
                 </tr>
                 <?php
                 if($od['od_receipt_price'] > 0)
@@ -314,8 +340,8 @@ if($od['od_pg'] == 'lg') {
                     <td><?php echo get_text($od['od_deposit_name']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row">입금계좌</th>
-                    <td><?php echo get_text($od['od_bank_account']); ?></td>
+                    <th scope="row">입금계좌</th>  
+                    <td><?php echo substr($od['od_bank_account'],0,12)." ... ".substr($od['od_bank_account'],strlen($od['od_bank_account'])-12,12) ?></td>
                 </tr>
                 <?php
                 }
@@ -575,22 +601,22 @@ if($od['od_pg'] == 'lg') {
 
     <section id="sod_fin_tot">
         <h2>결제합계</h2>
-
+     
         <ul>
             <li>
                 총 구매액
-                <strong><?php echo display_price($tot_price); ?></strong>
+                <strong><?php echo display_price_2($tot_price,false,$od['od_token_price']); ?></strong>
             </li>
             <?php
             if ($misu_price > 0) {
             echo '<li>';
-            echo '미결제액'.PHP_EOL;
-            echo '<strong>'.display_price($misu_price).'</strong>';
+            echo '결제액(관리자 확인예정)'.PHP_EOL;
+            echo '<strong>'.display_price_2($misu_price,false,$od['od_token_price']).'</strong>';
             echo '</li>';
             }
             ?>
             <li id="alrdy">
-                결제액
+                미결제액
                 <strong><?php echo $wanbul; ?></strong>
                 <?php if( $od['od_receipt_point'] ){    //포인트로 결제한 내용이 있으면 ?>
                 <div class="right">
@@ -602,7 +628,7 @@ if($od['od_pg'] == 'lg') {
         </ul>
     </section>
 
-    <section id="sod_fin_cancel">
+    <!-- <section id="sod_fin_cancel">
         <h2>주문취소</h2>
         <?php
         // 취소한 내역이 없다면
@@ -628,7 +654,7 @@ if($od['od_pg'] == 'lg') {
         ?>
         <p>주문 취소, 반품, 품절된 내역이 있습니다.</p>
         <?php } ?>
-    </section>
+    </section> -->
 
      <?php if ($od['od_settle_case'] == '가상계좌' && $od['od_misu'] > 0 && $default['de_card_test'] && $is_admin && $od['od_pg'] == 'kcp') {
     preg_match("/\s{1}([^\s]+)\s?/", $od['od_bank_account'], $matchs);

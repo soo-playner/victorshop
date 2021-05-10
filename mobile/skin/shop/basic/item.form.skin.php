@@ -309,7 +309,8 @@ add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 10);
             </script>
         <?php } ?>
         </div>
-
+        <input type="hidden" value="<?=$exchange_rate?>" id="exchange_rate">
+        <input type="hidden" value="<?=$token_symbol?>" id="token_symbol">
         <div id="sit_tot_price"></div>
         <?php } ?>
     

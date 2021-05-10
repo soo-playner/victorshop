@@ -333,14 +333,14 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
     ?>
 
     <div class="tbl_head01 tbl_wrap">
-        <strong class="sodr_nonpay">미수금 <?php echo display_price($od['od_misu']); ?></strong>
+        <strong class="sodr_nonpay">미수금 <?php echo number_format($od['od_misu']) ?> 원</strong>
 
         <table>
         <caption>주문결제 내역</caption>
         <thead>
         <tr>
             <th scope="col">주문번호</th>
-            <th scope="col">결제방법</th>
+            <!-- <th scope="col">결제방법</th> -->
             <th scope="col">주문총액</th>
             <th scope="col">배송비</th>
             <th scope="col">포인트결제</th>
@@ -351,14 +351,14 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         </thead>
         <tbody>
         <tr>
-            <td><?php echo $od['od_id']; ?></td>
-            <td class="td_paybybig"><?php echo $s_receipt_way; ?></td>
-            <td class="td_numbig td_numsum"><?php echo display_price($amount['order']); ?></td>
-            <td class="td_numbig"><?php echo display_price($od['od_send_cost'] + $od['od_send_cost2']); ?></td>
-            <td class="td_numbig"><?php echo display_point($od['od_receipt_point']); ?></td>
-            <td class="td_numbig td_numincome"><?php echo number_format($amount['receipt']); ?>원</td>
-            <td class="td_numbig td_numcoupon"><?php echo display_price($amount['coupon']); ?></td>
-            <td class="td_numbig td_numcancel"><?php echo number_format($amount['cancel']); ?>원</td>
+            <td style="inline-size:0px"><?php echo $od['od_id']; ?></td>
+            <!-- <td class="td_paybybig"><?php echo $s_receipt_way; ?></td> -->
+            <td class="td_numbig td_numsum" style="inline-size:0px"><?php echo display_price_2($amount['order'],false,$od['od_token_price']); ?></td>
+            <td class="td_numbig" style="inline-size:0px"><?php echo display_price_2($od['od_send_cost'] + $od['od_send_cost2'],false,0); ?></td>
+            <td class="td_numbig" style="inline-size:0px"><?php echo display_point($od['od_receipt_point']); ?></td>
+            <td class="td_numbig td_numincome" style="inline-size:0px"><?php echo number_format($amount['receipt']); ?>원</td>
+            <td class="td_numbig td_numcoupon" style="inline-size:0px"><?php echo display_price_2($amount['coupon'],false,0); ?></td>
+            <td class="td_numbig td_numcancel" style="inline-size:0px"><?php echo number_format($amount['cancel']); ?>원</td>
         </tr>
         </tbody>
         </table>
@@ -403,8 +403,8 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </tr>
                 <?php } ?>
                 <tr>
-                    <th scope="row"><?php echo $od['od_settle_case']; ?> 입금액</th>
-                    <td><?php echo display_price($od['od_receipt_price']); ?></td>
+                    <th scope="row">입금액</th>
+                    <td><?php echo display_price_2($od['od_cart_price'],false,$od['od_token_price']); ?></td>
                 </tr>
                 <tr>
                     <th scope="row">입금자</th>
@@ -555,7 +555,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <?php } ?>
                 <tr>
                     <th scope="row">주문금액할인</th>
-                    <td><?php echo display_price($od['od_coupon']); ?></td>
+                    <td><?php echo display_price_2($od['od_coupon'],false,0); ?></td>
                 </tr>
                 <tr>
                     <th scope="row">포인트</th>
@@ -563,7 +563,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </tr>
                 <tr>
                     <th scope="row">결제취소/환불액</th>
-                    <td><?php echo display_price($od['od_refund_price']); ?></td>
+                    <td><?php echo display_price_2($od['od_refund_price'],false,0); ?></td>
                 </tr>
                 <?php if ($od['od_invoice']) { ?>
                 <tr>
@@ -683,7 +683,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <?php } ?>
 
                 <tr>
-                    <th scope="row"><label for="od_receipt_price"><?php echo $od['od_settle_case']; ?> 입금액</label></th>
+                    <th scope="row"><label for="od_receipt_price">입금액</label></th>
                     <td>
                         <?php echo $html_receipt_chk; ?>
                         <input type="text" name="od_receipt_price" value="<?php echo $od['od_receipt_price']; ?>" id="od_receipt_price" class="frm_input"> 원

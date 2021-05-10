@@ -34,10 +34,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         </div>
     </div>
         
-        <div id="login_info" class="chk_box">
+        <!-- <div id="login_info" class="chk_box">
             <input type="checkbox" name="auto_login" id="login_auto_login" class="selec_chk">
             <label for="login_auto_login"><span></span> 자동로그인</label>
-        </div>
+        </div> -->
 
 		<button type="submit" class="btn_submit">로그인</button>
     </div>

@@ -603,10 +603,21 @@ function get_large_image($img, $it_id, $btn_image=true)
 // 금액 표시
 function display_price($price, $tel_inq=false)
 {
+    global $exchange_rate;
     if ($tel_inq)
         $price = '전화문의';
     else
-        $price = number_format($price, 0).'원';
+        $price = number_format($price, 0)." 원 (".number_format($price/$exchange_rate,0)." VCT-K)";
+
+    return $price;
+}
+
+function display_price_2($price, $tel_inq=false, $coin_price)
+{
+    if ($tel_inq)
+        $price = '전화문의';
+    else
+        $price = number_format($price, 0)." 원 (".number_format($coin_price)." VCT-K)";
 
     return $price;
 }
@@ -1159,7 +1170,7 @@ function print_item_options($it_id, $cart_id)
         $price_plus = '';
         if($row['io_price'] >= 0)
             $price_plus = '+';
-        $str .= '<li>'.get_text($row['ct_option']).' '.$row['ct_qty'].'개 ('.$price_plus.display_price($row['io_price']).')</li>'.PHP_EOL;
+        $str .= '<li>'.get_text($row['ct_option']).' '.$row['ct_qty'].'개 ('.$price_plus.display_price($row['io_price'],false).')</li>'.PHP_EOL;
     }
 
     if($i > 0)

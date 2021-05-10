@@ -1,10 +1,10 @@
 <?php
-if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+// if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 if(!$is_member){
 	alert("로그인 페이지로 이동합니다.",G5_BBS_URL."/login.php");
 }else{
-	echo "<script>App.sendUserId('{$member['mb_id']}')</script>";
+	echo "<script>App.sendUserId('{$member['mb_id']}');</script>";
 }
 
 
@@ -59,19 +59,19 @@ include_once(G5_MOBILE_PATH.'/head.php');
 				</div>
 				<p>입금</p>
 			</a>
-			<a href="/shop" class='menu_card'>
+			<a href="/page.php?id=exchange" class='menu_card'>
 				<div class="exchange">
 				<i class="ri-store-2-line main_icon"></i>
 				</div>
 				<p>주문하기</p>
 			</a>
-			<a href="javascript:make_wallet('1')" class='menu_card'>
+			<a href="/page.php?id=withdraw" class='menu_card'>
 				<div class="withdrawl">
 				<i class="ri-logout-circle-r-line main_icon"></i>
 				</div>
 				<p>출금하기</p>
 			</a>
-			<a href="javascript:make_wallet('2')" class='menu_card'>
+			<a href="/page.php?id=history" class='menu_card'>
 				<div class="history">
 					<i class="ri-scan-line main_icon"></i>
 				</div>
@@ -96,30 +96,6 @@ include_once(G5_MOBILE_PATH.'/head.php');
 		</div>
 
 </main>
-
-<script>
-
-function make_wallet(num){
-
-	if('<?=$wallet_addr?>' == ''){
-		alert("입금페이지에서 VCT-K 지갑생성후 이용해주세요")
-		return
-	}
-
-	if(num == '1'){
-		window.location.href='/page.php?id=withdraw'
-	}
-
-	if(num == '2'){
-		window.location.href='/page.php?id=history'
-	}
-
-
-}
-
-</script>
-
-
 
 <!-- 메인화면 최신글 시작 -->
 <!-- <?php

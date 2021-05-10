@@ -24,6 +24,12 @@ if(!$ckey || $ckey != $key)
     alert('올바른 방법으로 이용해 주십시오.', G5_URL);
 ?>
 
+<style>
+.rg_em_p{    display: flex;justify-content: center;}
+.btn_submit {width:35%;height:45px;padding:0 30px;font-weight:bold;font-size:1.083em}
+.btn_cancel {width:35%;line-height:40px;height:45px;padding:0 30px;font-size:1.083em;background:#fff;border-radius:3px;border:1px solid #dcdcdc}
+</style>
+
 <p class="rg_em_p">메일인증을 받지 못한 경우 회원정보의 메일주소를 변경 할 수 있습니다.</p>
 
 <form method="post" name="fregister_email" action="<?php echo G5_HTTPS_BBS_URL.'/register_email_update.php'; ?>" onsubmit="return fregister_email_submit(this);">
@@ -34,7 +40,7 @@ if(!$ckey || $ckey != $key)
     <caption>사이트 이용정보 입력</caption>
     <tr>
         <th scope="row"><label for="reg_mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
-        <td><input type="text" name="mb_email" id="reg_mb_email" required class="frm_input email required" size="30" maxlength="100" value="<?php echo $mb['mb_email']; ?>"></td>
+        <td><input type="text" name="mb_email" id="reg_mb_email" required class="frm_input email required" size="20" maxlength="100" value="<?php echo $mb['mb_email']; ?>"></td>
     </tr>
     <tr>
         <th scope="row">자동등록방지</th>

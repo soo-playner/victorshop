@@ -349,3 +349,4 @@
 #mb_login{}
 #flogin{background:transparent}
 #mb_login #login_frm{}
+button:focus{outline: none;}

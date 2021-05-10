@@ -126,25 +126,26 @@
     font-weight: 300;
     
 }
-.hist_tab tr:last-child td{border:none;}
+/* .hist_tab tr:last-child td{border:none;} */
 
 /* ================================== //TABLE ===============================*/
 
 /* HISTORY BOX */
 
-.guide{
-  display:none;
+.guide_1, .guide_2{
+  /* display:none; */
  font-size:0.9em;
  background:rgba(255,255,255,0.8);
  color:#1a1a1a;
- text-align:center;
- vertical-align: middle;
+ /* text-align:center; */
+ /* vertical-align: middle; */
 position: absolute;
-top:70%;
-transform: translateX(-50%);
-left:50%;
+/* top:70%; */
+/* transform: translateX(-50%); */
+left:45%;
  border-radius: 1vh;
- padding:0 1vh;
+ /* padding:0 1vh; */
+ margin-top: 10%;
 }
 #js-balance_2, #js-balance_3{
   border-top:1px solid #fff;
@@ -152,7 +153,7 @@ left:50%;
 
 #js-hist_tab_3{display:none;}
 
-.eth_balance{color:#555}
+/* .eth_balance{color:#555} */
 .ex_icon{text-align:right;float:right;}
 
 .hist_tab tr{height:25px}

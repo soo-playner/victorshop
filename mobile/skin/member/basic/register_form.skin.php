@@ -35,7 +35,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         <ul>
 	        <li>
 	            <label for="reg_mb_id" class="sound_only">아이디<strong>필수</strong></label>
-	            <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input email full_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $required ?> <?php echo $readonly ?> placeholder="아이디(이메일)">
+	            <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input email full_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="50" <?php echo $required ?> <?php echo $readonly ?> placeholder="아이디(이메일)">
                 <span id="msg_mb_id"></span>
                 <?php if($w == ""){?>
                 <span class="frm_info">인증가능한 이메일주소를 입력해주세요.</span>

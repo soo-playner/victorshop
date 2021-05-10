@@ -4,6 +4,19 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 require_once(G5_MSHOP_PATH.'/settle_'.$default['de_pg_service'].'.inc.php');
 require_once(G5_SHOP_PATH.'/settle_kakaopay.inc.php');
 
+if($encrypt == "N"){
+	$wallet_key_decrypt = $wallet_key;
+
+}else{
+	$key = $member['mb_id'].'@willsoft@';
+	$sql_decrypt = "SELECT CAST(AES_DECRYPT(UNHEX('$wallet_key'), '$key') AS CHAR) AS wallet_key FROM g5_member WHERE mb_id='{$member['mb_id']}'";
+	$result = sql_query($sql_decrypt);
+	if(sql_num_rows($result) > 0){
+		$row = sql_fetch_array($result);
+		$wallet_key_decrypt = $row['wallet_key'];
+	}
+}
+
 if( is_inicis_simple_pay() ){   //이니시스 삼성페이 또는 Lpay 사용시
     require_once(G5_MSHOP_PATH.'/samsungpay/incSamsungpayCommon.php');
 }
@@ -18,11 +31,15 @@ $tablet_size = "1.0"; // 화면 사이즈 조정 - 기기화면에 맞게 수정
 set_session('ss_personalpay_id', '');
 set_session('ss_personalpay_hash', '');
 ?>
-
 <div id="sod_approval_frm">
 <?php
 ob_start();
 ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 
     <ul class="sod_list">
         <?php
@@ -226,21 +243,20 @@ ob_start();
     <div class="sod_ta_wr">
         <dl id="m_sod_bsk_tot">
             <dt class="sod_bsk_sell">주문</dt>
-            <dd class="sod_bsk_sell"><strong><?php echo number_format($tot_sell_price); ?> 원</strong></dd>
+            <dd class="sod_bsk_sell"><strong><?php echo number_format($tot_sell_price); ?> 원 (<?php echo number_format($tot_sell_price/$exchange_rate); ?> <?=$token_symbol?>)</strong></dd>
             <?php if($it_cp_count > 0) { ?>
             <dt class="sod_bsk_coupon">쿠폰</dt>
-            <dd class="sod_bsk_coupon"><strong id="ct_tot_coupon">0 원</strong></dd>
+            <dd class="sod_bsk_coupon"><strong id="ct_tot_coupon">0 <?=$token_symbol?></strong></dd>
             <?php } ?>
             <dt class="sod_bsk_dvr">배송비</dt>
-            <dd class="sod_bsk_dvr"><strong><?php echo number_format($send_cost); ?> 원</strong></dd>
+            <dd class="sod_bsk_dvr"><strong><?php echo number_format($send_cost); ?> <?=$token_symbol?></strong></dd>
 
             <dt class="sod_bsk_point">포인트</dt>
             <dd class="sod_bsk_point"><strong><?php echo number_format($tot_point); ?> 점</strong></dd>
             <dt class="sod_bsk_cnt">총계</dt>
             <dd class="sod_bsk_cnt">
                 <?php $tot_price = $tot_sell_price + $send_cost; // 총계 = 주문상품금액합계 + 배송비 ?>
-                <strong id="ct_tot_price"><?php echo number_format($tot_price); ?></strong> 원
-            </dd>
+                <strong id="ct_tot_price"><?php echo number_format($tot_price); ?></strong> 원 </strong>(<strong id="ct_tot_price"><?php echo number_format($tot_price/$exchange_rate); ?></strong> <?=$token_symbol?>)
         </dl>
     </div>
 
@@ -278,7 +294,8 @@ if($is_kakaopay_use) {
     <input type="hidden" name="item_coupon" value="0">
     <input type="hidden" name="od_coupon" value="0">
     <input type="hidden" name="od_send_coupon" value="0">
-
+    <input type="hidden" name="od_hash" id="od_hash">
+    <input type="hidden" name="od_token_price" value="<?=$tot_sell_price/$exchange_rate?>">
     <?php echo $content; ?>
 
     <section id="sod_frm_orderer" >
@@ -525,13 +542,22 @@ if($is_kakaopay_use) {
                 <td><span id="sc_cp_price">0</span>원</td>
             </tr>
             <?php } ?>
+            <input type="hidden" id="balData">
+            <tr>
+                <th>내 <?=$token_symbol?> 잔고</th>
+                <td><div class="token_balance" style="font-size:13px;font-weight:bold;"></td>
+            </tr>
+            <tr>
+                <th>내 ETH 잔고</th>
+                <td><div class="eth_balance" style="color:black;font-size:13px;font-weight:bold;"></div></td>
+            </tr>
             <tr>
                 <th>총 주문금액</th>
-                <td><span id="od_tot_price"><?php echo number_format($tot_price); ?></span>원</td>
+                <td><span id="od_tot_price"><?php echo number_format($tot_price); ?></span>원 <span id="od_tot_price">(<?php echo number_format($tot_price/$exchange_rate); ?></span> <?=$token_symbol?>)</td>
             </tr>
              <tr>
                 <th>추가배송비</th>
-                <td><span id="od_send_cost2">0</span>원 (지역에 따라 추가되는 도선료 등의 배송비입니다.)</td>
+                <td><span id="od_send_cost2" style="visibility:hidden"></span>추가로 발생되는 배송비는 없습니다.</td>
             </tr>
             </tbody>
             </table>
@@ -539,7 +565,7 @@ if($is_kakaopay_use) {
 
         <?php
         if (!$default['de_card_point'])
-            echo '<p id="sod_frm_pt_alert"><strong>무통장입금</strong> 이외의 결제 수단으로 결제하시는 경우 포인트를 적립해드리지 않습니다.</p>';
+            // echo '<p id="sod_frm_pt_alert"><strong>무통장입금</strong> 이외의 결제 수단으로 결제하시는 경우 포인트를 적립해드리지 않습니다.</p>';
 
         $multi_settle = 0;
         $checked = '';
@@ -563,7 +589,7 @@ if($is_kakaopay_use) {
         // 무통장입금 사용
         if ($default['de_bank_use']) {
             $multi_settle++;
-            echo '<li><input type="radio" id="od_settle_bank" name="od_settle_case" value="무통장" '.$checked.'> <label for="od_settle_bank" class="lb_icon  bank_icon">무통장입금</label></li>'.PHP_EOL;
+            echo '<li><input type="radio" id="od_settle_bank" name="od_settle_case" value="무통장" '.$checked.'> <label for="od_settle_bank" class="lb_icon  bank_icon">'.$token_symbol.' 결제</label></li>'.PHP_EOL;
             $checked = '';
         }
 
@@ -686,7 +712,7 @@ if($is_kakaopay_use) {
 
         if ($default['de_bank_use']) {
             // 은행계좌를 배열로 만든후
-            $str = explode("\n", trim($default['de_bank_account']));
+            $str = explode("\n", trim(VCT_COMPANY_ADDR));
             if (count($str) <= 1)
             {
                 $bank_account = '<input type="hidden" name="od_bank_account" value="'.$str[0].'">'.$str[0].PHP_EOL;
@@ -737,11 +763,11 @@ if($is_kakaopay_use) {
     }
     ?>
 
-    <div id="show_progress" style="display:none;">
+    <!-- <div id="show_progress">
         <img src="<?php echo G5_MOBILE_URL; ?>/shop/img/loading.gif" alt="">
         <span>주문완료 중입니다. 잠시만 기다려 주십시오.</span>
-    </div>
-
+    </div> -->
+    
     <?php
     if($is_kakaopay_use) {
         require_once(G5_SHOP_PATH.'/kakaopay/orderform.3.php');
@@ -1433,6 +1459,24 @@ function pay_approval()
     return false;
 }
 
+initial_web3();
+
+var gas = ""
+        $.ajax({
+   			type: "GET",
+               url: "https://<?=ETHERSCAN_ENDPOINT?>.etherscan.io/api?module=gastracker&action=gasoracle",
+     	 	cache: false,
+     	 	dataType: "json",
+     		data:  {
+     	    apikey : "<?=$Ether_API_KEY?>"
+   		   },
+     		 success : function(res){
+			
+				gas = res.result.FastGasPrice
+				
+      		}
+        });
+     
 function forderform_check()
 {
     var f = document.forderform;
@@ -1451,11 +1495,66 @@ function forderform_check()
     }
 
     document.getElementById("display_pay_button").style.display = "none";
-    document.getElementById("show_progress").style.display = "block";
+    // document.getElementById("show_progress").style.display = "block";
 
-    setTimeout(function() {
+    if('<?=$wallet_addr?>' == ""){
+        alert("입금페이지에서 VCT-K 지갑을 생성해주세요.")
+        return false
+    }
+
+   
+    if( Number('<?=$sell_price?>') > Number($('#balData').val()) ){
+        alert("보유하신 VCT-K (이)가 부족합니다.")
+        return false;
+    }
+
+   
+
+
+estimate_gas('<?=$wallet_addr?>','<?=VCT_COMPANY_ADDR?>','<?=VCT_CONTRACT?>','<?=$token_decimal_numeric?>','<?=$sell_price?>'/'<?=$exchange_rate?>', (estimateGas,estimateData) => { // 추가
+
+    var cal_gas =  estimateGas*web3.utils.toWei(gas.toString(), 'gwei') / 1000000000000000000
+    var user_eth = $(".eth_balance").text().split(" ")
+
+  if(cal_gas > Number(user_eth[0])){
+    alert("수수료(ETH) 가 부족합니다.")
+    return false
+  }
+
+
+
+  var dialog = bootbox.dialog({
+  message:   "<img src='<?php echo G5_MOBILE_URL; ?>/shop/img/loading.gif'><span>주문완료 중입니다. 잠시만 기다려 주십시오.</span>",
+  closeButton: false
+});
+
+$('.modal-dialog').addClass('pay-dialog')
+$('.bootbox-body').addClass('pay-loading')
+
+$('.pay-dialog').css({'display': 'flex','justify-content': 'center','align-items': 'center','height': '100%','margin': '0px'})
+$('.pay-loading').css({'justify-content': 'space-between','align-items': 'center','height': '100px','flex-flow': 'column','display': 'flex'})
+
+
+send_token_for_pay('<?=$wallet_addr?>', '<?=VCT_COMPANY_ADDR?>', '<?=VCT_CONTRACT?>', '<?=$token_decimal_numeric?>', '<?=$sell_price?>'/'<?=$exchange_rate?>', '<?=$wallet_key_decrypt?>', gas,estimateGas ,(error, res) => {
+
+var after_res = res.split(':');
+dialog.modal('hide')
+if(after_res[0] == 'success'){
+
+    $('#od_hash').val(after_res[1])
+    setTimeout(function(){
         f.submit();
-    }, 300);
+    }, 1000);
+     
+}else{
+ alert("문제가 발생하였습니다. 나중에 다시 시도해주세요.");
+}
+
+});
+
+
+});
+  
 }
 
 // 주문폼 필드체크

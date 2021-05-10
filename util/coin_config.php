@@ -41,7 +41,7 @@ if(strtolower($mode) == 'test'){
 }else{
   define('NETWORK','mainnet');
   define('ETHERSCAN_ENDPOINT','API');
-  define('VCT_COMPANY_ADDR','0xAB4f0AaAf747CeFB015D7E21C498aB1f63a06D48');
+  define('VCT_COMPANY_ADDR',$default['de_bank_account']);
   define('VCT_CONTRACT', '0x31C785fcbA8429e1E566a0110D75ee42687aac9B');
   // define('VCT_CONTRACT', '0x35ec9cd695fdd9b3af678a7a199f00aae1ad87d8');
 
@@ -94,7 +94,6 @@ $point_symbol = $point_arr['symbol'];
 $point_img = $point_arr['point_img'];
 $point_symbol_img = $point_arr['point_symbol_img'];
 $point_id = $point_arr['id'];
-
 ?>
 
 <?if(strtolower($mode) == 'test'){?>

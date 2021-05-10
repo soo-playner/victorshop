@@ -83,7 +83,7 @@ $(function(){
 
         web3.eth.getBalance(address, function(err, res) {  // 이더리움 조회
           var eth = (res/1000000000000000000).toFixed(8);
-          console.log(eth+"ETH")
+          console.log(eth+" ETH")
           $(".eth_balance").text(eth+" ETH");
         });
 

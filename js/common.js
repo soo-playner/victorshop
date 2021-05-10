@@ -16,7 +16,8 @@ function check_field(fld, msg)
 function error_field(fld, msg)
 {
     if (msg != "")
-        errmsg += msg + "\n";
+        // errmsg += msg + "\n";
+        errmsg = "필수항목을 입력해주세요.";
     if (!errfld) errfld = fld;
     fld.style.background = "#BDDEF7";
 }

@@ -52,7 +52,7 @@ var etherApiKey = "<?=$Ether_API_KEY?>";
           append_txt += "</td></tr> ";
 
 
-          $('.gtt_table tbody').prepend(append_txt);
+          $('.token_table tbody').prepend(append_txt);
 
 
         }

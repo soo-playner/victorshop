@@ -10,9 +10,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     <h1 id="win_title">쪽지 보내기</h1>
     <div class="new_win_con2">
         <ul class="win_ul">
-            <li><a href="./memo.php?kind=recv">받은쪽지</a></li>
-            <li><a href="./memo.php?kind=send">보낸쪽지</a></li>
-            <li class="selected"><a href="./memo_form.php">쪽지쓰기</a></li>
+            <li><a href="./memo.php?kind=recv&location=<?=$_GET['location']?>">받은쪽지</a></li>
+            <li><a href="./memo.php?kind=send&location=<?=$_GET['location']?>">보낸쪽지</a></li>
+            <li class="selected"><a href="./memo_form.php?location=<?$_GET['location']?>">쪽지쓰기</a></li>
         </ul>
 
         <form name="fmemoform" action="<?php echo $memo_action_url; ?>" onsubmit="return fmemoform_submit(this);" method="post" autocomplete="off">
@@ -40,9 +40,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
             </ul>
         </div>
 
+        <?php 
+        if($_GET['location'] == "index"){$location_url = "/page.php?id=index";}else{$location_url = G5_MOBILE_URL."/shop";}
+        ?>
+
         <div class="win_btn">
         	<button type="submit" id="btn_submit" class="btn btn_b02 reply_btn">보내기</button>
-        	<button type="button" onclick="window.close();" class="btn_close">창닫기</button>
+        	<button type="button" onclick="javascript:window.location.href='<?=$location_url?>'" class="btn_close">창닫기</button>
         </div>
     </div>
     </form>

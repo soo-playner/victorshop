@@ -1,6 +1,6 @@
 <?php
 include_once('./_common.php');
-
+include_once(G5_PATH.'/util/coin_config.php');
 $pattern = '#[/\'\"%=*\#\(\)\|\+\&\!\$~\{\}\[\]`;:\?\^\,]#';
 $it_id  = isset($_POST['it_id']) ? preg_replace($pattern, '', $_POST['it_id']) : '';
 
@@ -125,7 +125,7 @@ if($option_2) {
     <button type="button" id="mod_option_close" class="btn_close"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
 </div>
 </form>
-
+<input type="hidden" value="<?=$token_symbol?>" id="token_symbol">
 <script>
 function formcheck(f)
 {

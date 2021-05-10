@@ -88,7 +88,7 @@ include_once(G5_PATH."/util/callOneCoin.php");
             </ul>
         </div>
 
-        <button type="button" id="user_btn" class="hd_opener"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">사용자메뉴</span></button>
+        <!-- <button type="button" id="user_btn" class="hd_opener"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">사용자메뉴</span></button> -->
         <div class="hd_div" id="user_menu">
             <button type="button" id="user_close" class="hd_closer"><span class="sound_only">메뉴 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button>
             <div id="hd_sch">

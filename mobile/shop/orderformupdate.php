@@ -647,7 +647,9 @@ $sql = " insert {$g5['g5_shop_order_table']}
                 od_ip             = '$REMOTE_ADDR',
                 od_settle_case    = '$od_settle_case',
                 od_other_pay_type = '$od_other_pay_type',
-                od_test           = '{$default['de_card_test']}'
+                od_test           = '{$default['de_card_test']}',
+                od_hash           = '{$_POST['od_hash']}',
+                od_token_price    = '{$_POST['od_token_price']}'
                 ";
 $result = sql_query($sql, false);
 

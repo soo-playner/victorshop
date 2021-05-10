@@ -20,9 +20,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     <div class="new_win_con2">
         <!-- 쪽지함 선택 시작 { -->
         <ul class="win_ul">
-            <li class="<?php if ($kind == 'recv') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=recv">받은쪽지</a></li>
-            <li class="<?php if ($kind == 'send') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=send">보낸쪽지</a></li>
-            <li><a href="./memo_form.php">쪽지쓰기</a></li>
+            <li class="<?php if ($kind == 'recv') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=recv&location=<?=$_GET['location']?>">받은쪽지</a></li>
+            <li class="<?php if ($kind == 'send') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=send&location=<?=$_GET['location']?>">보낸쪽지</a></li>
+            <li><a href="./memo_form.php?location=<?=$_GET['location']?>">쪽지쓰기</a></li>
         </ul>
         <!-- } 쪽지함 선택 끝 -->
 
@@ -55,9 +55,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                 <?php echo conv_content($memo['me_memo'], 0) ?>
             </p>
         </article>
+
+        <?php 
+        if($_GET['location'] == "index"){$location_url = "/page.php?id=index";}else{$location_url = G5_MOBILE_URL."/shop";}
+        ?>
 		<div class="win_btn">
 			<?php if ($kind == 'recv') {  ?><a href="./memo_form.php?me_recv_mb_id=<?php echo $mb['mb_id'] ?>&amp;me_id=<?php echo $memo['me_id'] ?>" class="reply_btn">답장</a><?php }  ?>
-			<button type="button" onclick="window.close();" class="btn_close">창닫기</button>
+			<button type="button" onclick="javascript:window.location.href='<?=$location_url?>'" class="btn_close">창닫기</button>
     	</div>
     </div>
 </div>

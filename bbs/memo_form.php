@@ -5,6 +5,8 @@ include_once(G5_CAPTCHA_PATH.'/captcha.lib.php');
 if ($is_guest)
     alert_close('회원만 이용하실 수 있습니다.');
 
+$member['mb_open'] = 1;
+
 if (!$member['mb_open'] && $is_admin != 'super' && $member['mb_id'] != $mb_id)
     alert_close("자신의 정보를 공개하지 않으면 다른분에게 쪽지를 보낼 수 없습니다. 정보공개 설정은 회원정보수정에서 하실 수 있습니다.");
 

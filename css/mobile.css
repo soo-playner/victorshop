@@ -110,7 +110,7 @@ box-shadow:0 0 10px rgba(181, 181, 181, 0.4);
 .btn_top li {display:inline-block}
 .btn_top a,.btn_top button,.btn_top .btn_submit {}
 .btn_top .btn_cancel,.btn_top .btn_b01 {border:1px solid #aaa;background:none;color:#666;line-height:28px;background:#fff}
-.fixed {position:fixed;top:0;right:0;z-index:999}
+.fixed {position:fixed;top:0;z-index:999;background: white; width:100%;}
 .fixed.btn_bo_user {right:10px}
 #container_title.fixed {width:100%}
 

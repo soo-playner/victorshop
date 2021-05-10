@@ -72,6 +72,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
         <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page='); ?>
 
-        <button type="button" onclick="javascript:window.close();" class="btn_close">창닫기</button>
+        <button type="button" onclick="javascript:history.back()" class="btn_close">창닫기</button>
     </div>
 </div>

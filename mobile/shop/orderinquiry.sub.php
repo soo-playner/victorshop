@@ -83,7 +83,7 @@ if(defined('G5_THEME_SHOP_PATH')) {
             </div>
             <div class="inq_wr">
                 <div class="inquiry_price">
-                    <?php echo display_price($row['od_receipt_price']); ?>
+                    <?php echo display_price_2($row['od_cart_price'],false,$row['od_token_price']); ?>
                 </div>
                 <div class="inv_status"><?php echo $od_status; ?></div>
             </div>

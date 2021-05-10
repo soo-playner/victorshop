@@ -13,9 +13,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     </h1>
     <div class="new_win_con2">
         <ul class="win_ul">
-            <li class="<?php if ($kind == 'recv') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=recv">받은쪽지</a></li>
-            <li class="<?php if ($kind == 'send') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=send">보낸쪽지</a></li>
-            <li><a href="./memo_form.php">쪽지쓰기</a></li>
+            <li class="<?php if ($kind == 'recv') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=recv&location=<?=$_GET['location']?>">받은쪽지</a></li>
+            <li class="<?php if ($kind == 'send') {  ?>selected<?php }  ?>"><a href="./memo.php?kind=send&location=<?=$_GET['location']?>">보낸쪽지</a></li>
+            <li><a href="./memo_form.php?location=<?=$_GET['location']?>">쪽지쓰기</a></li>
         </ul>
         
         <div class="memo_list">
@@ -32,7 +32,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                <div class="memo_li memo_name">
 	                	<?php echo $list[$i]['name']; ?> <span class="memo_datetime"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['send_datetime'] ?></span>
 						<div class="memo_preview">
-						    <a href="<?php echo $list[$i]['view_href'] ?>"><?php echo $memo_preview; ?></a>
+						    <a href="<?php echo $list[$i]['view_href'].'&location='.$_GET['location']?>"><?php echo $memo_preview; ?></a>
                         </div>
 					</div>	
 	                <?php /* 쪽지 읽은 시간 echo $list[$i]['read_datetime']; */ ?>	
@@ -48,9 +48,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
         <p class="win_desc"><i class="fa fa-info-circle" aria-hidden="true"></i> 쪽지 보관일수는 최장 <strong><?php echo $config['cf_memo_del'] ?></strong>일 입니다.
         </p>
-
+        <?php 
+        if($_GET['location'] == "index"){$location_url = "/page.php?id=index";}else{$location_url = G5_MOBILE_URL."/shop";}
+        ?>
         <div class="win_btn">
-            <button type="button" onclick="window.close();" class="btn_close">창닫기</button>
+            <button type="button" onclick="javascript:window.location.href='<?=$location_url?>'" class="btn_close">창닫기</button>
         </div>
     </div>
 </div>
