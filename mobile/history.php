@@ -15,7 +15,7 @@ $mask_sql = "SELECT (SELECT SUM(order_total) FROM sh_shop_order WHERE mb_id='{$m
 sum(od_cart_count) AS g5 FROM g5_shop_order WHERE mb_id='{$member['mb_id']}'";
 $mask_row = sql_fetch($mask_sql);
 
-$mask_history_sql = "SELECT * FROM sh_shop_order where mb_id='{$member['mb_id']}'";
+$mask_history_sql = "select * from sh_shop_order where mb_id='{$member['mb_id']}' order by no desc";
 $mask_history_result = sql_query($mask_history_sql);
 
 ?>

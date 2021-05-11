@@ -25,8 +25,8 @@ $pre_row = sql_fetch($pre_sql);
 if(strtolower($pre_row['mode']) == 'test'){
     $mode = 'test';
 }
-if(isset($pre_row['exchange_rate'])){
-    $exchange_rate = $pre_row['exchange_rate']; // 교환시 비율
+if(isset($default['de_token_price'])){
+    $exchange_rate = $default['de_token_price']; // 교환시 비율
 }else{
     $exchange_rate =1;
 }

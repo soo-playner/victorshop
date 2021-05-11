@@ -581,6 +581,12 @@ if(!$default['de_kakaopay_cancelpwd']){
         </colgroup>
         <tbody>
         <tr>
+            <th scope="row"><label for="de_token_price">VCT-K 시세</label></th>
+            <td>
+                <input name="de_token_price" id="de_token_price" value="<?=$default['de_token_price']?>"> VCT-K</input>
+            </td>
+        </tr>
+        <tr>
             <th scope="row"><label for="de_bank_use">무통장입금사용</label></th>
             <td>
                 <?php echo help("주문시 무통장으로 입금을 가능하게 할것인지를 설정합니다.\n사용할 경우 은행계좌번호를 반드시 입력하여 주십시오.", 50); ?>

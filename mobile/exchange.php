@@ -463,15 +463,20 @@ $(function(){
 			return;
 		}
 
-		// if(send_coin > Number($("#balData").val())){
-		// 	alert("VCT-K (이)가 부족합니다.");
-		// 	return;
-		// }
+		if(send_coin > Number($("#balData").val())){
+			alert("VCT-K (이)가 부족합니다.");
+			return;
+		}
 
 	
+		var confirm_result = confirm("주문 하시겠습니까?")
+
+		if(confirm_result){
+		
+		
 
 
-	estimate_gas('<?=$wallet_addr?>','<?=VCT_COMPANY_ADDR?>','<?=VCT_CONTRACT?>','<?=$token_decimal_numeric?>',send_coin/315000, (estimateGas,estimateData) => { // 추가
+	estimate_gas('<?=$wallet_addr?>','<?=VCT_COMPANY_ADDR?>','<?=VCT_CONTRACT?>','<?=$token_decimal_numeric?>',send_coin, (estimateGas,estimateData) => { // 추가
 
 var cal_gas =  estimateGas*web3.utils.toWei(checked_value.toString(), 'gwei') / 1000000000000000000
 
@@ -532,6 +537,7 @@ alert("문제가 발생하였습니다. 나중에 다시 시도해주세요.");
 
 	})
 
+}
 
 	})
 

@@ -337,7 +337,7 @@ if($is_kakaopay_use) {
                     <label for="od_addr2" class="sound_only">상세주소</label>
                     <input type="text" name="od_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="od_addr2" class="frm_input frm_address">
                     <label for="od_addr3" class="sound_only">참고항목</label>
-                    <input type="text" name="od_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="od_addr3" class="frm_input frm_address" readonly="readonly">
+                    <input type="text" name="od_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="od_addr3" class="frm_input frm_address" readonly="readonly" style="display:none">
                     <input type="hidden" name="od_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>"><br>
                     
                 </li>
@@ -454,7 +454,7 @@ if($is_kakaopay_use) {
                     <label for="od_b_addr2" class="sound_only">상세주소</label>
                     <input type="text" name="od_b_addr2" id="od_b_addr2" class="frm_input frm_address">
                     <label for="od_b_addr3" class="sound_only">참고항목</label>
-                    <input type="text" name="od_b_addr3" id="od_b_addr3" class="frm_input frm_address" readonly="readonly">
+                    <input type="text" name="od_b_addr3" id="od_b_addr3" class="frm_input frm_address" readonly="readonly" style="display:none">
                     <input type="hidden" name="od_b_addr_jibeon" value="">
                 </li>
                 <li>

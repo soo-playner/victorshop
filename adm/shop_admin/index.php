@@ -40,7 +40,7 @@ function get_order_date_sum($date)
     global $g5;
 
     $sql = " select sum(od_cart_price + od_send_cost + od_send_cost2) as orderprice,
-                    sum(od_cancel_price) as cancelprice
+                    sum(od_cancel_price) as cancelpricem, sum(od_token_price) as token_price
                 from {$g5['g5_shop_order_table']}
                 where SUBSTRING(od_time, 1, 10) = '$date' ";
     $row = sql_fetch($sql);
@@ -48,6 +48,7 @@ function get_order_date_sum($date)
     $info = array();
     $info['order'] = (int)$row['orderprice'];
     $info['cancel'] = (int)$row['cancelprice'];
+    $info['token_price'] = (int)$row['token_price'];
 
     return $info;
 }
@@ -64,7 +65,7 @@ function get_order_settle_sum($date)
     foreach($case as $val)
     {
         $sql = " select sum(od_cart_price + od_send_cost + od_send_cost2 - od_receipt_point - od_cart_coupon - od_coupon - od_send_coupon) as price,
-                        count(*) as cnt
+                        count(*) as cnt, sum(od_token_price) as token_price
                     from {$g5['g5_shop_order_table']}
                     where SUBSTRING(od_time, 1, 10) = '$date'
                       and od_settle_case = '$val' ";
@@ -72,6 +73,7 @@ function get_order_settle_sum($date)
 
         $info[$val]['price'] = (int)$row['price'];
         $info[$val]['count'] = (int)$row['cnt'];
+        $info[$val]['token_price'] = (int)$row['token_price'];
     }
 
     // 포인트 합계
@@ -170,8 +172,8 @@ function get_max_value($arr)
             <ul id="sidx_graph_area">
                 <?php
                 for($i=0; $i<count($x_val); $i++) {
-                    $order_title = date("n월 j일", strtotime($x_val[$i])).' 주문: '.display_price($arr_order[$i]['order']);
-                    $cancel_title = date("n월 j일", strtotime($x_val[$i])).' 취소: '.display_price($arr_order[$i]['cancel']);
+                    $order_title = date("n월 j일", strtotime($x_val[$i])).' 주문: '.display_price_2($arr_order[$i]['order'],false,$arr_order[$i]['token_price']);
+                    $cancel_title = date("n월 j일", strtotime($x_val[$i])).' 취소: '.display_price_2($arr_order[$i]['cancel'],false,$arr_order[$i]['token_price']);
                     $k = 10 - $i;
                     $li_bg = 'bg'.($i%2);
                 ?>
@@ -298,7 +300,7 @@ function get_max_value($arr)
                 <tr>
                     <td class="td_num2"><a href="./itemstocklist.php"><?php echo number_format($item_noti); ?></a></td>
                     <td class="td_num2"><a href="./optionstocklist.php"><?php echo number_format($option_noti); ?></a></td>
-                    <td class="td_price"><?php echo display_price(intval($userinfo['coin'])); ?></td>
+                    <td class="td_price"><?php echo display_price_2(intval($userinfo['coin']),false,0); ?></td>
                 </tr>
                 </tbody>
                 </table>
@@ -356,9 +358,8 @@ function get_max_value($arr)
             ?>
             <td><?php echo number_format($info[$date][$val]['count']); ?></td>
             <td><?php echo number_format($info[$date][$val]['price']); ?></td>
-            <?php
-            }
-            ?>
+
+        <?php } ?>
         </tr>
         <?php
         }

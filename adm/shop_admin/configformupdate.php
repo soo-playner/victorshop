@@ -436,8 +436,10 @@ $sql = " update {$g5['g5_shop_default_table']}
                 de_member_reg_coupon_use      = '{$de_member_reg_coupon_use}',
                 de_member_reg_coupon_term     = '{$de_member_reg_coupon_term}',
                 de_member_reg_coupon_price    = '{$de_member_reg_coupon_price}',
-                de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}'
+                de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}',
+                de_token_price                = '{$_POST['de_token_price']}'
                 ";
+        
 sql_query($sql);
 
 // 환경설정 > 포인트 사용
