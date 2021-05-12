@@ -75,15 +75,15 @@ input[type=radio] {-webkit-appearance: radio}
 
 #hd_sch {display:none;position:absolute;top:0;left:0;text-align:center;padding:0 0 10px;width:100%;background:#212020;padding:10px 50px 10px 10px}
 #hd_sch h2 {position:absolute;font-size:0;text-indent:-9999em;line-height:0;overflow:hidden}
-#hd_sch .sch_inner {position:relative}
+#hd_sch .sch_inner {position:relative;width: 100%;}
 #hd_sch #sch_str {width:100%;height:35px;background:#3a3838;border:0;padding:0 10px 0 40px;color:#000;color:#fff}
 #hd_sch .sch_submit {position:absolute;top:0;left:0;width:40px;height:35px;border:0;border-radius:0 3px 3px 0;cursor:pointer;background:none;font-size:15px;color:#878786}
-#hd_sch .btn_close {position:absolute;top:10px;right:0px;width:50px;height:35px;border:0;background:none;color:#c2bbb5;font-size:18px}
+#hd_sch .btn_close {position:absolute;right:0%;width:50px;height:35px;border:0;background:none;color:#c2bbb5;font-size:18px}
 
 
 /*카테고리*/
 .menu {display:none;position:fixed;top:0;height:100%;z-index:99999;-webkit-backface-visibility:hidden;width:100%;background:#efefef}
-.menu .menu_wr{;width:100%;height:100%;overflow-y:auto;background:#eee;position:relative;z-index:199919;
+.menu .menu_wr{width:100%;height:100%;overflow-y:auto;background:#eee;position:relative;z-index:199919;
  -webkit-box-shadow: 0 0 5px rgba(55,55,5,0.4));
     -moz-box-shadow: 0 0 5px rgba(55,55,5,0.4));
          box-shadow: 0 0 5px rgba(55,55,5,0.4);}
@@ -201,7 +201,7 @@ box-shadow:0 0 5px #eee}
 #m_sod_bsk_tot dt{float:left;width:40%;padding:10px ;line-height:20px;clear:both}
 #m_sod_bsk_tot dd{float:left;width:60%;padding:10px;text-align:right;line-height:20px}
 #m_sod_bsk_tot .sod_bsk_cnt{font-weight:bold;margin-top:5px;line-height:25px;background:#212a37}
-#m_sod_bsk_tot .sod_bsk_cnt strong{color:#3a8afd;font-size:1.25em}
+#m_sod_bsk_tot .sod_bsk_cnt strong{color:#3a8afd;font-size:1.25em;margin: 0 5px;vertical-align: bottom;}
 #sod_bsk_act {position:fixed;bottom:0;left:0;width:100%;background:#fff;z-index:90;border-top:1px solid #000; padding:10px 10px 10px 50%;
 -webkit-box-shadow:  0 0 9px rgba(0,0,0,0.2);
 -moz-box-shadow:  0 0 9px rgba(0,0,0,0.2);
@@ -220,7 +220,7 @@ box-shadow: 0 0 6px rgba(0,0,0,0.2);}
 #m_sod_frm_paysel h3{background:#fff;padding:15px 10px ;border:1px solid #e3e5e8;border-bottom:0}
 #m_sod_frm_paysel ul {margin:0 0 ;background:#fff;padding:10px;border:1px solid #e3e5e8}
 #m_sod_frm_paysel ul:after {display:block;visibility:hidden;clear:both;content:""}
-#m_sod_frm_paysel li {float:left;padding:5px ;width:46%;height:25px}
+#m_sod_frm_paysel li {float:left;padding:5px ;width:46%;}
 #m_sod_frm_paysel .KPAY{background:url('../img/kpay.png') no-repeat;width:37px;height:15px;overflow:hidden;text-indent:-999px;display:inline-block;background-size:100%}
 #m_sod_frm_paysel .PAYNOW{background:url('../img/paynow.png') no-repeat;width:46px;height:15px;overflow:hidden;text-indent:-999px;display:inline-block;background-size:100%;}
 #m_sod_frm_paysel .PAYCO{background:url('../img/payco.png') no-repeat 1px;width:46px;height:15px;overflow:hidden;text-indent:-999px;display:inline-block;background-size:100%;}
@@ -254,13 +254,12 @@ box-shadow: 0 0 6px rgba(0,0,0,0.2);}
 -moz-box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);
 box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);}
 
-#settle_bank{background:#fff;border:1px solid #e3e5e8;padding:10px;clear:both;line-height:30px}
+#settle_bank{background:#fff;border:1px solid #e3e5e8;padding:10px;clear:both;line-height:50px}
+#settle_bank .wallet_address_title {float: left;line-height: 30px;}
+#settle_bank .wallet_address {float: right;line-height: 30px;}
 #settle_bank:after {display:block;visibility:hidden;clear:both;content:''}
 #settle_bank select{height:30px;margin:0 0 5px;width:100%;border:1px solid #d0d3db}
-#settle_bank #od_deposit_name{height:30px;border:1px solid #d0d3db;text-align:center; border-radius:3px;float:right;
--webkit-box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);
--moz-box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);
-box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);}
+#settle_bank #od_deposit_name{height:30px;border:1px solid #d0d3db;text-align:center; border-radius:3px;float:right;padding: 10px;}
 #settle_bank label{float:left;line-height:30px}
 #sod_frm_pt_info{border-top:0}
 .od_coupon{position:absolute;top:0;left:0;background:#fff;width:100%;z-index:99;border-radius:0 0 3px 3px;
@@ -288,7 +287,7 @@ box-shadow: 1px 1px 5px rgba(0,0,0,0.4);}
 
 .sod_frm_mobile .sod_list .li_name{border-bottom:1px solid #dcdcdc;line-height:1.3em;padding:10px 10px;font-size:1.083em}
 #sod_frm.sod_frm_mobile .odf_list .frm_input{width:100% !important}
-#sod_frm.sod_frm_mobile input[type="radio"],#sod_frm.sod_frm_mobile input[type="checkbox"]{width:auto;-webkit-appearance:radio;-webkit-border-radius:initial}
+#sod_frm.sod_frm_mobile input[type="radio"],#sod_frm.sod_frm_mobile input[type="checkbox"]{width:auto;-webkit-appearance:radio;-webkit-border-radius:initial;margin: 0 3px 0 0;}
 #sod_frm.sod_frm_mobile #od_memo{min-height:50px}
 #sod_frm .od_prd_list{margin:10px;background:#fff;padding:15px}
 .od_prd_list .td_chk{border-left:0;}
@@ -299,7 +298,7 @@ box-shadow: 1px 1px 5px rgba(0,0,0,0.4);}
 .od_prd_list .total_prc{color:#ff006c;font-weight:bold;font-size:1.167em}
 
 #sod_frm_orderer{padding:10px;border-bottom:1px solid #d6d3d3}
-#sod_frm_taker{padding:10px;border-bottom:1px solid #d6d3d3;border-top:1px solid #f3f3f3}
+#sod_frm_taker{padding:10px;border-bottom:1px solid #d6d3d3;border-top:1px solid #f3f3f3;background: #efefef;}
 #sod_frm_taker h2,#sod_frm_orderer h2{margin:10px 0;font-size:1.25em}
 .odf_list li{}
 .odf_list label,.odf_list strong{display:block;margin:7px 0 5px;color:#444;font-weight:normal}
@@ -365,8 +364,8 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 /* 주문내역 */
 #sod_v {}
 #sod_v .td_stat {width:100px}
-#sod_v_info {position:relative;text-align:left;color:#fff;line-height:18px;font-size:1.1em;background:#f2838f;margin:10px;padding:10px 20px;border-radius:5px;font-weight:bold}
-#sod_v_info:before {content:"";position:absolute;top:0;left:0;width:5px;height:100%;border-radius:5px 0 0 5px;background:#da4453}
+#sod_v_info {position:relative;text-align:left;color:#fff;line-height:18px;font-size:1.1em;background:#f6bd14;margin:10px;padding:10px 20px;border-radius:5px;font-weight:bold}
+#sod_v_info:before {content:"";position:absolute;top:0;left:0;width:5px;height:100%;border-radius:5px 0 0 5px;background:#d7a100}
 #sod_v_info i {font-size:1.2em;vertical-align:middle}
 
 /* 주문상세내역 */
@@ -482,7 +481,7 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 #sod_ws li {position:relative;background:#fff;border-bottom:1px solid #e8e8e8;border-radius:3px}
 #sod_ws .wish_img {position:absolute;top:50%;left:25px;z-index:10;width:70px;height:70px;margin-top:-35px;overflow:hidden;z-index:4}
 #sod_ws .info_price {font-weight:bold;line-height:28px}
-#sod_ws .wish_info {padding:10px 15px 10px 100px;min-height:90px}
+#sod_ws .wish_info {padding:10px 15px 10px 120px;min-height:90px}
 #sod_ws .wish_chk {position:absolute;top:5px;left:5px;z-index:9}
 #sod_ws .info_date {display:block;color:#777;font-size:0.92em}
 #sod_ws .wish_prd {display:block;font-weight:bold;font-size:1.083em}
@@ -493,14 +492,14 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 #sod_ws_act {text-align:center;margin:10px}
 #sod_ws_act:after {display:block;visibility:hidden;clear:both;content:''}
 #sod_ws_act .btn01 {float:left;width:49%;height:50px;background:#fff;font-weight:bold;color:#000;border-radius:5px;border-radius:1px solid #98a3b3;font-weight:bold;font-size:1.25em}
-#sod_ws_act .btn02 {float:right;width:49%;height:50px;border:1px solid #1c70e9;color:#fff;border-radius:5px;font-weight:bold;background:#3a8afd;font-weight:bold;font-size:1.25em}
+#sod_ws_act .btn02 {float:right;width:49%;height:50px;border:1px solid #bc8d00;color:#fff;border-radius:5px;font-weight:bold;background:#f6bd14;font-weight:bold;font-size:1.25em}
 
 /* 주문내역 include  */
 #sod_inquiry{border-bottom:1px solid #dde7e9}
 #sod_inquiry li {background:#fff;border-top:1px solid #ececec;padding:15px;position:relative}
 #sod_inquiry li:after {display:block;visibility:hidden;clear:both;content:''} 
 #sod_inquiry li .idtime_link {font-weight:bold;font-size:1.167em}
-#sod_inquiry li .idtime_time {color:#999}
+#sod_inquiry li .idtime_time {color:#999;float: right;}
 #sod_inquiry li .inq_wr:after {display:block;visibility:hidden;clear:both;content:''} 
 #sod_inquiry li .inquiry_name {margin:10px 0;}
 #sod_inquiry li .inquiry_price {font-size:1.25em;font-weight:bold;color:#3a8afd;float:left}
@@ -779,7 +778,7 @@ box-shadow:0 0 8px rgba(65,98,255,0.8)}
 .pg_next {text-indent:-999px;overflow:hidden;background:url('../img/btn_next.gif') no-repeat 50% 50% #eee;padding:0;border:1px solid #eee}
 .pg_start:hover,.pg_prev:hover,.pg_end:hover,.pg_next:hover {background-color:#fafafa}
 
-.pg_current {display:inline-block;background:#3a8afd;border:1px solid #3a8afd;color:#fff;font-weight:bold;height:30px;line-height:30px;padding:0 10px;min-width:30px;border-radius:3px}
+.pg_current {display:inline-block;background:#f6bd14;border:1px solid #f6bd14;color:#fff;font-weight:bold;height:30px;line-height:30px;padding:0 10px;min-width:30px;border-radius:3px}
 
 /* 상품상세 메뉴 floating */
 #info_top_layer {display:none;position:absolute;top:0;left:0;width:100%;background-color:#eee}
@@ -895,14 +894,13 @@ box-shadow:0 0 8px rgba(65,98,255,0.8)}
 #sod_frm_pay .pay_tbl td{text-align:right;padding: 10px;height:30px;border-bottom:1px solid #e7ebf1;background:#fff}
 #sod_frm_pay .pay_tbl td .cp_cancel{margin:0 0 0 2px}
 #sod_frm_pay .pay_tbl td .btn_frmline{padding: 0 7px;border: 1px solid #38b2b9;color: #38b2b9;background: #fff;height: 23px;line-height: 21px;margin: 0;}
-#od_tot_price{margin:10px 0;background:#fff;line-height:40px;text-align:right;padding:0 10px}
+#od_tot_price{margin:10px 0;text-align:right;padding:0 5px;background:#e5f0ff;line-height:20px;}
 #od_tot_price span{float:left;font-weight:bold}
 #od_tot_price strong{font-size:1.5em;color:#ff006c}
 #od_pay_sl h3{font-size:1.167em;margin:20px 0 5px}
 #od_pay_sl input[type="radio"]{position:absolute;width:0;height:0;overflow:hidden;visibility:hidden;text-indent:-999px;left: 0;z-index: -1px;}
 #od_pay_sl .lb_icon {display: inline-block;float:left;width:50%;background:#fff;border:1px solid #eceff4;margin:-1px 0 0 -1px;cursor: pointer;height:60px;position:relative;padding-left:65px;padding-top:20px;z-index:1}
 #od_pay_sl input[type="radio"]:checked+.lb_icon {border:1px solid #ff006c;z-index:3}
-#sod_frm_paysel {}
 #sod_frm_paysel legend {position:absolute;font-size:0;line-height:0;overflow:hidden}
 #sod_frm_paysel .KPAY{background:url('../img/kpay.png') no-repeat 50% 50% #fff;overflow:hidden;text-indent:-999px}
 #sod_frm_paysel .PAYNOW{background:url('../img/paynow.png') no-repeat 50% 50% #fff;overflow:hidden;text-indent:-999px}
@@ -938,13 +936,8 @@ box-shadow:0 0 8px rgba(65,98,255,0.8)}
 #sod_frm_pay .pay_tbl td{text-align:right;padding: 10px;height:30px;border-bottom:1px solid #e7ebf1;background:#fff}
 #sod_frm_pay .pay_tbl td .cp_cancel{margin:0 0 0 2px}
 #sod_frm_pay .pay_tbl td .btn_frmline{padding: 0 7px;border: 1px solid #38b2b9;color: #38b2b9;background: #fff;height: 23px;line-height: 21px;margin: 0;}
-#od_tot_price{margin:10px 0;background:#fff;line-height:40px;text-align:right;padding:0 10px}
-#od_tot_price span{float:left;font-weight:bold}
-#od_tot_price strong{font-size:1.5em;color:#ff006c}
 
-#od_tot_price {background:#e5f0ff;line-height:20px;text-align:right;padding:15px}
-#od_tot_price span {float:left;font-weight:bold}
-#od_tot_price strong {font-size:1.5em;color:#ff006c}
+
 #sod_frm_pay_info {margin:0 0 10px}
 
 #sod_point {clear:both;background:#fff;margin:10px;border:1px solid #e3e5e8}
@@ -1029,3 +1022,7 @@ box-shadow:0 0 8px rgba(65,98,255,0.8)}
 .chk_box input[type="radio"]:checked + label {color:#305af9}
 .chk_box input[type="radio"]:checked + label span:before {width:7px;height:7px;background:#305af9;content:'';position:absolute;top:3px;left:3px;border-radius:50%}
 
+
+/* custom 2021. 05. 11 kang */
+#container_title .btn_back {padding: 0 5px 0 0;}
+#m_sod_frm_paysel .lb_icon {margin: 0;}
