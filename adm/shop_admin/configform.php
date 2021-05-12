@@ -580,12 +580,7 @@ if(!$default['de_kakaopay_cancelpwd']){
             <col>
         </colgroup>
         <tbody>
-        <tr>
-            <th scope="row"><label for="de_token_price">VCT-K 시세</label></th>
-            <td>
-                <input name="de_token_price" id="de_token_price" value="<?=$default['de_token_price']?>"> VCT-K</input>
-            </td>
-        </tr>
+   
         <tr>
             <th scope="row"><label for="de_bank_use">무통장입금사용</label></th>
             <td>
@@ -600,6 +595,31 @@ if(!$default['de_kakaopay_cancelpwd']){
             <th scope="row"><label for="de_bank_account">은행계좌번호</label></th>
             <td>
                 <textarea name="de_bank_account" id="de_bank_account"><?php echo $default['de_bank_account']; ?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="de_bank_use">코인입금사용</label></th>
+            <td>
+                <?php echo help("주문시 코인으로 입금을 가능하게 할것인지를 설정합니다.\n사용할 경우 지갑주소를 반드시 입력하여 주십시오.", 50); ?>
+                <select id="de_coin_use" name="de_coin_use">
+                    <option value="0" <?php echo get_selected($default['de_coin_use'], 0); ?>>사용안함</option>
+                    <option value="1" <?php echo get_selected($default['de_coin_use'], 1); ?>>사용</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row"><label for="de_token_price">VCT-K 시세</label></th>
+            <td>
+                <input name="de_token_price" id="de_token_price" value="<?=$default['de_token_price']?>"> VCT-K</input>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th scope="row"><label for="de_coin_account">지갑주소</label></th>
+            <td>
+                <textarea name="de_coin_account" id="de_coin_account"><?php echo $default['de_coin_account']; ?></textarea>
             </td>
         </tr>
         <tr>

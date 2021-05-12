@@ -34,7 +34,7 @@ if(get_session('ss_direct'))
     $page_return_url .= '?sw_direct=1';
 
 // 결제등록 완료 체크
-if($od_settle_case != '무통장' && $od_settle_case != 'KAKAOPAY') {
+if($od_settle_case != '무통장' && $od_settle_case != 'KAKAOPAY' && $od_settle_case != "코인") {
     if($default['de_pg_service'] == 'kcp' && ($post_tran_cd === '' || $post_enc_info === '' || $post_enc_data === ''))
         alert('결제등록 요청 후 주문해 주십시오.', $page_return_url);
 
@@ -339,6 +339,19 @@ if ($od_settle_case == "무통장")
 {
     $od_receipt_point   = $i_temp_point;
     $od_receipt_price   = 0;
+    $od_misu            = $i_price - $od_receipt_price;
+    if($od_misu == 0) {
+        $od_status      = '입금';
+        $od_receipt_time = G5_TIME_YMDHIS;
+    }
+    $tno = $od_receipt_time = $od_app_no = '';
+}
+else if ($od_settle_case == "코인")
+{   
+    $od_receipt_point   = $i_temp_point;
+    $od_receipt_price   = 0;
+    $od_bank_account = $_POST['od_coin_account'];
+    $od_deposit_name = $_POST['od_coin_deposit_name'];
     $od_misu            = $i_price - $od_receipt_price;
     if($od_misu == 0) {
         $od_status      = '입금';
@@ -651,6 +664,7 @@ $sql = " insert {$g5['g5_shop_order_table']}
                 od_hash           = '{$_POST['od_hash']}',
                 od_token_price    = '{$_POST['od_token_price']}'
                 ";
+
 $result = sql_query($sql, false);
 
 // 정말로 insert 가 되었는지 한번더 체크한다.

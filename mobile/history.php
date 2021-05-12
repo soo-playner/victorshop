@@ -11,8 +11,7 @@ include_once(G5_PATH."/util/callOneCoinHistory.php");
 
 
 
-$mask_sql = "SELECT (SELECT SUM(order_total) FROM sh_shop_order WHERE mb_id='{$member['mb_id']}') AS sh , 
-sum(od_cart_count) AS g5 FROM g5_shop_order WHERE mb_id='{$member['mb_id']}'";
+$mask_sql = "SELECT SUM(order_total) as mask_total FROM sh_shop_order WHERE mb_id='{$member['mb_id']}' ";
 $mask_row = sql_fetch($mask_sql);
 
 $mask_history_sql = "select * from sh_shop_order where mb_id='{$member['mb_id']}' order by no desc";
@@ -76,7 +75,7 @@ $mask_history_result = sql_query($mask_history_sql);
           <p class="coin_name"><?=$point_symbol?></p>
         </div>
         <div class="cb_right">
-          <p id="point_balance" class="point_balance"> <? echo $mask_row['sh']+$mask_row['g5']." ".$point_symbol?></p>
+          <p id="point_balance" class="point_balance"> <? echo number_format($mask_row['mask_total'])." ".$point_symbol?></p>
         </div>
         <p class="guide_2" >Touch!</p>
       </div>

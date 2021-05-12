@@ -128,7 +128,11 @@ if( ! $default['de_item_use_use'] ){
     update_use_avg($it_id);
 }
 
-if($w == 'd')
+if($w == 'd'){
     alert($alert_msg, $url);
-else
-    alert_opener($alert_msg, $url);
+}else{
+    echo "<script>alert('{$alert_msg}')
+    window.location.href='./item.php?it_id={$it_id}'
+    </script>";
+        // alert_opener($alert_msg, $url);
+}

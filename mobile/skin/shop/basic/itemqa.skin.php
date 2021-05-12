@@ -89,7 +89,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_MSHOP_SKIN_URL.'/style.css">',
 
                 <?php if ($is_admin || ($row['mb_id'] == $member['mb_id'] && !$is_answer)) { ?>
                 <div class="sit_qa_cmd">
-                    <a href="<?php echo $itemqa_form."&amp;iq_id={$row['iq_id']}&amp;w=u"; ?>" class="itemqa_form btn01" onclick="return false;">수정</a>
+                    <a href="<?php echo $itemqa_form."&amp;iq_id={$row['iq_id']}&amp;w=u"; ?>" class="itemqa_form btn01">수정</a>
                     <a href="<?php echo $itemqa_formupdate."&amp;iq_id={$row['iq_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemqa_delete btn01">삭제</a>
                 </div>
                 <?php } ?>
@@ -112,10 +112,10 @@ echo itemqa_page($config['cf_mobile_pages'], $page, $total_page, G5_SHOP_URL."/i
 
 <script>
 $(function(){
-    $(".itemqa_form").click(function(){
-        window.open(this.href, "itemqa_form", "width=810,height=680,scrollbars=1");
-        return false;
-    });
+    // $(".itemqa_form").click(function(){
+    //     window.open(this.href, "itemqa_form", "width=810,height=680,scrollbars=1");
+    //     return false;
+    // });
 
     $(".itemqa_delete").click(function(){
         return confirm("정말 삭제 하시겠습니까?\n\n삭제후에는 되돌릴수 없습니다.");

@@ -48,7 +48,7 @@ if (G5_IS_MOBILE) {
     echo '<meta name="format-detection" content="telephone=no">'.PHP_EOL;
 
     $pageName = basename($_SERVER['PHP_SELF']);
-    if($pageName == "orderform.php"){
+    if($pageName == "orderform.php" || $pageName == "item.php"){
     echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">';
     }
 } else {

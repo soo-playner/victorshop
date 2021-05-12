@@ -82,8 +82,14 @@ if(defined('G5_THEME_SHOP_PATH')) {
                 <?php echo $ct_name; ?>
             </div>
             <div class="inq_wr">
-                <div class="inquiry_price">
-                    <?php echo display_price_2($row['od_cart_price'],false,$row['od_token_price']); ?>
+                <div class="inquiry_price"> 
+                    <?php 
+                    if($row['od_settle_case'] == "코인"){
+                        echo display_price_2($row['od_cart_price'],false,$row['od_token_price']);
+                    }else{
+                        echo $row['od_cart_price']." 원";
+                    }
+                    ?>
                 </div>
                 <div class="inv_status"><?php echo $od_status; ?></div>
             </div>

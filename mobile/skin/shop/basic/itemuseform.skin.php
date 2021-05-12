@@ -60,7 +60,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_MSHOP_SKIN_URL.'/style.css">',
 
     <div class="win_btn">
         <button type="submit" class="btn_submit">작성완료</button>
-        <button type="button" onclick="self.close();" class="btn_close">닫기</button>
+        <button type="button" onclick="history.back();" class="btn_close">닫기</button>
     </div>
 
     </form>

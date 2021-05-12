@@ -22,6 +22,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
 include_once(G5_PATH."/util/coin_config.php");
 include_once(G5_PATH."/util/callOneCoin.php");
 ?>
+
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.35/dist/web3.min.js"></script>
 <script src="/lib/wallet/erc_wallet.js"></script>
 

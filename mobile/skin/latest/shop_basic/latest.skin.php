@@ -11,6 +11,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css">', 
     <?php for ($i=0; $i<count($list); $i++) { ?>
         <li>
             <?php
+     
             //echo $list[$i]['icon_reply']." ";
             echo "<a href=\"".$list[$i]['href']."\">";
             if ($list[$i]['is_notice'])

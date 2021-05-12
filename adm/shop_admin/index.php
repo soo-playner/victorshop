@@ -21,7 +21,8 @@ function get_order_status_sum($status)
     global $g5;
 
     $sql = " select count(*) as cnt,
-                    sum(od_cart_price + od_send_cost + od_send_cost2 - od_cancel_price) as price
+                    sum(od_cart_price + od_send_cost + od_send_cost2 - od_cancel_price) as price,
+                    sum(od_token_price) as token_price
                 from {$g5['g5_shop_order_table']}
                 where od_status = '$status' ";
     $row = sql_fetch($sql);
@@ -29,6 +30,7 @@ function get_order_status_sum($status)
     $info = array();
     $info['count'] = (int)$row['cnt'];
     $info['price'] = (int)$row['price'];
+    $info['token_price'] = (int)$row['token_price'];
     $info['href'] = './orderlist.php?od_status='.urlencode($status);
 
     return $info;
@@ -58,7 +60,7 @@ function get_order_settle_sum($date)
 {
     global $g5, $default;
 
-    $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰');
+    $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰','코인');
     $info = array();
 
     // 결제수단별 합계
@@ -300,7 +302,7 @@ function get_max_value($arr)
                 <tr>
                     <td class="td_num2"><a href="./itemstocklist.php"><?php echo number_format($item_noti); ?></a></td>
                     <td class="td_num2"><a href="./optionstocklist.php"><?php echo number_format($option_noti); ?></a></td>
-                    <td class="td_price"><?php echo display_price_2(intval($userinfo['coin']),false,0); ?></td>
+                    <td class="td_price"><?php echo number_format(intval($userinfo['coin'])) ?> 원</td>
                 </tr>
                 </tbody>
                 </table>
@@ -343,7 +345,7 @@ function get_max_value($arr)
         </thead>
         <tbody>
         <?php
-        $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰', '포인트', '쿠폰');
+        $case = array('신용카드', '계좌이체', '가상계좌', '무통장', '휴대폰', '포인트', '쿠폰', '코인');
         
         $val_cnt = 0;
         foreach($case as $val)
@@ -357,9 +359,14 @@ function get_max_value($arr)
             {
             ?>
             <td><?php echo number_format($info[$date][$val]['count']); ?></td>
-            <td><?php echo number_format($info[$date][$val]['price']); ?></td>
-
-        <?php } ?>
+            
+            <?php if($info[$date][$val]['token_price'] > 0){?>
+                <td style="font-size: 11px;"><?php echo number_format($info[$date][$val]['token_price']); ?> VCT-K</td>
+            <?php }else{ ?>
+                <td><?php echo number_format($info[$date][$val]['price']); ?></td> 
+        <?php 
+            }
+              } ?>
         </tr>
         <?php
         }

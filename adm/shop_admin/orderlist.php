@@ -290,7 +290,7 @@ if( function_exists('pg_setting_check') ){
     </tr>
     <tr>
         <th scope="col" id="odrstat">주문상태</th>
-        <th scope="col" id="odrpay">결제ID</th>
+        <th scope="col" id="odrpay">결제수단</th>
         <th scope="col" id="delino">운송장번호</th>
         <th scope="col" id="delicom">배송회사</th>
         <th scope="col" id="delidate">배송일시</th>
@@ -304,8 +304,16 @@ if( function_exists('pg_setting_check') ){
         $s_receipt_way = $s_br = "";
         if ($row['od_settle_case'])
         {
-            // $s_receipt_way = check_pay_name_replace($row['od_settle_case'], $row);
-            $s_receipt_way =  substr($row['od_hash'],0,12)." ... ".substr($row['od_hash'],strlen($row['od_hash'])-12,12);
+
+            
+
+            if($row['od_settle_case'] == "코인"){
+                $s_receipt_way =  $row['od_settle_case']."<br> <a href='https://etherscan.io/tx/{$row['od_hash']}' style='font-style:italic'>". substr($row['od_hash'],0,12).' ... '.substr($row['od_hash'],strlen($row['od_hash'])-12,12) ."</a>";
+            }else{
+                $s_receipt_way = check_pay_name_replace($row['od_settle_case'], $row);
+            }
+         
+          
             $s_br = '<br />';
         }
         else
@@ -376,7 +384,11 @@ if( function_exists('pg_setting_check') ){
         <td headers="th_odrer" class="td_name"><?php echo $mb_nick; ?></td>
         <td headers="th_odrertel" class="td_tel"><?php echo get_text($row['od_tel']); ?></td>
         <td headers="th_recvr" class="td_name"><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sort1=<?php echo $sort1; ?>&amp;sort2=<?php echo $sort2; ?>&amp;sel_field=od_b_name&amp;search=<?php echo get_text($row['od_b_name']); ?>"><?php echo get_text($row['od_b_name']); ?></a></td>
-        <td rowspan="3" class="td_num_right"><?php echo number_format($row['od_cart_price'] + $row['od_send_cost'] + $row['od_send_cost2']); ?> (<?=$row['od_token_price']?> VCT-K)</td>
+        <td rowspan="3" class="td_num_right"><?php echo number_format($row['od_cart_price'] + $row['od_send_cost'] + $row['od_send_cost2']); ?> 
+        <?php if($row['od_settle_case'] == "코인"){?>
+        (<?=$row['od_token_price']?> VCT-K)
+        <?php } ?>
+        </td>
         <td rowspan="3" class="td_num_right"><?php echo number_format($row['od_receipt_price']); ?></td>
         <td rowspan="3" class="td_numcancel<?php echo $td_color; ?> td_num"><?php echo number_format($row['od_cancel_price']); ?></td>
         <td rowspan="3" class="td_num_right"><?php echo number_format($row['couponprice']); ?></td>
@@ -403,7 +415,7 @@ if( function_exists('pg_setting_check') ){
         </td>
         <td headers="odrpay" class="odrpay">
             <input type="hidden" name="current_settle_case[<?php echo $i ?>]" value="<?php echo $row['od_settle_case'] ?>">
-           <a href="https://etherscan.io/tx/<?=$row['od_hash']?>"> <?php echo $s_receipt_way; ?></a>
+           <?php echo $s_receipt_way; ?>        
         </td>
         <td headers="delino" class="delino">
             <?php if ($od_status == '준비') { ?>

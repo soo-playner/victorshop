@@ -8,7 +8,7 @@ if($wallet_addr == ""){
   }
 
   
-$mask_sql = "SELECT (SELECT SUM(order_total) FROM sh_shop_order WHERE mb_id='{$member['mb_id']}') AS sh , sum(od_cart_count) AS g5 FROM g5_shop_order WHERE mb_id='{$member['mb_id']}'";
+$mask_sql = "SELECT SUM(order_total) as mask_total FROM sh_shop_order WHERE mb_id='{$member['mb_id']}'";
 $mask_row = sql_fetch($mask_sql);
 
 $sql = "SELECT delivery_name, delivery_hp1, delivery_addr1, delivery_addr2, delivery_addr3 FROM sh_shop_order WHERE mb_id = '{$member['mb_id']}' ORDER BY no DESC limit 0, 1";
@@ -77,7 +77,7 @@ if($encrypt == "N"){
 				<p class="coin_name"><?=$point_symbol?></p>
 			</div>
 			<div class="cb_right">
-				<p id="cell_cell"><?echo number_format($mask_row['sh']+$mask_row['g5'])." ".$point_symbol?></p>
+				<p id="cell_cell"><?echo number_format($mask_row['mask_total'])." ".$point_symbol?></p>
 				<!-- <p class="cell_won"><span class="won_symbol">\</span> 0</p> -->
 			</div>
 		</div>
@@ -154,14 +154,12 @@ if($encrypt == "N"){
 			</p> -->
 
 			<p>
-				<li><span style="color:red">원산지 : 대한한국 (Country : Republic of Korea)</span> <br> <span style="color:blue">브랜드 : 하늘숲 (Brand : Sky forest) </span><br> 배송비: 국내(무료) 해외(무료) <br>
-				(Shipping cost : Domestic (free) Overseas (free))</li>
-				<hr>
-				<li>1. <span>유아마스크 2~6세 1800장 </span>(Infant mask 2 to 6 years old)</li>
-				<li><span>1800장, 판매가:315,000 VCT-K</span> (1800EA, PRICE:315,000 VCT-K)</li>
-				<hr>
-				<li>2. <span>어린이마스크 6~12세 </span>(Children's mask 6 to 12 years old)</li>
-				<li><span>1800장, 판매가:315,000 VCT-K</span> (1800EA, PRICE:315,000 VCT-K)</li>		
+				<li><span style="color:red">원산지 : 대한한국 (Country : Republic of Korea)</span> <br> <span style="color:blue">브랜드 : 하늘숲 (Brand : Sky forest) </span> </li>
+				<li>수량: 1800장 (1800EA)</li>
+				<li>판매가: 315,000 VCT-K (PRICE: 315,000 VCT-K)</li>		
+				<li> 배송비: 무료 (Shipping cost : Domestic free, Overseas free)</li>
+				<li>유아마스크 2~6세 (Infant mask 2 to 6 years old)</li>
+				<li>어린이마스크 6~12세 (Children's mask 6 to 12 years old)</li>
 			</p>
 			</div>
 

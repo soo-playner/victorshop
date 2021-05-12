@@ -261,6 +261,22 @@ box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);}
 #settle_bank select{height:30px;margin:0 0 5px;width:100%;border:1px solid #d0d3db}
 #settle_bank #od_deposit_name{height:30px;border:1px solid #d0d3db;text-align:center; border-radius:3px;float:right;padding: 10px;}
 #settle_bank label{float:left;line-height:30px}
+
+
+#settle_coin{background:#fff;border:1px solid #e3e5e8;padding:10px;clear:both;line-height:30px}
+#settle_coin .wallet_address_title {float: left;line-height: 30px;}
+#settle_coin .wallet_address {float: right;line-height: 30px;}
+#settle_coin:after {display:block;visibility:hidden;clear:both;content:''}
+#settle_coin select{height:30px;margin:0 0 5px;width:100%;border:1px solid #d0d3db}
+#settle_coin #od_coin_deposit_name{height:30px;border:1px solid #d0d3db;text-align:center; border-radius:3px;float:right;
+-webkit-box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);
+-moz-box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);
+box-shadow:inset 1px 1px 5px rgba(0,0,0,0.1);}
+#settle_coin label{float:left;line-height:30px}
+.sod_frm_pc #settle_coin {border:0;border-top:1px solid #e3e5e8;text-align:right;padding:0}
+.sod_frm_pc #settle_coin {padding:10px;}
+
+
 #sod_frm_pt_info{border-top:0}
 .od_coupon{position:absolute;top:0;left:0;background:#fff;width:100%;z-index:99;border-radius:0 0 3px 3px;
 -webkit-box-shadow:1px 1px 5px rgba(0,0,0,0.4);

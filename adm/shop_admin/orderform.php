@@ -340,7 +340,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         <thead>
         <tr>
             <th scope="col">주문번호</th>
-            <!-- <th scope="col">결제방법</th> -->
+            <th scope="col">결제방법</th>
             <th scope="col">주문총액</th>
             <th scope="col">배송비</th>
             <th scope="col">포인트결제</th>
@@ -352,12 +352,16 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         <tbody>
         <tr>
             <td style="inline-size:0px"><?php echo $od['od_id']; ?></td>
-            <!-- <td class="td_paybybig"><?php echo $s_receipt_way; ?></td> -->
-            <td class="td_numbig td_numsum" style="inline-size:0px"><?php echo display_price_2($amount['order'],false,$od['od_token_price']); ?></td>
-            <td class="td_numbig" style="inline-size:0px"><?php echo display_price_2($od['od_send_cost'] + $od['od_send_cost2'],false,0); ?></td>
+            <td class="td_paybybig"><?php echo $s_receipt_way; ?></td>
+       
+                
+           
+            <td class="td_numbig td_numsum" style="inline-size:0px"><?=$od['od_settle_case'] == "코인" ?  display_price_2($amount['order'],false,$od['od_token_price']) :  $amount['order'] . "원" ?></td>
+            <td class="td_numbig" style="inline-size:0px"><?=$od['od_settle_case'] == "코인" ? display_price_2($od['od_send_cost'] + $od['od_send_cost2'],false,0) :  $od['od_send_cost'] + $od['od_send_cost2'] . "원" ?></td>
+
             <td class="td_numbig" style="inline-size:0px"><?php echo display_point($od['od_receipt_point']); ?></td>
             <td class="td_numbig td_numincome" style="inline-size:0px"><?php echo number_format($amount['receipt']); ?>원</td>
-            <td class="td_numbig td_numcoupon" style="inline-size:0px"><?php echo display_price_2($amount['coupon'],false,0); ?></td>
+            <td class="td_numbig td_numcoupon" style="inline-size:0px"><?php echo number_format($amount['coupon']); ?>원</td>
             <td class="td_numbig td_numcancel" style="inline-size:0px"><?php echo number_format($amount['cancel']); ?>원</td>
         </tr>
         </tbody>
@@ -395,21 +399,33 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <col>
                 </colgroup>
                 <tbody>
-                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == '가상계좌' || $od['od_settle_case'] == '계좌이체') { ?>
-                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == '가상계좌') { ?>
+                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == "코인" || $od['od_settle_case'] == '가상계좌' || $od['od_settle_case'] == '계좌이체') { ?>
+                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == "코인" || $od['od_settle_case'] == '가상계좌') { ?>
+              
+                    <?php if($od['od_settle_case'] == "코인"){
+                        $deposit_account = "지갑주소";
+                        $deposit_price = display_price_2($od['od_cart_price'],false,$od['od_token_price']);
+                    }else{
+                        $deposit_account = "계좌번호";
+                        $deposit_price = $od['od_receipt_price']. " 원";
+                    }?>
+              
                 <tr>
-                    <th scope="row">계좌번호</th>
+                    <th scope="row"><?=$deposit_account?></th>
                     <td><?php echo get_text($od['od_bank_account']); ?></td>
                 </tr>
                 <?php } ?>
                 <tr>
                     <th scope="row">입금액</th>
-                    <td><?php echo display_price_2($od['od_cart_price'],false,$od['od_token_price']); ?></td>
+                    <td><?php echo $deposit_price ?></td>
                 </tr>
                 <tr>
                     <th scope="row">입금자</th>
                     <td><?php echo get_text($od['od_deposit_name']); ?></td>
                 </tr>
+
+
+
                 <tr>
                     <th scope="row">입금확인일시</th>
                     <td>
@@ -496,7 +512,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </tr>
                 <?php } ?>
 
-                <?php if ($od['od_settle_case'] != '무통장') { ?>
+                <?php if ($od['od_settle_case'] != '무통장' && $od['od_settle_case'] != "코인") { ?>
                 <tr>
                     <th scope="row">결제대행사 링크</th>
                     <td>
@@ -655,7 +671,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <col>
                 </colgroup>
                 <tbody>
-                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == '가상계좌' || $od['od_settle_case'] == '계좌이체') { ########## 시작?>
+                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == '코인' || $od['od_settle_case'] == '가상계좌' || $od['od_settle_case'] == '계좌이체') { ########## 시작?>
                 <?php
                 if ($od['od_settle_case'] == '무통장')
                 {
@@ -664,10 +680,24 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     $bank_account = '<select name="od_bank_account" id="od_bank_account">'.PHP_EOL;
                     $bank_account .= '<option value="">선택하십시오</option>'.PHP_EOL;
                     for ($i=0; $i<count($str); $i++) {
+                  
                         $str[$i] = str_replace("\r", "", $str[$i]);
                         $bank_account .= '<option value="'.$str[$i].'" '.get_selected($od['od_bank_account'], $str[$i]).'>'.$str[$i].'</option>'.PHP_EOL;
                     }
                     $bank_account .= '</select> ';
+                    $account_number = "계좌번호";
+                }else if($od['od_settle_case'] == "코인"){
+                         // 은행계좌를 배열로 만든후
+                         $str = explode("\n", $default['de_coin_account']);
+                         $bank_account = '<select name="od_bank_account" id="od_bank_account">'.PHP_EOL;
+                         $bank_account .= '<option value="">선택하십시오</option>'.PHP_EOL;
+                         for ($i=0; $i<count($str); $i++) {
+    
+                             $str[$i] = str_replace("\r", "", $str[$i]);
+                             $bank_account .= '<option value="'.$str[$i].'" '.get_selected($od['od_bank_account'], $str[$i]).'>'.$str[$i].'</option>'.PHP_EOL;
+                         }
+                         $bank_account .= '</select> ';
+                         $account_number = "지갑주소";
                 }
                 else if ($od['od_settle_case'] == '가상계좌')
                     $bank_account = $od['od_bank_account'].'<input type="hidden" name="od_bank_account" value="'.$od['od_bank_account'].'">';
@@ -675,9 +705,9 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     $bank_account = $od['od_settle_case'];
                 ?>
 
-                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == '가상계좌') { ?>
+                <?php if ($od['od_settle_case'] == '무통장' || $od['od_settle_case'] == '코인' || $od['od_settle_case'] == '가상계좌') { ?>
                 <tr>
-                    <th scope="row"><label for="od_bank_account">계좌번호</label></th>
+                    <th scope="row"><label for="od_bank_account"><?=$account_number?></label></th>
                     <td><?php echo $bank_account; ?></td>
                 </tr>
                 <?php } ?>

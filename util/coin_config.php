@@ -41,7 +41,7 @@ if(strtolower($mode) == 'test'){
 }else{
   define('NETWORK','mainnet');
   define('ETHERSCAN_ENDPOINT','API');
-  define('VCT_COMPANY_ADDR',$default['de_bank_account']);
+  define('VCT_COMPANY_ADDR',$default['de_coin_account']);
   define('VCT_CONTRACT', '0x31C785fcbA8429e1E566a0110D75ee42687aac9B');
   // define('VCT_CONTRACT', '0x35ec9cd695fdd9b3af678a7a199f00aae1ad87d8');
 

@@ -132,7 +132,11 @@ else if ($w == "d")
     $alert_msg = '상품문의가 삭제 되었습니다.';
 }
 
-if($w == 'd')
+if($w == 'd'){
     alert($alert_msg, $url);
-else
-    alert_opener($alert_msg, $url);
+}else{
+    echo "<script>alert('{$alert_msg}')
+    window.location.href='./item.php?it_id={$it_id}'
+    </script>";
+        // alert_opener($alert_msg, $url);
+}

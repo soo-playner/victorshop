@@ -33,11 +33,13 @@ $cp_count = get_shop_member_coupon_count($member['mb_id'], true);
         <ul class="my_pocou">
             <li  class="my_cou">
                 보유쿠폰
-                <a href="<?php echo G5_SHOP_URL; ?>/coupon.php" target="_blank" class="win_coupon"><?php echo number_format($cp_count); ?></a>
+                <!-- class="win_coupon" -->
+                <a href="<?php echo G5_SHOP_URL; ?>/coupon.php"><?php echo number_format($cp_count); ?></a>
             </li>
             <li class="my_point">
                 보유포인트
-                <a href="<?php echo G5_BBS_URL; ?>/point.php" target="_blank" class="win_point"><?php echo number_format($member['mb_point']); ?>점</a>
+                <!-- class="win_point" -->
+                <a href="<?php echo G5_BBS_URL; ?>/point.php"><?php echo number_format($member['mb_point']); ?>점</a>
             </li>
         </ul>
         <div class="my_info">

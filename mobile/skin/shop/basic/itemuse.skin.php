@@ -8,7 +8,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_MSHOP_SKIN_URL.'/style.css">',
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 
 <div id="sit_use_wbtn">
-    <a href="<?php echo $itemuse_form; ?>" class="qa_wr itemuse_form " onclick="return false;">사용후기 쓰기<span class="sound_only"> 새 창</span></a>
+    <a href="<?php echo $itemuse_form; ?>" class="qa_wr itemuse_form">사용후기 쓰기<span class="sound_only"> 새 창</span></a>
     <a href="<?php echo $itemuse_list; ?>" id="itemuse_list" class="btn01">더보기</a>
 </div>
 
@@ -54,7 +54,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_MSHOP_SKIN_URL.'/style.css">',
 
                 <?php if ($is_admin || $row['mb_id'] == $member['mb_id']) { ?>
                 <div class="sit_use_cmd">
-                    <a href="<?php echo $itemuse_form."&amp;is_id={$row['is_id']}&amp;w=u"; ?>" class="itemuse_form btn01" onclick="return false;">수정</a>
+                    <a href="<?php echo $itemuse_form."&amp;is_id={$row['is_id']}&amp;w=u"; ?>" class="itemuse_form btn01">수정</a>
                     <a href="<?php echo $itemuse_formupdate."&amp;is_id={$row['is_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemuse_delete btn01">삭제</a>
                 </div>
                 <?php } ?>
@@ -90,10 +90,10 @@ echo itemuse_page($config['cf_mobile_pages'], $page, $total_page, G5_SHOP_URL."/
 
 <script>
 $(function(){
-    $(".itemuse_form").click(function(){
-        window.open(this.href, "itemuse_form", "width=810,height=680,scrollbars=1");
-        return false;
-    });
+    // $(".itemuse_form").click(function(){
+    //     window.open(this.href, "itemuse_form", "width=810,height=680,scrollbars=1");
+    //     return false;
+    // });
 
     $(".itemuse_delete").click(function(){
         if (confirm("정말 삭제 하시겠습니까?\n\n삭제후에는 되돌릴수 없습니다.")) {

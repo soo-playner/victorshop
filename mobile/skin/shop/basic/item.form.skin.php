@@ -7,6 +7,11 @@ add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 10);
 add_javascript('<script src="http://code.jquery.com/jquery-latest.min.js"></script>', 0);
 ?>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"                                                                                                                                                                                                                                                                                                 ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+    
 <?php if($config['cf_kakao_js_apikey']) { ?>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="<?php echo G5_JS_URL; ?>/kakaolink.js"></script>
@@ -38,7 +43,7 @@ add_javascript('<script src="http://code.jquery.com/jquery-latest.min.js"></scri
             continue;
 
         $thumb_img .= '<li>';
-        $thumb_img .= '<a href="'.G5_SHOP_URL.'/largeimage.php?it_id='.$it['it_id'].'&amp;no='.$i.'" class="popup_item_image slide_img" target="_blank">'.$thumb.'</a>';
+        $thumb_img .= '<a href="'.G5_SHOP_URL.'/largeimage.php?it_id='.$it['it_id'].'&amp;no='.$i.'" class="popup_item_image slide_img" data-it_id='.$it['it_id'].' onclick="return false;">'.$thumb.'</a>';
         $thumb_img .= '</li>'.PHP_EOL;
     }
     if ($thumb_img)
@@ -240,7 +245,7 @@ add_javascript('<script src="http://code.jquery.com/jquery-latest.min.js"></scri
                 echo '<span class="sound_only">이 분류에 등록된 다른 상품이 없습니다.</span>';
             } 
             ?>
-            <a href="<?php echo G5_SHOP_URL; ?>/largeimage.php?it_id=<?php echo $it['it_id']; ?>&amp;no=1" target="_blank" class="popup_item_image "><i class="ri-zoom-in-line" aria-hidden="true"></i><span class="sound_only">확대보기</span></a>
+            <a href="<?php echo G5_SHOP_URL; ?>/largeimage.php?it_id=<?php echo $it['it_id']; ?>&amp;no=1" class="popup_item_image" data-it_id="<?=$it['it_id']?>" onclick="return false;"><i class="ri-zoom-in-line" aria-hidden="true"></i><span class="sound_only">확대보기</span></a>
         </div>
         <!-- } 다른 상품 보기 끝 -->
     </section>
@@ -529,13 +534,43 @@ $(function(){
 
     // 상품이미지 크게보기
     $(".popup_item_image").click(function() {
-        var url = $(this).attr("href");
-        var top = 10;
-        var left = 10;
-        var opt = 'scrollbars=yes,top='+top+',left='+left;
-        popup_window(url, "largeimage", opt);
+ 
+       
+        $.ajax({
+            url:"/util/get_image.php",
+            dataType: "json",
+            type: "GET",
+            cache: false,
+            async: false,
+            data: {
+                it_id : $(this).data('it_id'),
+                no : 1
+            },
+            success : function(res){
+                var dialog = bootbox.dialog({
+                     message: "<img src='"+res.result+"' style='width:100%;'>",
+ 
+                });
 
-        return false;
+                $('.modal-dialog').addClass('pay-dialog')
+                
+                $('.pay-dialog').css({
+                    'display': 'flex',
+                    'justify-content': 'center',
+                    'align-items': 'center',
+                    'height': '90%',
+                    'margin': '0px'
+                })
+            },
+            error:function(){
+                alert("문제가 발생하였습니다. 나중에 다시 시도해주세요.")
+            }
+        })
+        // var url = $(this).attr("href");
+        // var top = 10;
+        // var left = 10;
+        // var opt = 'scrollbars=yes,top='+top+',left='+left;
+    
     });
 });
 

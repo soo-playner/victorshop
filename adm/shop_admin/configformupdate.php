@@ -437,7 +437,9 @@ $sql = " update {$g5['g5_shop_default_table']}
                 de_member_reg_coupon_term     = '{$de_member_reg_coupon_term}',
                 de_member_reg_coupon_price    = '{$de_member_reg_coupon_price}',
                 de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}',
-                de_token_price                = '{$_POST['de_token_price']}'
+                de_token_price                = '{$_POST['de_token_price']}',
+                de_coin_use                   = '{$_POST['de_coin_use']}',
+                de_coin_account               = '{$_POST['de_coin_account']}'
                 ";
         
 sql_query($sql);
