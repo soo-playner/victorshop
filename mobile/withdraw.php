@@ -151,19 +151,18 @@ if($encrypt == "N"){
 			var decimal = "<?=$token_decimal_numeric?>";
 			var balanced = $("#balData").val()*1;
 			var send_coin = Number( $("#sendCoin").val() );
-			var to_wallet =  $('#sendAccount').val();
+			// var to_wallet =  $('#sendAccount').val();
 			var address	= "<?echo $wallet_addr;?>";
-			var key			= "<?echo $wallet_key_decrypt; ?>";
-			var mb_id		= "<?echo $mb_id;?>";
-			var transfer_coin = Number(send_coin*100000000);
-			var limit_coin = Number(balanced)/10;
+			// var key			= "<?echo $wallet_key_decrypt; ?>";
+			// var mb_id		= "<?echo $mb_id;?>";
+			// var limit_coin = Number(balanced)/10;
 
-			console.log('보유량 :'+ balanced + '/ 출금량 : ' + send_coin+ '/ 제한량 : ' + limit_coin + '/ 기출금량 : ' +myamt + '/ 출금 기준 limit : ' + mylimit);
+			// console.log('보유량 :'+ balanced + '/ 출금량 : ' + send_coin+ '/ 제한량 : ' + limit_coin + '/ 기출금량 : ' +myamt + '/ 출금 기준 limit : ' + mylimit);
 
-			if(to_wallet.length < 14){
-				alert("받을 지갑 주소를 확인해주세요");
-				return false;
-			}
+			// if(to_wallet.length < 14){
+			// 	alert("받을 지갑 주소를 확인해주세요");
+			// 	return false;
+			// }
 
 			//십프로만 출금인데 1000이하는 제한 없이 출금되는걸로
 
@@ -194,9 +193,8 @@ if($encrypt == "N"){
 
 
 			// 보유량 1000개 이하일때 전송가능
-			if(send_coin>0 && to_wallet.length > 10){
-				console.log("\n1."+address+"\n2."+to_wallet+"\n3."+transfer_coin+"\n4."+key);
-
+			if(send_coin>0){
+		
 				<?php if($is_webview){ ?>
 					callFingerPrint();
 					<?php }else{ ?>
@@ -257,11 +255,19 @@ if($encrypt == "N"){
 					var decimal = "<?=$token_decimal_numeric?>";
 					var balanced = $("#balData").val()*1;
 					var send_coin = Number( $("#sendCoin").val() );
-					var to_wallet =  $('#sendAccount').val();
+					var to_wallet =  $('#sendAccount').val().trim();
 					var address	= "<?echo $wallet_addr;?>";
 					var key			= "<?echo $wallet_key_decrypt; ?>";
 					var mb_id		= "<?echo $mb_id;?>";
-					var transfer_coin = Number(send_coin*100000000);
+					var transfer_coin = Number(send_coin*decimal);
+
+
+					var check_address = web3.utils.isAddress(to_wallet)
+
+					if(!check_address){
+						alert("유효하지않은 지갑주소입니다. 다시확인해주세요.")
+						return;
+					}
 
 					if($("#cb").prop("checked")){
 						checked_value = $("#cb").val();
@@ -275,6 +281,8 @@ if($encrypt == "N"){
 						checked_value = $("#cb2").val();
 					}
 
+			
+			
 					send_token(address, to_wallet, contract_address, decimal, send_coin, key, checked_value, (error, res) => {
 
 						console.log("ERROR :: "+ error);
