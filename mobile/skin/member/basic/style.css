@@ -4,7 +4,7 @@
 .mbskin {text-align:center;margin:20px auto}
 .mbskin h1 {font-size:1.75em;margin:40px 0 25px}
 .mbskin p {padding-bottom:20px;border-bottom:1px solid #c8c8c8}
-.mbskin p strong {color:#4162ff;padding-bottom:5px;display:block;font-size:1.083em}
+.mbskin p strong {color:#f6bd14;padding-bottom:5px;display:block;font-size:1.083em}
 
 /* 버튼 */
 .mbskin a.btn01 {}
@@ -311,7 +311,8 @@
 #mb_confirm fieldset {position:relative;margin:20px 0;text-align:left;color:#555}
 #mb_confirm_id {font-weight:bold;display:block;font-size:1.083em;margin:5px 0}
 #mb_confirm_pw {display:block;margin-top:10px;width:100%}
-#mb_confirm .btn_submit {width:100%;height:40px;border-radius:3px;margin:10px 0}
+#mb_confirm .btn_submit {width:100%;height:40px;border-radius:3px;margin:10px 0;}
+#mb_confirm fieldset input[type='button'] {background: #fff !important;color: #000;border: 1px solid #ccc;}
 
 /* 비밀글 비밀번호 확인 */
 #pw_confirm fieldset {position:relative;margin:0 0 5px;padding:15px 0;border-top:1px solid #fffefe}

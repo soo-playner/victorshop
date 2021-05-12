@@ -219,7 +219,6 @@ else
     ?>
 
 </div>
-
 <?php
 // 하단 HTML
 echo conv_content($it['it_mobile_tail_html'], 1);

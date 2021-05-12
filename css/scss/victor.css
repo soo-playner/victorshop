@@ -13,6 +13,7 @@
   text-align: center;
   line-height: 60px;
 }
+
 #hd_wrapper .back_btn i {
   font-size: 16px;
 }
@@ -21,6 +22,7 @@
 .mbskin .btn_submit, .btn_submit {
   background: #f6bd14;
   border-radius: 0 !important;
+  border: 1px solid #bc8d00;
 }
 
 #mb_login .frm_input {
@@ -59,19 +61,23 @@
   color: white;
   padding: 20px 30px;
 }
+
 .breadcomp .greeting {
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 15px;
 }
+
 .breadcomp .greeting span {
   font-weight: 900;
   font-size: 16px;
 }
+
 .breadcomp .balance {
   text-align: right;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
+
 .breadcomp .coin_img img {
   width: 60px;
   height: 60px;
@@ -100,6 +106,7 @@ main {
   margin-top: -20px;
   padding: 10px 0;
 }
+
 #main_card .dual {
   width: 49.9%;
   height: 100%;
@@ -108,10 +115,12 @@ main {
   padding: 10px 15px;
   font-size: 14px;
 }
+
 #main_card .dual img {
   width: 34px;
   height: 34px;
 }
+
 #main_card .right {
   border-left: 1px solid #ccc;
 }
@@ -154,6 +163,7 @@ main {
   background: white;
   margin: 0 2px;
 }
+
 .menu_card:hover {
   background: #222436;
   color: white;
@@ -169,15 +179,18 @@ main {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
 .menu_box a {
   width: 25%;
 }
+
 .menu_box a div {
   height: 6vh;
   margin: 0 auto;
   text-align: center;
   background-size: contain;
 }
+
 .menu_box a p {
   font-size: 14px;
   line-height: 0.75em;
@@ -224,17 +237,20 @@ main {
   background: #fff;
   font-size: 14px;
 }
+
 .sysbtnset a {
   width: initial;
   margin: 0 auto;
   text-align: center;
 }
+
 .sysbtnset a p {
   margin: 0;
   line-height: 19px;
   float: left;
   margin-left: 6px;
 }
+
 .sysbtnset a div {
   float: left;
   width: 19px;
@@ -244,6 +260,7 @@ main {
   text-align: center;
   background-size: contain;
 }
+
 .sysbtnset .sysbtnset_bar {
   width: 1px;
   height: 70%;

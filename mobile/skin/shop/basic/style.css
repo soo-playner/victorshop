@@ -318,6 +318,7 @@
 #sit_siblings a#siblings_prev {position:absolute;top:0;left:0}
 #sit_siblings a#siblings_next {position:absolute;top:0;right:0}
 #sit_siblings a span {position:absolute;font-size:0;text-indent:-9999em;line-height:0;overflow:hidden}
+#sit_siblings a.popup_item_image {font-size: 18px;}
 
 /* 상품 상세보기 - sns */
 #sit_star_sns {position:relative}

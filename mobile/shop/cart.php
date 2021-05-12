@@ -190,7 +190,13 @@ $cart_count = sql_num_rows($result);
     <input type="hidden" value="<?=$exchange_rate?>" id="exchange_rate">
     <input type="hidden" value="<?=$token_symbol?>" id="token_symbol">
 </div>
-
+<script>
+    $(function() {
+        if(!$('.sod_list').children('li').hasClass('empty_list')) {
+            $('#ft').css('min-height','330px');
+        }
+    });
+</script>
 <script>
 $(function() {
     var close_btn_idx;
