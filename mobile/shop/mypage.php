@@ -55,14 +55,14 @@ $cp_count = get_shop_member_coupon_count($member['mb_id'], true);
                 <strong>최종접속일시</strong>
                 <span><?php echo $member['mb_today_login']; ?></span>
              </div>
-            <div class="my_info_wr">
+            <div class="my_info_wr ov_addr">
             <strong>회원가입일시</strong>
                 <span><?php echo $member['mb_datetime']; ?></span>
             </div>
-            <div class="my_info_wr ov_addr">
+            <!-- <div class="my_info_wr ov_addr">
                 <strong>주소</strong>
                 <span><?php echo sprintf("(%s%s)", $member['mb_zip1'], $member['mb_zip2']).' '.print_address($member['mb_addr1'], $member['mb_addr2'], $member['mb_addr3'], $member['mb_addr_jibeon']); ?></span>
-            </div>
+            </div> -->
         </div>
         <div class="my_ov_btn"><button type="button" class="btn_op_area"><i class="fa fa-caret-down" aria-hidden="true"></i><span class="sound_only">상세정보 보기</span></button></div>
 
