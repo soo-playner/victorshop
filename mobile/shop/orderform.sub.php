@@ -409,7 +409,7 @@ if ($is_kakaopay_use) {
                         $addr_list .= '<br><input type="radio" name="ad_sel_addr" value="new" id="od_sel_addr_new">' . PHP_EOL;
                         $addr_list .= '<label for="od_sel_addr_new">신규배송지</label>' . PHP_EOL;
 
-                        $addr_list .= '<a href="' . G5_SHOP_URL . '/orderaddress.php" id="order_address">배송지목록</a>';
+                        // $addr_list .= '<a href="' . G5_SHOP_URL . '/orderaddress.php" id="order_address">배송지목록</a>';
                     } else {
                         // 주문자와 동일
                         $addr_list .= '<input type="checkbox" name="ad_sel_addr" value="same" id="ad_sel_addr_same">' . PHP_EOL;
