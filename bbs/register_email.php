@@ -50,7 +50,7 @@ if(!$ckey || $ckey != $key)
 
   
         <!-- <th scope="row"><label for="reg_mb_email">E-mail<strong class="sound_only">필수</strong></label></th> -->
-        <input type="text" name="mb_email" id="reg_mb_email" required class="frm_input email max_width" value="<?php echo $mb['mb_email']; ?>">
+        <input type="text" name="mb_email" id="reg_mb_email" required class="frm_input email max_width" value="<?php echo $mb['mb_email']; ?>" placeholder="이메일주소(필수)">
   
         <!-- <th scope="row">자동등록방지</th> -->
         <?php echo captcha_html(); ?>
