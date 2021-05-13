@@ -1,7 +1,7 @@
 <?php
 include_once('./_common.php');
 include_once(G5_MOBILE_PATH.'/head.php');
-
+include_once(G5_LIB_PATH.'/bootbox/bootbox.php');
 if($wallet_addr == ""){
 	alert('입금페이지에서 VCT-K 지갑생성후 이용해주세요.',G5_URL);
 	return false;
@@ -486,11 +486,35 @@ return false
 }
 
 
+			var dialog = bootbox.dialog({
+                    message: "<img src='<?php echo G5_MOBILE_URL; ?>/shop/img/loading.gif'><span>주문완료 중입니다. 잠시만 기다려 주십시오.</span>",
+                    closeButton: false
+             	   });
 
-send_token_for_pay('<?=$wallet_addr?>', '<?=VCT_COMPANY_ADDR?>', '<?=VCT_CONTRACT?>', '<?=$token_decimal_numeric?>', '<?=$sell_price?>', '<?=$wallet_key_decrypt?>', checked_value,estimateGas ,(error, res) => {
+                $('.modal-dialog').addClass('pay-dialog')
+                $('.bootbox-body').addClass('pay-loading')
+
+                $('.pay-dialog').css({
+                    'display': 'flex',
+                    'justify-content': 'center',
+                    'align-items': 'center',
+                    'height': '100%',
+                    'margin': '0px'
+                })
+                $('.pay-loading').css({
+                    'justify-content': 'space-between',
+                    'align-items': 'center',
+                    'height': '100px',
+                    'flex-flow': 'column',
+                    'display': 'flex'
+                })
+
+
+
+send_token_for_pay('<?=$wallet_addr?>', '<?=VCT_COMPANY_ADDR?>', '<?=VCT_CONTRACT?>', '<?=$token_decimal_numeric?>', send_coin, '<?=$wallet_key_decrypt?>', checked_value,estimateGas ,(error, res) => {
 
 var after_res = res.split(':');
-
+dialog.modal('hide')
 if(after_res[0] == 'success'){
 
 
@@ -515,10 +539,10 @@ if(after_res[0] == 'success'){
 						"checked_mask" : checked_mask,
 					},
 					success: function(res) {
-						window.history.back();
+						window.location.reload();
 					},
 					error: function(error){
-						alert("나중에 다시 시도해주세요");
+						window.location.reload();
 					}
 
 

@@ -3,7 +3,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 require_once(G5_MSHOP_PATH . '/settle_' . $default['de_pg_service'] . '.inc.php');
 require_once(G5_SHOP_PATH . '/settle_kakaopay.inc.php');
-
+include_once(G5_LIB_PATH."/bootbox/bootbox.php");
 if ($encrypt == "N") {
     $wallet_key_decrypt = $wallet_key;
 } else {
@@ -34,11 +34,6 @@ set_session('ss_personalpay_hash', '');
     <?php
     ob_start();
     ?>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 
     <ul class="sod_list">
         <?php
@@ -1558,7 +1553,6 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                 }
 
 
-
                 var dialog = bootbox.dialog({
                     message: "<img src='<?php echo G5_MOBILE_URL; ?>/shop/img/loading.gif'><span>주문완료 중입니다. 잠시만 기다려 주십시오.</span>",
                     closeButton: false
@@ -1588,7 +1582,7 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                     var after_res = res.split(':');
                     dialog.modal('hide')
                     if (after_res[0] == 'success') {
-
+                        alert("마스크 주문건이 정상 처리되었습니다. \n처리결과 반영은 일정시간이 소요될수있습니다.");
                         $('#od_hash').val(after_res[1])
                     $('#od_token_price').val('<?= $tot_sell_price / $exchange_rate ?>')
                         setTimeout(function() {

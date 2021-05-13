@@ -153,7 +153,7 @@ letter-spacing: -0.05em;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} 
 #select_checkbox section{display:inline-block;width:32.5%;}
 #select_checkbox label{border:1px solid #ccc;padding:10px 5px 10px 10px;}
 #select_checkbox .checkbox{text-align:left;display:block}
@@ -161,4 +161,4 @@ letter-spacing: -0.05em;
 #select_checkbox .desc{display:block;font-size:13px }
 .checkbox__native {display: none;}
 .checkbox__native:checked + label{background:gold;font-weight:bold;border:1px solid gold !important}
-.title{text-align:left;margin:15px;font-size:14px;display:block;width:100%;}
+.title{text-align:left;margin:15px;font-size:14px;display:block;}

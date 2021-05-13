@@ -5,13 +5,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0);
 add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 10);
 add_javascript('<script src="http://code.jquery.com/jquery-latest.min.js"></script>', 0);
+
+include_once(G5_LIB_PATH."/bootbox/bootbox.php");
 ?>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"                                                                                                                                                                                                                                                                                                 ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
-    
+
+
 <?php if($config['cf_kakao_js_apikey']) { ?>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="<?php echo G5_JS_URL; ?>/kakaolink.js"></script>

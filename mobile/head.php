@@ -6,6 +6,13 @@ if(defined('G5_THEME_PATH')) {
     return;
 }
 
+
+$pageName = basename($_SERVER['PHP_SELF']);
+if($pageName == "page.php"){
+echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">';
+}
+
+
 include_once(G5_PATH.'/head.sub.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
 include_once(G5_LIB_PATH.'/outlogin.lib.php');
