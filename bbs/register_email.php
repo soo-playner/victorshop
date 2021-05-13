@@ -3,7 +3,7 @@ include_once('./_common.php');
 include_once(G5_CAPTCHA_PATH.'/captcha.lib.php');
 
 $g5['title'] = '메일인증 메일주소 변경';
-include_once('./_head.php');
+include_once(G5_PATH.'/head.sub.php');
 
 $mb_id = isset($_GET['mb_id']) ? substr(clean_xss_tags($_GET['mb_id']), 0, 20) : '';
 $sql = " select mb_email, mb_datetime, mb_ip, mb_email_certify, mb_id from {$g5['member_table']} where mb_id = '{$mb_id}' ";
@@ -25,37 +25,45 @@ if(!$ckey || $ckey != $key)
 ?>
 
 <style>
-.rg_em_p{    display: flex;justify-content: center;}
+.rg_em_p{display: flex;justify-content: center;}
 .btn_submit {width:35%;height:45px;padding:0 30px;font-weight:bold;font-size:1.083em}
-.btn_cancel {width:35%;line-height:40px;height:45px;padding:0 30px;font-size:1.083em;background:#fff;border-radius:3px;border:1px solid #dcdcdc}
+.btn_cancel {width:35%;line-height:40px;height:45px;padding:0 30px;font-size:1.083em;border-radius:3px;border:1px solid #dcdcdc}
+.blue{color:#4162ff;height: 40px;}
+.max_width{width:100%}
+.margin_top{margin-top: 15px;}
 </style>
 
-<p class="rg_em_p">메일인증을 받지 못한 경우 회원정보의 메일주소를 변경 할 수 있습니다.</p>
+<div id="find_info" class="new_win">
+    <h1 id="win_title">이메일인증 / 이메일변경</h1>
+    <div class="new_win_con">
+
+    <div class="blue">
+    <div>메일인증을 받지 못한 경우</div> 
+    <div>회원정보의 메일주소를 변경 할 수 있습니다.</div>
+    </div>
 
 <form method="post" name="fregister_email" action="<?php echo G5_HTTPS_BBS_URL.'/register_email_update.php'; ?>" onsubmit="return fregister_email_submit(this);">
 <input type="hidden" name="mb_id" value="<?php echo $mb_id; ?>">
 
 <div class="tbl_frm01 tbl_frm rg_em">
-    <table>
-    <caption>사이트 이용정보 입력</caption>
-    <tr>
-        <th scope="row"><label for="reg_mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
-        <td><input type="text" name="mb_email" id="reg_mb_email" required class="frm_input email required" size="20" maxlength="100" value="<?php echo $mb['mb_email']; ?>"></td>
-    </tr>
-    <tr>
-        <th scope="row">자동등록방지</th>
-        <td><?php echo captcha_html(); ?></td>
-    </tr>
-    </table>
+
+
+  
+        <!-- <th scope="row"><label for="reg_mb_email">E-mail<strong class="sound_only">필수</strong></label></th> -->
+        <input type="text" name="mb_email" id="reg_mb_email" required class="frm_input email max_width" value="<?php echo $mb['mb_email']; ?>">
+  
+        <!-- <th scope="row">자동등록방지</th> -->
+        <?php echo captcha_html(); ?>
 </div>
 
-<div class="btn_confirm">
+<div class="btn_confirm margin_top">
     <input type="submit" id="btn_submit" class="btn_submit" value="인증메일변경">
     <a href="<?php echo G5_URL ?>" class="btn_cancel">취소</a>
 </div>
 
 </form>
-
+</div>
+</div>
 <script>
 function fregister_email_submit(f)
 {
