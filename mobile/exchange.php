@@ -77,7 +77,7 @@ if($encrypt == "N"){
 				<p class="coin_name"><?=$point_symbol?></p>
 			</div>
 			<div class="cb_right">
-				<p id="cell_cell"><?echo number_format($mask_row['mask_total'])." ".$point_symbol?></p>
+				<p id="cell_cell"><?echo number_format($mask_row['mask_total'])." PACKAGE(S)"?></p>
 				<!-- <p class="cell_won"><span class="won_symbol">\</span> 0</p> -->
 			</div>
 		</div>
