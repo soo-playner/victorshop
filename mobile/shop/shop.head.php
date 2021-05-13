@@ -104,7 +104,7 @@ include_once(G5_PATH."/util/callOneCoin.php");
 
             $("#btn_hdsch").on("click", function() {
                 $("#hd_sch").show();
-                $("#hd_sch").css('display','flex').css('align-items','center').css('justify-content','space-between').css('height','105px');
+                $("#hd_sch").css('display','flex').css('align-items','center').css('justify-content','space-between');
                 $(this).hide();
             });
 

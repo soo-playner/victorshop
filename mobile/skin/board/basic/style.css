@@ -283,6 +283,7 @@
 .bo_vc_act li a:hover {color:#3a8afd}
 
 #bo_vc_w h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#bo_vc_w #btn_submit:active, #bo_vc_w #btn_submit:focus, #bo_vc_w #btn_submit:hover {background: #bc8d00;}
 .bo_vc_w {display:block;position:relative;padding:0 15px 15px;background:#f8f8f8}
 .bo_vc_w:after {display:block;visibility:hidden;clear:both;content:""}
 .bo_vc_w #char_cnt {display:block;margin:0 0 5px}
