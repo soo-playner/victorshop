@@ -75,7 +75,7 @@ $mask_history_result = sql_query($mask_history_sql);
           <p class="coin_name"><?=$point_symbol?></p>
         </div>
         <div class="cb_right">
-          <p id="point_balance" class="point_balance"> <? echo number_format($mask_row['mask_total'])." PACKAGE(S)"?></p>
+          <p id="point_balance" class="point_balance"> <? echo number_format($mask_row['mask_total'])." ".$point_symbol?></p>
         </div>
         <p class="guide_2" >Touch!</p>
       </div>
