@@ -571,7 +571,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <?php } ?>
                 <tr>
                     <th scope="row">주문금액할인</th>
-                    <td><?php echo display_price_2($od['od_coupon'],false,0); ?></td>
+                    <td><?= $od['od_settle_case'] == "코인" ? display_price_2($od['od_coupon'],false,0): number_format($od['od_coupon']) ." 원" ?></td>
                 </tr>
                 <tr>
                     <th scope="row">포인트</th>
@@ -579,7 +579,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </tr>
                 <tr>
                     <th scope="row">결제취소/환불액</th>
-                    <td><?php echo display_price_2($od['od_refund_price'],false,0); ?></td>
+                    <td><?=$od['od_settle_case'] == "코인" ? display_price_2($od['od_refund_price'],false,0) : number_format($od['od_refund_price'])." 원"?></td>
                 </tr>
                 <?php if ($od['od_invoice']) { ?>
                 <tr>
