@@ -234,7 +234,7 @@ set_session('ss_personalpay_hash', '');
     <div class="sod_ta_wr">
         <dl id="m_sod_bsk_tot">
             <dt class="sod_bsk_sell">주문</dt>
-            <dd class="sod_bsk_sell"><strong><?php echo number_format($tot_sell_price); ?> 원 (<?php echo number_format($tot_sell_price / $exchange_rate); ?> <?= $token_symbol ?>)</strong></dd>
+            <dd class="sod_bsk_sell"><strong><?php echo number_format($tot_sell_price); ?> 원 ( <?php echo number_format($tot_sell_price / $exchange_rate); ?> <?= $token_symbol ?> )</strong></dd>
             <?php if ($it_cp_count > 0) { ?>
                 <dt class="sod_bsk_coupon">쿠폰</dt>
                 <dd class="sod_bsk_coupon"><strong id="ct_tot_coupon">0 <?= $token_symbol ?></strong></dd>
@@ -248,7 +248,7 @@ set_session('ss_personalpay_hash', '');
             <dd class="sod_bsk_cnt">
                 <?php $tot_price = $tot_sell_price + $send_cost; // 총계 = 주문상품금액합계 + 배송비 
                 ?>
-                <strong id="ct_tot_price"><?php echo number_format($tot_price); ?></strong> 원 </strong>(<strong id="ct_tot_price"><?php echo number_format($tot_price / $exchange_rate); ?></strong> <?= $token_symbol ?>)
+                <strong id="ct_tot_price"><?php echo number_format($tot_price); ?></strong> 원 (<strong id="ct_tot_price"><?php echo number_format($tot_price / $exchange_rate); ?></strong> <?= $token_symbol ?> )
         </dl>
     </div>
 
@@ -551,7 +551,7 @@ if ($is_kakaopay_use) {
                         </tr>
                         <tr>
                             <th>총 주문금액</th>
-                            <td><span id="od_tot_price"><?php echo number_format($tot_price); ?></span>원 <span id="od_tot_price">(<?php echo number_format($tot_price / $exchange_rate); ?></span> <?= $token_symbol ?>)</td>
+                            <td><span id="od_tot_price"><?php echo number_format($tot_price); ?></span>원 <span id="od_tot_price">( <?php echo number_format($tot_price / $exchange_rate); ?></span> <?= $token_symbol ?> )</td>
                         </tr>
                         <tr>
                             <th>추가배송비</th>
