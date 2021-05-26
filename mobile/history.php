@@ -84,11 +84,11 @@ $mask_history_result = sql_query($mask_history_sql);
         <table class="hist_tab" id="js-hist_tab_2">
           <thead>
             <tr>
-              <th width="30%">날짜</th>
-              <th width="20%">상품명</th>
-              <th width="15%">상태</th>
-              <th width="20%"><?=$token_symbol?></th>
-              <th width="15%">수량</th>
+              <th width="30%" style="text-align: center;">날짜</th>
+              <th width="20%" style="text-align: center;">상품명</th>
+              <th width="15%" style="text-align: center;">상태</th>
+              <th width="20%" style="text-align: center;"><?=$token_symbol?></th>
+              <th width="15%" style="text-align: center;">수량</th>
             </tr>
           </thead>
           <tbody>

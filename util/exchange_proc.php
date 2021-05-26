@@ -31,7 +31,7 @@ $sql = "insert into sh_shop_order
 '{$sender_info['mb_id']}',
 '{$data['trade_money']}',
 '{$fee}',
-'1',
+'{$data['cell_point']}',
 '{$data['cell_point']}',
 '{$sender_info['mb_name']}',
 '{$sender_info['mb_hp']}',
