@@ -269,3 +269,89 @@ main {
   left: 50%;
   top: 10px;
 }
+
+/* 공통 */
+.coin_p {
+  font-size: 10px;
+}
+
+/* index gnb 메뉴 추가 */
+#gnb {
+  border-top: 1px solid #f1f1f1;
+}
+
+#gnb .menu_icon {
+  display: inline-block;
+  width: 60px;
+  height: 59px;
+  line-height: 59px;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+  border: 0;
+  vertical-align: bottom;
+  border-right: 1px solid #f1f1f1;
+}
+
+#gnb .menu_icon:hover {
+  background: gold;
+}
+
+#gnb .cate li {
+  display: inline-block;
+}
+
+#gnb .cate li a {
+  font-weight: 600;
+  height: 60px;
+  line-height: 60px;
+  font-size: 14px;
+  border: none;
+}
+
+#gnb .cate li a:after {
+  position: absolute;
+  content: "";
+  top: 25px;
+  right: 0;
+  width: 1px;
+  height: 10px;
+  background-color: #999;
+}
+
+#gnb .cate li a:hover {
+  background: gold;
+}
+
+/*상품카드*/
+.sct_li {
+  background: white;
+  _padding: 5px;
+  _-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  _        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.sct_li:hover {
+  background: ghostwhite;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  _border: 2px solid #fff;
+  outline: 1px solid black;
+  -webkit-animation: all 1s;
+          animation: all 1s;
+}
+
+.sct_li .sct_txt {
+  font-weight: 600;
+}
+
+.sct_li.sct_clear {
+  margin-left: -2px;
+  margin-right: 2px;
+}
+
+.price_val {
+  font-weight: 600;
+  color: black;
+}

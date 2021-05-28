@@ -164,7 +164,6 @@ if($it['it_mobile_skin']) {
 
     if(is_dir($skin_dir)) {
         $form_skin_file = $skin_dir.'/item.form.skin.php';
-
         if(is_file($form_skin_file))
             $ca_dir_check = false;
     }

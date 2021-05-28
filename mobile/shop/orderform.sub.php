@@ -30,6 +30,11 @@ $tablet_size = "1.0"; // 화면 사이즈 조정 - 기기화면에 맞게 수정
 set_session('ss_personalpay_id', '');
 set_session('ss_personalpay_hash', '');
 ?>
+
+<style>
+    .hidden{display:none}
+    .visible{display:block;}
+</style>
 <div id="sod_approval_frm">
     <?php
     ob_start();
@@ -234,7 +239,8 @@ set_session('ss_personalpay_hash', '');
     <div class="sod_ta_wr">
         <dl id="m_sod_bsk_tot">
             <dt class="sod_bsk_sell">주문</dt>
-            <dd class="sod_bsk_sell"><strong><?php echo number_format($tot_sell_price); ?> 원 ( <?php echo number_format($tot_sell_price / $exchange_rate); ?> <?= $token_symbol ?> )</strong></dd>
+            <dd class="sod_bsk_sell"><strong><?php echo number_format($tot_sell_price); ?> 원 <br>
+            ( <?php echo number_format($tot_sell_price / $exchange_rate); ?> <?= $token_symbol ?> )</strong></dd>
             <?php if ($it_cp_count > 0) { ?>
                 <dt class="sod_bsk_coupon">쿠폰</dt>
                 <dd class="sod_bsk_coupon"><strong id="ct_tot_coupon">0 <?= $token_symbol ?></strong></dd>
@@ -312,7 +318,7 @@ if ($is_kakaopay_use) {
                     <?php } ?>
 
                     <li>
-                        <label for="od_tel">전화번호<strong class="sound_only"> 필수</strong></label>
+                        <label for="od_tel">전화번호(핸드폰)<strong class="sound_only"> 필수</strong></label>
                         <input type="text" name="od_tel" value="<?php echo get_text($member['mb_tel']); ?>" id="od_tel" required class="frm_input required" maxlength="20">
                     </li>
                     <li>
@@ -320,18 +326,20 @@ if ($is_kakaopay_use) {
                         <input type="text" name="od_hp" value="<?php echo get_text($member['mb_hp']); ?>" id="od_hp" class="frm_input" maxlength="20">
                     </li>
                     <li>
-                        <strong>주소</strong>
+                        <strong>주소1</strong>
 
                         <span class="add_num"><label for="od_zip" class="sound_only">우편번호<strong class="sound_only"> 필수</strong></label>
-                            <input type="text" name="od_zip" value="<?php echo $member['mb_zip1'] . $member['mb_zip2']; ?>" id="od_zip" required class="frm_input required" size="5" maxlength="6">
+                            <input type="text" name="od_zip" value="<?php echo $member['mb_zip1'] . $member['mb_zip2']; ?>" id="od_zip" required class="frm_input required" size="5" maxlength="6" placeholder='주소검색으로 입력해주세요'>
                             <button type="button" class="btn_frmline btn_addsch" onclick="win_zip('forderform', 'od_zip', 'od_addr1', 'od_addr2', 'od_addr3', 'od_addr_jibeon');">주소검색</button></span>
                         <label for="od_addr1" class="sound_only">기본주소<strong class="sound_only"> 필수</strong></label>
-                        <input type="text" name="od_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="od_addr1" required class="frm_input frm_address required">
+                        <input type="text" name="od_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="od_addr1" required class="frm_input frm_address required hidden"  >
+                        
                         <label for="od_addr2" class="sound_only">상세주소</label>
-                        <input type="text" name="od_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="od_addr2" class="frm_input frm_address">
+                            <input type="text" name="od_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="od_addr2" class="frm_input frm_address hidden">
                         <label for="od_addr3" class="sound_only">참고항목</label>
-                        <input type="text" name="od_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="od_addr3" class="frm_input frm_address" readonly="readonly">
-                        <input type="hidden" name="od_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>"><br>
+                            <input type="text" name="od_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="od_addr3" class="frm_input frm_address hidden" readonly="readonly">
+                        <input type="hidden" name="od_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>">
+                        <br>
 
                     </li>
                     <li>
@@ -431,7 +439,7 @@ if ($is_kakaopay_use) {
                         <input type="text" name="od_b_name" id="od_b_name" required class="frm_input required" maxlength="20">
                     </li>
                     <li>
-                        <label for="od_b_tel">전화번호<strong class="sound_only"> 필수</strong></label>
+                        <label for="od_b_tel">전화번호(핸드폰)<strong class="sound_only"> 필수</strong></label>
                         <input type="text" name="od_b_tel" id="od_b_tel" required class="frm_input required" maxlength="20">
                     </li>
                     <li>
@@ -444,11 +452,11 @@ if ($is_kakaopay_use) {
                         <span class="add_num"><input type="text" name="od_b_zip" id="od_b_zip" required class="frm_input required" size="5" maxlength="6">
                             <button type="button" class="btn_frmline  btn_addsch" onclick="win_zip('forderform', 'od_b_zip', 'od_b_addr1', 'od_b_addr2', 'od_b_addr3', 'od_b_addr_jibeon');">주소 검색</button></span>
                         <label for="od_b_addr1" class="sound_only">기본주소<strong class="sound_only"> 필수</strong></label>
-                        <input type="text" name="od_b_addr1" id="od_b_addr1" required class="frm_input frm_address required">
+                        <input type="text" name="od_b_addr1" id="od_b_addr1" required class="frm_input frm_address required hidden">
                         <label for="od_b_addr2" class="sound_only">상세주소</label>
-                        <input type="text" name="od_b_addr2" id="od_b_addr2" class="frm_input frm_address">
+                        <input type="text" name="od_b_addr2" id="od_b_addr2" class="frm_input frm_address hidden">
                         <label for="od_b_addr3" class="sound_only">참고항목</label>
-                        <input type="text" name="od_b_addr3" id="od_b_addr3" class="frm_input frm_address" readonly="readonly">
+                        <input type="text" name="od_b_addr3" id="od_b_addr3" class="frm_input frm_address hidden" readonly="readonly">
                         <input type="hidden" name="od_b_addr_jibeon" value="">
                     </li>
                     <li>
@@ -458,7 +466,15 @@ if ($is_kakaopay_use) {
                 </ul>
             </div>
         </section>
-
+        <script>
+            $(function() {
+                
+                $('.frm_input').on("propertychange change keyup paste input",function(){
+                    console.log($(this));
+                    $(this).removeClass('hidden');
+                });
+            });
+        </script>
 
 
 
@@ -1113,8 +1129,11 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                 f.od_b_hp.value = addr[2];
                 f.od_b_zip.value = addr[3] + addr[4];
                 f.od_b_addr1.value = addr[5];
+                f.od_b_addr1.style.display = 'block';
                 f.od_b_addr2.value = addr[6];
+                f.od_b_addr2.style.display = 'block';
                 f.od_b_addr3.value = addr[7];
+                f.od_b_addr3.style.display = 'block';
                 f.od_b_addr_jibeon.value = addr[8];
                 f.ad_subject.value = addr[9];
 
@@ -1796,8 +1815,11 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
         f.od_b_tel.value = f.od_tel.value;
         f.od_b_hp.value = f.od_hp.value;
         f.od_b_zip.value = f.od_zip.value;
+        f.od_b_addr1.style.display= 'block';
         f.od_b_addr1.value = f.od_addr1.value;
+        f.od_b_addr2.style.display= 'block';
         f.od_b_addr2.value = f.od_addr2.value;
+        f.od_b_addr3.style.display= 'block';
         f.od_b_addr3.value = f.od_addr3.value;
         f.od_b_addr_jibeon.value = f.od_addr_jibeon.value;
 

@@ -50,7 +50,7 @@ $admin = get_admin("super");
 		<?php echo visit('theme/shop_basic'); // 접속자 ?>
     </div>
 
-    <div id="ft_copy">Copyright &copy; 2001-2013 <?php echo $default['de_admin_company_name']; ?>. All Rights Reserved.</div>
+    <div id="ft_copy">Copyright &copy; 2021 <?php echo $default['de_admin_company_name']; ?>. All Rights Reserved.</div>
 </div>
 
 <?php

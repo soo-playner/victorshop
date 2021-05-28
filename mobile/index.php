@@ -42,7 +42,7 @@ include_once(G5_MOBILE_PATH.'/head.php');
 
     <div class="notice">
 		<div class="notice_inner">
-			<a href="/bbs?bo_table=notice">
+			<a href="/bbs/board.php?bo_table=notice">
 				<p><b>공지사항</b>
 					<img src="/img/victor/dot_yellow.png" alt=""> <?=$token_symbol?> 쇼핑몰이 오픈되었습니다.
 				</p>

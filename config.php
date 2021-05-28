@@ -25,8 +25,12 @@ date_default_timezone_set("Asia/Seoul");
 보안서버주소가 없다면 공란으로 두시면 되며 보안서버주소 뒤에 / 는 붙이지 않습니다.
 입력예) https://www.domain.com:443/gnuboard5
 */
-define('G5_DOMAIN', '');
-define('G5_HTTPS_DOMAIN', '');
+
+// define('DOMAIN','https://'.$_SERVER['SERVER_NAME']);
+define('DOMAIN','');
+
+define('G5_DOMAIN', DOMAIN);
+define('G5_HTTPS_DOMAIN', DOMAIN);
 
 // 디버깅 상수, 실제 서버운영시 false 로 설정해 주제요.
 define('G5_DEBUG', false);
@@ -188,7 +192,7 @@ define('G5_MYSQL_PASSWORD_LENGTH', 41);         // mysql password length 41, old
 
 // SQL 에러를 표시할 것인지 지정
 // 에러를 표시하려면 TRUE 로 변경
-define('G5_DISPLAY_SQL_ERROR', FALSE);
+define('G5_DISPLAY_SQL_ERROR', false);
 
 // escape string 처리 함수 지정
 // addslashes 로 변경 가능
@@ -209,7 +213,7 @@ define('G5_THUMB_JPG_QUALITY', 90);
 define('G5_THUMB_PNG_COMPRESS', 5);
 
 // 모바일 기기에서 DHTML 에디터 사용여부를 설정합니다.
-define('G5_IS_MOBILE_DHTML_USE', false);
+define('G5_IS_MOBILE_DHTML_USE', true);
 
 // MySQLi 사용여부를 설정합니다.
 define('G5_MYSQLI_USE', true);

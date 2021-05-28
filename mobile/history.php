@@ -19,7 +19,7 @@ $mask_history_result = sql_query($mask_history_sql);
 
 ?>
 
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.4.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="<?=G5_MOBILE_URL?>/css/history.css?ver=20200507">
 
 

@@ -601,15 +601,19 @@ function get_large_image($img, $it_id, $btn_image=true)
 
 
 // 금액 표시
-function display_price($price, $tel_inq=false)
+function display_price($price, $tel_inq=false,$coin = true)
 {
     global $exchange_rate;
-    if ($tel_inq)
-        $price = '전화문의';
-    else
-        $price = number_format($price, 0)." 원 (".number_format($price/$exchange_rate,0)." VCT-K)";
+    if ($tel_inq){
+        $price_origin = '전화문의';
+    }else{
+        $price_origin = number_format($price, 0)." 원";
+    }
+        if($coin){
+            $price_origin .= " ( ".number_format($price/$exchange_rate,0)." <span class='coin_p'>VCT-K</span> )";
+        }
 
-    return $price;
+    return $price_origin;
 }
 
 function display_price_2($price, $tel_inq=false, $coin_price)

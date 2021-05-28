@@ -36,7 +36,10 @@ if(defined('G5_THEME_SHOP_PATH')) {
                         order by io_type, ct_id
                         limit 1 ";
             $ct = sql_fetch($sql);
-            $ct_name = get_text($ct['it_name']).' '.get_text($ct['ct_option']);
+            if(get_text($ct['it_name']) != get_text($ct['ct_option'])){
+                $ct_option_txt = ' '.get_text($ct['ct_option']);
+            }
+            $ct_name = get_text($ct['it_name']).$ct_option_txt;
 
             $sql = " select count(*) as cnt
                         from {$g5['g5_shop_cart_table']}
@@ -87,7 +90,7 @@ if(defined('G5_THEME_SHOP_PATH')) {
                     if($row['od_settle_case'] == "코인"){
                         echo display_price_2($row['od_cart_price'],false,$row['od_token_price']);
                     }else{
-                        echo $row['od_cart_price']." 원";
+                        echo display_price($row['od_cart_price'],false,false);
                     }
                     ?>
                 </div>

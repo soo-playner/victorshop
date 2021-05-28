@@ -79,7 +79,7 @@ if($this->total_count > 0) {
     if($i > 0) {
         echo '</ul>'.PHP_EOL;
         echo '</div>'.PHP_EOL;
-         echo '<div class="bst_silde_btn">'.$slide_btn.'</div>'.PHP_EOL;
+        // echo '<div class="bst_silde_btn">'.$slide_btn.'</div>'.PHP_EOL;
         echo '</div>'.PHP_EOL;
         echo '</section>'.PHP_EOL;
     }

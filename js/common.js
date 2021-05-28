@@ -377,8 +377,9 @@ var win_zip = function(frm_name, frm_zip, frm_addr1, frm_addr2, frm_addr3, frm_j
     var zip_case = 1;   //0이면 레이어, 1이면 페이지에 끼워 넣기, 2이면 새창
 
     var complete_fn = function(data){
+        
         // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
+        
         // 각 주소의 노출 규칙에 따라 주소를 조합한다.
         // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
         var fullAddr = ''; // 최종 주소 변수
@@ -408,15 +409,23 @@ var win_zip = function(frm_name, frm_zip, frm_addr1, frm_addr2, frm_addr3, frm_j
 
         // 우편번호와 주소 정보를 해당 필드에 넣고, 커서를 상세주소 필드로 이동한다.
         var of = document[frm_name];
-
+        
         of[frm_zip].value = data.zonecode;
-
+        
         of[frm_addr1].value = fullAddr;
-        of[frm_addr3].value = extraAddr;
+        of[frm_addr1].style.display = 'block';
+        of[frm_addr2].style.display = 'block';
+        
+        if(extraAddr !=''){
+            of[frm_addr3].value = extraAddr;
+            of[frm_addr3].style.display = 'block';
+        }
+        
 
         if(of[frm_jibeon] !== undefined){
             of[frm_jibeon].value = data.userSelectedType;
         }
+
         
         setTimeout(function(){
             of[frm_addr2].focus();
@@ -496,6 +505,8 @@ var win_zip = function(frm_name, frm_zip, frm_addr1, frm_addr2, frm_addr3, frm_j
 
             // iframe을 넣은 element를 보이게 한다.
             element_layer.style.display = 'block';
+
+            
     }
 }
 

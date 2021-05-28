@@ -9,7 +9,11 @@ add_javascript('<script src="'.G5_JS_URL.'/shop.order.js"></script>', 0);
 $sw_direct = isset($_REQUEST['sw_direct']) ? preg_replace('/[^a-z0-9_]/i', '', $_REQUEST['sw_direct']) : '';
 
 // 모바일 주문인지
-$is_mobile_order = is_mobile();
+if(G5_SET_DEVICE != 'mobile'){
+    $is_mobile_order = is_mobile();
+}else{
+    $is_mobile_order =1;
+}
 
 set_session("ss_direct", $sw_direct);
 // 장바구니가 비어있는가?

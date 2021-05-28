@@ -149,13 +149,13 @@ include_once(G5_LIB_PATH."/bootbox/bootbox.php");
                 <?php if ($it['it_cust_price']) { // 1.00.03?>
                 <tr>
                     <th scope="row">시중가격</th>
-                    <td><?php echo display_price($it['it_cust_price']); ?></td>
+                    <td><?php echo display_price($it['it_cust_price'],false); ?></td>
                 </tr>
                 <?php } ?>
                 <tr>
                     <th scope="row">판매가격</th>
                     <td>
-                        <?php echo display_price(get_price($it)); ?>
+                        <?php echo display_price(get_price($it),false); ?>
                         <input type="hidden" id="it_price" value="<?php echo get_price($it); ?>">
                     </td>
                 </tr>
@@ -226,7 +226,7 @@ include_once(G5_LIB_PATH."/bootbox/bootbox.php");
         </div>
 
         <!-- 다른 상품 보기 시작 { -->
-        <div id="sit_siblings">
+        <!-- <div id="sit_siblings">
             <?php
             if($prev_href || $next_href) {
              
@@ -245,7 +245,7 @@ include_once(G5_LIB_PATH."/bootbox/bootbox.php");
             } 
             ?>
             <a href="<?php echo G5_SHOP_URL; ?>/largeimage.php?it_id=<?php echo $it['it_id']; ?>&amp;no=1" class="popup_item_image" data-it_id="<?=$it['it_id']?>" onclick="return false;"><i class="ri-zoom-in-line" aria-hidden="true"></i><span class="sound_only">확대보기</span></a>
-        </div>
+        </div> -->
         <!-- } 다른 상품 보기 끝 -->
     </section>
     <script>
@@ -381,7 +381,7 @@ $(function (){
             </div>
             <?php } ?>
 
-            <?php
+            <!-- <?php
             if ($it['it_info_value']) { // 상품 정보 고시
                 $info_data = unserialize(stripslashes($it['it_info_value']));
                 if(is_array($info_data)) {
@@ -402,7 +402,7 @@ $(function (){
             </tr>
             <?php } //foreach?>
             </tbody>
-            </table>
+            </table> -->
             <!-- 상품정보고시 end -->
             <?php
                 } else {
