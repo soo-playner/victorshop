@@ -14,7 +14,8 @@ if(defined('G5_THEME_PATH')) {
 }
 
 include_once(G5_MOBILE_PATH.'/head.php');
-
+$notice_sql = "select wr_subject from g5_write_notice order by wr_id desc";
+$notice_row = sql_fetch($notice_sql);
 ?>
 
 <section class="breadcomp">
@@ -44,7 +45,7 @@ include_once(G5_MOBILE_PATH.'/head.php');
 		<div class="notice_inner">
 			<a href="/bbs/board.php?bo_table=notice">
 				<p><b>공지사항</b>
-					<img src="/img/victor/dot_yellow.png" alt=""> <?=$token_symbol?> 쇼핑몰이 오픈되었습니다.
+					<img src="/img/victor/dot_yellow.png" alt=""> <?=$notice_row['wr_subject']?>
 				</p>
 			</a>
 		</div>
