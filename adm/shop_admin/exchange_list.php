@@ -50,7 +50,7 @@ $result = sql_query($sql);
 $g5['title'] = '주문내역(교환)';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
-$colspan = 10;
+$colspan = 14;
 ?>
 
 <div class="local_ov01 local_ov">
