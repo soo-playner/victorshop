@@ -17,7 +17,11 @@ $sql = substr($sql,0,-1);
 $sql .= ")";
 
 $result = sql_query($sql);
-
+if($result){
+  alert("정상처리되었습니다.");
+}else{
+  alert("오류가 발생하였습니다. 다시 시도해주세요.");
+}
 goto_url("./exchange_list.php");
 
 
