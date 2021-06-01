@@ -17,7 +17,10 @@ include_once(G5_MOBILE_PATH.'/head.php');
 $notice_sql = "select wr_subject from g5_write_notice order by wr_id desc";
 $notice_row = sql_fetch($notice_sql);
 ?>
-
+<style>
+	.symbol_icon{background:#111;width:34px;height:34px;border-radius:50px;display:inline-block;margin-right:5px;text-align:center}
+	.symbol_icon i {color:gold;font-size:26px;line-height:34px;vertical-align:middle;margin-top:10px;}
+</style>
 <section class="breadcomp">
     <h2 class="greeting"><span><?=$member['mb_name']?></span> 님 안녕하세요</h2>
     <div class='row'>
@@ -36,7 +39,8 @@ $notice_row = sql_fetch($notice_sql);
 
     <div id="main_card">
             <a href="/page.php?id=deposit"><div class='dual left'><img src="<?=$token_symbol_img?>" alt=""> <?=$token_symbol?></div></a>
-            <a href="/shop"><div class='dual right'><img src="<?=$point_symbol_img?>" alt=""> VCT - SHOP</div></a>
+            <a href="/shop"><div class='dual right'>
+			<span class='symbol_icon'><i class="ri-store-2-line "></span></i>VCT - SHOP</div></a>
             <!-- <div class="wallet_link_bar"></div> -->
     </div>
 
@@ -60,9 +64,15 @@ $notice_row = sql_fetch($notice_sql);
 				</div>
 				<p>입금</p>
 			</a>
-			<a href="/page.php?id=exchange" class='menu_card'>
+			<!-- <a href="/page.php?id=exchange" class='menu_card'>
 				<div class="exchange">
-				<i class="ri-store-2-line main_icon"></i>
+					<i class="ri-shopping-bag-line main_icon"></i>
+				</div>
+				<p>교환하기</p>
+			</a> -->
+			<a href="/shop" class='menu_card'>
+				<div class="exchange">
+					<i class="ri-shopping-bag-line main_icon"></i>
 				</div>
 				<p>주문하기</p>
 			</a>

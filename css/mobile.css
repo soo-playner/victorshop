@@ -45,7 +45,7 @@ ul {list-style:none}
 #logo {padding:10px 10px;height:60px;text-align:center}
 #logo img {vertical-align:middle;margin-top:5px;max-height:100%;width:auto}
 #gnb_open {position:absolute;top:10px;left:10px;padding:0 10px;height:40px;width:40px;border:0;background-size:70%;color:#fff;background:none;font-size:2em}
-#gnb {display:none;background:#efefef;position:fixed;top:0;left:0;z-index:99999;width:100%;max-width:400px;height:100%;overflow-y:auto;
+#gnb {display:none;background:#efefef;position:fixed;top:0;left:0;z-index:99999;width:75%;max-width:350px;height:100%;overflow-y:auto;
 -webkit-box-shadow:0 0 5px rgba(55,55,5,0.4);
 -moz-box-shadow:0 0 5px rgba(55,55,5,0.4);
 box-shadow:0 0 5px rgba(55,55,5,0.4)}

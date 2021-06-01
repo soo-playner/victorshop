@@ -29,7 +29,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$outlogin_skin_url.'/style.css">'
                 <strong><?php echo $memo_not_read ?></strong>
             </a>
         </li>
-        <li id="ol_after_pt">
+        <!-- <li id="ol_after_pt">
             <a href="<?php echo G5_BBS_URL ?>/point.php">
                 <i class="fa fa-database" aria-hidden="true"></i>
                 포인트
@@ -40,7 +40,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$outlogin_skin_url.'/style.css">'
             <a href="<?php echo G5_BBS_URL ?>/scrap.php">
 				<i class="fa fa-thumb-tack" aria-hidden="true"></i>스크랩
             </a>
-        </li>
+        </li> -->
     </ul>
 
 </aside>
