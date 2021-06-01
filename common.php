@@ -1,7 +1,19 @@
 <?php
 /*******************************************************************************
+** 클라우드 플레어 사용시
+*******************************************************************************/
+if($_SERVER['HTTP_CF_VISITOR'])
+{
+  if(json_decode($_SERVER['HTTP_CF_VISITOR'])->scheme=='https') $_SERVER['HTTPS'] = 'on';
+  $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
+}
+
+
+
+/*******************************************************************************
 ** 공통 변수, 상수, 코드
 *******************************************************************************/
+
 error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING );
 
 // 보안설정이나 프레임이 달라도 쿠키가 통하도록 설정
@@ -54,6 +66,7 @@ function g5_path()
 $g5_path = g5_path();
 
 include_once($g5_path['path'].'/config.php');   // 설정 파일
+include_once($g5_path['path'].'/fixcloudflare.php');   // 설정 파일
 
 unset($g5_path);
 
