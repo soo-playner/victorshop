@@ -88,7 +88,7 @@ if(defined('G5_THEME_SHOP_PATH')) {
                 <div class="inquiry_price"> 
                     <?php 
                     if($row['od_settle_case'] == "코인"){
-                        echo display_price_2($row['od_cart_price'],false,$row['od_token_price']);
+                        echo display_price_2($row['od_cart_price'],false,$row['od_token_price'],COIN_USE);
                     }else{
                         echo display_price($row['od_cart_price'],false,false);
                     }

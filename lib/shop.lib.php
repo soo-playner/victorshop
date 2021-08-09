@@ -3,6 +3,16 @@
 // 쇼핑몰 라이브러리 모음 시작
 //==============================================================================
 
+
+define('COIN_USE',FALSE);
+
+if(COIN_USE){
+    $coin_use = 1;
+}else{
+    $coin_use = 2;
+}
+
+
 /*
 간편 사용법 : 상품유형을 1~5 사이로 지정합니다.
 $disp = new item_list(1);
@@ -600,28 +610,38 @@ function get_large_image($img, $it_id, $btn_image=true)
 }
 
 
+
 // 금액 표시
 function display_price($price, $tel_inq=false,$coin = true)
 {
-    global $exchange_rate;
+    
+    global $exchange_rate,$coin_use;
+    
     if ($tel_inq){
         $price_origin = '전화문의';
     }else{
         $price_origin = number_format($price, 0)." 원";
     }
-        if($coin){
-            $price_origin .= " ( ".number_format($price/$exchange_rate,0)." <span class='coin_p'>VCT-K</span> )";
-        }
+
+    if($coin && $coin_use == 1){
+        $price_origin .= " ( ".number_format($price/$exchange_rate,0)." <span class='coin_p'>VCT-K</span> )";
+    }
 
     return $price_origin;
 }
 
-function display_price_2($price, $tel_inq=false, $coin_price)
+function display_price_2($price, $tel_inq=false, $coin_price,$coin = true)
 {
+    global $coin_use;
+
     if ($tel_inq)
         $price = '전화문의';
     else
-        $price = number_format($price, 0)." 원 (".number_format($coin_price)." VCT-K)";
+        if($coin  && $coin_use == 1){
+            $price = number_format($price, 0)." 원 (".number_format($coin_price)." VCT-K)";
+        }else{
+            $price = number_format($price, 0)." 원";
+        }
 
     return $price;
 }

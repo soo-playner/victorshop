@@ -2,11 +2,11 @@
 /*******************************************************************************
 ** 클라우드 플레어 사용시
 *******************************************************************************/
-if($_SERVER['HTTP_CF_VISITOR'])
+/* if($_SERVER['HTTP_CF_VISITOR'])
 {
   if(json_decode($_SERVER['HTTP_CF_VISITOR'])->scheme=='https') $_SERVER['HTTPS'] = 'on';
   $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
-}
+} */
 
 
 

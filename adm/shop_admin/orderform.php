@@ -356,8 +356,8 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
        
                 
            
-            <td class="td_numbig td_numsum" style="inline-size:0px"><?=$od['od_settle_case'] == "코인" ?  display_price_2($amount['order'],false,$od['od_token_price']) :  $amount['order'] . "원" ?></td>
-            <td class="td_numbig" style="inline-size:0px"><?=$od['od_settle_case'] == "코인" ? display_price_2($od['od_send_cost'] + $od['od_send_cost2'],false,0) :  $od['od_send_cost'] + $od['od_send_cost2'] . "원" ?></td>
+            <td class="td_numbig td_numsum" style="inline-size:0px"><?=$od['od_settle_case'] == "코인" ?  display_price_2($amount['order'],false,$od['od_token_price'],COIN_USE) :  $amount['order'] . "원" ?></td>
+            <td class="td_numbig" style="inline-size:0px"><?=$od['od_settle_case'] == "코인" ? display_price_2($od['od_send_cost'] + $od['od_send_cost2'],false,0,COIN_USE) :  $od['od_send_cost'] + $od['od_send_cost2'] . "원" ?></td>
 
             <td class="td_numbig" style="inline-size:0px"><?php echo display_point($od['od_receipt_point']); ?></td>
             <td class="td_numbig td_numincome" style="inline-size:0px"><?php echo number_format($amount['receipt']); ?>원</td>
@@ -404,7 +404,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
               
                     <?php if($od['od_settle_case'] == "코인"){
                         $deposit_account = "지갑주소";
-                        $deposit_price = display_price_2($od['od_cart_price'],false,$od['od_token_price']);
+                        $deposit_price = display_price_2($od['od_cart_price'],false,$od['od_token_price'],COIN_USE);
                     }else{
                         $deposit_account = "계좌번호";
                         $deposit_price = $od['od_receipt_price']. " 원";
@@ -571,7 +571,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <?php } ?>
                 <tr>
                     <th scope="row">주문금액할인</th>
-                    <td><?= $od['od_settle_case'] == "코인" ? display_price_2($od['od_coupon'],false,0): number_format($od['od_coupon']) ." 원" ?></td>
+                    <td><?= $od['od_settle_case'] == "코인" ? display_price_2($od['od_coupon'],false,0,COIN_USE): number_format($od['od_coupon']) ." 원" ?></td>
                 </tr>
                 <tr>
                     <th scope="row">포인트</th>
@@ -579,7 +579,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </tr>
                 <tr>
                     <th scope="row">결제취소/환불액</th>
-                    <td><?=$od['od_settle_case'] == "코인" ? display_price_2($od['od_refund_price'],false,0) : number_format($od['od_refund_price'])." 원"?></td>
+                    <td><?=$od['od_settle_case'] == "코인" ? display_price_2($od['od_refund_price'],false,0,COIN_USE) : number_format($od['od_refund_price'])." 원"?></td>
                 </tr>
                 <?php if ($od['od_invoice']) { ?>
                 <tr>

@@ -135,7 +135,10 @@ jQuery(function($){
 
             return function() {
                 
+
                 if( $(".2017_renewal_itemform").length ){
+
+                    console.log("coin_use : "+coin_use);
 
                     var it_price = parseInt($("input#it_price").val());
 
@@ -160,8 +163,11 @@ jQuery(function($){
                     });
             
                     
-                    $("#sit_tot_price").empty().html("<span>총 금액 </span><strong>"+number_format(String(total))+"</strong>원 ("+number_format(total/$('#exchange_rate').val())+" "+$('#token_symbol').val()+")")
-                    
+                    var price_txt = "<span>총 금액 :</span> "+number_format(String(total))+"원" ;
+                        
+
+                    $("#sit_tot_price").empty().html(price_txt);
+
                     $("#sit_tot_price").trigger("price_calculate", [total]);
 
                 } else {

@@ -12,6 +12,9 @@ if(defined('G5_THEME_PATH')) {
     return;
 }
 
+// 코인설정 
+
+
 include_once(G5_PATH.'/head.sub.php');
 include_once(G5_LIB_PATH.'/outlogin.lib.php');
 include_once(G5_LIB_PATH.'/visit.lib.php');
@@ -21,6 +24,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
 
 include_once(G5_PATH."/util/coin_config.php");
 include_once(G5_PATH."/util/callOneCoin.php");
+
 ?>
 
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.35/dist/web3.min.js"></script>

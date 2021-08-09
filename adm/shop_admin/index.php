@@ -174,8 +174,8 @@ function get_max_value($arr)
             <ul id="sidx_graph_area">
                 <?php
                 for($i=0; $i<count($x_val); $i++) {
-                    $order_title = date("n월 j일", strtotime($x_val[$i])).' 주문: '.display_price_2($arr_order[$i]['order'],false,$arr_order[$i]['token_price']);
-                    $cancel_title = date("n월 j일", strtotime($x_val[$i])).' 취소: '.display_price_2($arr_order[$i]['cancel'],false,$arr_order[$i]['token_price']);
+                    $order_title = date("n월 j일", strtotime($x_val[$i])).' 주문: '.display_price_2($arr_order[$i]['order'],false,$arr_order[$i]['token_price'],COIN_USE);
+                    $cancel_title = date("n월 j일", strtotime($x_val[$i])).' 취소: '.display_price_2($arr_order[$i]['cancel'],false,$arr_order[$i]['token_price'],COIN_USE);
                     $k = 10 - $i;
                     $li_bg = 'bg'.($i%2);
                 ?>

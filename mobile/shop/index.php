@@ -4,6 +4,7 @@ include_once('./_common.php');
 define("_INDEX_", TRUE);
 
 include_once(G5_MSHOP_PATH.'/_head.php');
+add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 10);
 ?>
 
 <script src="<?php echo G5_JS_URL; ?>/swipe.js"></script>
@@ -21,8 +22,8 @@ include_once(G5_MSHOP_PATH.'/_head.php');
     </ul>
 </div> -->
 
-<div id="gnb">
-    
+<div id="gnb" class="gnbslider">
+    <div class='rows'> 
     <?php
     $i = 0;
     foreach($mshop_categories as $cate1){
@@ -40,7 +41,17 @@ include_once(G5_MSHOP_PATH.'/_head.php');
     } 
     if($i > 0) echo '</ul>'.PHP_EOL;
     ?>
+    </div>
 </div>
+<style> 
+    .gnbslider {display:block;background:white;width:100%;max-width:100%;overflow-x: auto;-webkit-overflow-scrolling: touch;}
+    .gnbslider .rows{width:max-content;}
+    /* .gnbslider{ -ms-overflow-style: none; scrollbar-width: none; }  */
+    .gnbslider::-webkit-scrollbar{ scrollbar-height: 0 !important; }
+
+</style>
+
+
 <div style='clear:both'></div>
 
     <?php if($default['de_mobile_type1_list_use']) { ?>

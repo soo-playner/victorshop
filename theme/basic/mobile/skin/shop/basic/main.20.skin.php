@@ -7,7 +7,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 // 장바구니 또는 위시리스트 ajax 스크립트
 add_javascript('<script src="'.G5_THEME_JS_URL.'/theme.shop.list.js"></script>', 10);
 ?>
-
+123456
 <script src="<?php echo G5_JS_URL ?>/jquery.fancylist.js"></script>
 <?php if($config['cf_kakao_js_apikey']) { ?>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>

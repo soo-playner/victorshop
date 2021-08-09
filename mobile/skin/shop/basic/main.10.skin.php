@@ -89,7 +89,7 @@ foreach((array) $list as $row){
     }
     if ($this->view_it_price) {
         echo "<div class=\"sct_cost\">\n";
-        echo display_price(get_price($row), $row['it_tel_inq'])."\n";
+        echo display_price(get_price($row), $row['it_tel_inq'],COIN_USE)."\n";
         echo "</div>\n";
     }
         

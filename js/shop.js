@@ -2,6 +2,7 @@ var option_add = false;
 var supply_add = false;
 var isAndroid = (navigator.userAgent.toLowerCase().indexOf("android") > -1);
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+var coin_use = '<?=$coin_use?>';
 
 $(function() {
     // 선택옵션
@@ -458,6 +459,7 @@ function same_option_check(val)
 // 가격계산
 function price_calculate()
 {
+   
     var it_price = parseInt($("input#it_price").val());
 
     if(isNaN(it_price))
@@ -479,8 +481,12 @@ function price_calculate()
             total += price * qty;
         }
     });
+    var price_txt = "<span>총 금액 :</span> "+number_format(String(total))+"원" ;
 
-    $("#sit_tot_price").empty().html("<span>총 금액 :</span> "+number_format(String(total))+"원 ("+number_format(total/$('#exchange_rate').val())+" "+$('#token_symbol').val()+")")
+    if(coin_use == 1){
+        price_txt += "("+number_format(total/$('#exchange_rate').val())+" "+$('#token_symbol').val()+")"; 
+    }
+    $("#sit_tot_price").empty().html(price_txt);
 
     $("#sit_tot_price").trigger("price_calculate", [total]);
 }
