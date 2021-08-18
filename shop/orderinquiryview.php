@@ -628,9 +628,9 @@ if($od['od_pg'] == 'lg') {
 
             <ul>
                 <li>
-                    총 구매액
-                    <strong><?php echo display_price($tot_price); ?></strong>
+                    총 구매액<strong><?php echo display_price($tot_price); ?></strong>
                 </li>
+
                 <?php
                 if ($misu_price > 0) {
                 echo '<li>';

@@ -477,7 +477,6 @@ if ($is_kakaopay_use) {
             $(function() {
                 
                 $('.frm_input').on("propertychange change keyup paste input",function(){
-                    console.log($(this));
                     $(this).removeClass('hidden');
                 });
             });
@@ -1567,16 +1566,22 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                 alert("입금페이지에서 VCT-K 지갑을 생성해주세요.")
                 return false
             }
+            
+            var token_price = Number('<?=$default['de_token_price']?>');
+            var sell_price_total = Number(<?=$tot_sell_price?>/token_price);
 
+            console.log("token_price :: " + sell_price_total);
 
-            if (Number('<?= $sell_price ?>') > Number($('#balData').val())) {
+            
+            
+            if (Number(sell_price_total) > Number($('#balData').val())) {
                 alert("보유하신 VCT-K (이)가 부족합니다.")
                 return false;
             }
 
 
 
-            estimate_gas('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', '<?= $sell_price ?>' / '<?= $exchange_rate ?>', (estimateGas, estimateData) => { // 추가
+            estimate_gas('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', sell_price_total / '<?= $exchange_rate ?>', (estimateGas, estimateData) => { // 추가
 
                 var cal_gas = estimateGas * web3.utils.toWei(gas.toString(), 'gwei') / 1000000000000000000
                 var user_eth = $(".eth_balance").text().split(" ")
@@ -1611,14 +1616,16 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                 })
 
 
-                send_token_for_pay('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', '<?= $sell_price ?>' / '<?= $exchange_rate ?>', '<?= $wallet_key_decrypt ?>', gas, estimateGas, (error, res) => {
+                send_token_for_pay('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', sell_price_total / '<?= $exchange_rate ?>', '<?= $wallet_key_decrypt ?>', gas, estimateGas, (error, res) => {
 
                     var after_res = res.split(':');
-                    dialog.modal('hide')
+                    dialog.modal('hide');
+
                     if (after_res[0] == 'success') {
-                        alert("마스크 주문건이 정상 처리되었습니다. \n처리결과 반영은 일정시간이 소요될수있습니다.");
+                        alert("선택한 주문건이 정상 처리되었습니다. \n처리결과 반영은 일정시간이 소요될수있습니다.");
                         $('#od_hash').val(after_res[1])
-                    $('#od_token_price').val('<?= $tot_sell_price / $exchange_rate ?>')
+                        
+                        $('#od_token_price').val('<?= $tot_sell_price / $exchange_rate ?>')
                         setTimeout(function() {
                             f.submit();
                         }, 1000);
@@ -1628,6 +1635,8 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                     }
 
                 });
+
+                f.submit();
 
 
             });

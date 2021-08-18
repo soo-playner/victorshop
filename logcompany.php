@@ -11,5 +11,5 @@ define('CONFIG_MAIL_ADDR','willsoftkr@gmail.com');
 
 // 회사지갑 및 코인 설정
 
-define('COIN_USE',FALSE);
+define('COIN_USE',TRUE);
 ?>

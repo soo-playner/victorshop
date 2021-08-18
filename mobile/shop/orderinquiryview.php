@@ -325,7 +325,7 @@ if($od['od_pg'] == 'lg') {
                 <tr>
                     <th scope="row">결제금액</th>
                     <?php if($od['od_settle_case'] == "코인"){ ?>
-                     <td><?php echo display_price_2($od['od_cart_price'],false,$od['od_token_price'],COIN_USE); ?></td>
+                     <td><?php echo display_price_2($od['od_cart_price'],false,$od['od_token_price']); ?></td>
                     <?php }else{?>
                     <td><?php echo $od_receipt_price; ?></td>
                     <?php } ?>
@@ -633,9 +633,9 @@ if($od['od_pg'] == 'lg') {
                 총 구매액
                 <?php 
                  if($od['od_settle_case'] == "코인"){ ?>
-                     <strong><?php echo display_price_2($tot_price,false,$od['od_token_price'],COIN_USE); ?></strong>
+                     <strong><?=display_price_2($tot_price,false,$od['od_token_price']); ?></strong>
                 <?php }else{ ?>
-                    <strong><?php echo $tot_price ?> 원</strong>
+                    <strong><?=Number_format($tot_price) ?> 원</strong>
                 <?php } ?>
               
             </li>
@@ -645,10 +645,10 @@ if($od['od_pg'] == 'lg') {
 
             if($od['od_settle_case'] == "코인"){
                 echo '결제액(관리자 확인예정)'.PHP_EOL;
-                echo '<strong>'.display_price_2($misu_price,false,$od['od_token_price'],COIN_USE).'</strong>';
+                echo '<strong>'.display_price_2($misu_price,false,$od['od_token_price']).'</strong>';
             }else{
                 echo '미결제액'.PHP_EOL;
-                echo '<strong>'.$misu_price.' 원</strong>';
+                echo '<strong>'.Number_format($misu_price).' 원</strong>';
             }
  
             echo '</li>';

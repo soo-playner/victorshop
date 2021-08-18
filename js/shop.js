@@ -2,7 +2,7 @@ var option_add = false;
 var supply_add = false;
 var isAndroid = (navigator.userAgent.toLowerCase().indexOf("android") > -1);
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-var coin_use = '<?=$coin_use?>';
+var coin_use = 1;
 
 $(function() {
     // 선택옵션
@@ -459,7 +459,7 @@ function same_option_check(val)
 // 가격계산
 function price_calculate()
 {
-   
+    
     var it_price = parseInt($("input#it_price").val());
 
     if(isNaN(it_price))
