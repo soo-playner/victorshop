@@ -41,6 +41,7 @@ header("Pragma: no-cache"); // HTTP/1.0
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+
 <?php
 if (G5_IS_MOBILE) {
     echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">'.PHP_EOL;
@@ -72,6 +73,7 @@ if (defined('G5_IS_ADMIN')) {
 ?>
 
 <!-- VICTOR-SHOP CSS 추가 -->
+
 <link rel="stylesheet" href="<?=G5_CSS_URL?>/scss/victor.css"/>
 <link rel="stylesheet" href="<?=G5_CSS_URL?>/bootstrap-grid.css"/>
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">

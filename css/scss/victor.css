@@ -21,7 +21,6 @@
 /* 회원가입 */
 .mbskin .btn_submit, .btn_submit {
   background: #f6bd14;
-  border-radius: 0 !important;
   border: 1px solid #bc8d00;
 }
 

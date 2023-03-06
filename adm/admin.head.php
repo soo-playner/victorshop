@@ -107,9 +107,9 @@ function imageview(id, w, h)
     <h1><?php echo $config['cf_title'] ?></h1>
     <div id="hd_top">
         <button type="button" id="btn_gnb" class="btn_gnb_close <?php echo $adm_menu_cookie['btn_gnb'];?>">메뉴</button>
-       <div id="logo"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>"><img src="<?php echo G5_ADMIN_URL ?>/img/logo.png" alt="<?php echo get_text($config['cf_title']); ?> 관리자"></a></div>
+       <div id="logo"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">ADMINISTRATOR</a></div>
 
-        <div id="tnb">
+        <!-- <div id="tnb">
             <ul>
                 <li class="tnb_li"><a href="<?php echo G5_SHOP_URL ?>/" class="tnb_shop" target="_blank" title="쇼핑몰 바로가기">쇼핑몰 바로가기</a></li>
                 <li class="tnb_li"><a href="<?php echo G5_URL ?>/" class="tnb_community" target="_blank" title="커뮤니티 바로가기">커뮤니티 바로가기</a></li>
@@ -121,6 +121,14 @@ function imageview(id, w, h)
                     </ul>
                 </li>
             </ul>
+        </div> -->
+        <div class="hd_info_wrap">
+            <ul>
+                <li>2021/07/16 10:24:10</li>
+                <li><img src="<?=G5_ADMIN_URL?>/img/bell.png" alt=""></li>
+                <li><img src="<?=G5_ADMIN_URL?>/img/setting.png" alt=""></li>
+                <li><img src="<?=G5_ADMIN_URL?>/img/logout.png" alt=""></li>
+            </ul>
         </div>
     </div>
     <nav id="gnb" class="gnb_large <?php echo $adm_menu_cookie['gnb']; ?>">
@@ -130,7 +138,7 @@ function imageview(id, w, h)
             $jj = 1;
             foreach($amenu as $key=>$value) {
                 $href1 = $href2 = '';
-
+                
                 if (isset($menu['menu'.$key][0][2]) && $menu['menu'.$key][0][2]) {
                     $href1 = '<a href="'.$menu['menu'.$key][0][2].'" class="gnb_1da">';
                     $href2 = '</a>';
@@ -197,10 +205,62 @@ jQuery(function($){
 });
 </script>
 
-
+<link href="<?=G5_ADMIN_URL?>/css/scss/include/adm_head.css" rel="stylesheet">
+<link href="<?=G5_ADMIN_URL?>/css/scss/include/new_default.css" rel="stylesheet">
 <div id="wrapper">
 
     <div id="container" class="<?php echo $adm_menu_cookie['container']; ?>">
 
-        <h1 id="container_title"><?php echo $g5['title'] ?></h1>
+        <div id="container_title">
+            <h1><?php echo $g5['title'] ?></h1>
+            <nav id="gnbs" class="content-box gnb_large <?php echo $adm_menu_cookie['gnb']; ?>">
+                <ul class="gnb_ul">
+                    <?php
+                    $jj = 1;
+                    foreach($amenu as $key=>$value) {
+                        $href1 = $href2 = '';
+                        
+                        if (isset($menu['menu'.$key][0][2]) && $menu['menu'.$key][0][2]) {
+                            $href1 = '<a href="'.$menu['menu'.$key][0][2].'" class="gnb_1da">';
+                            $href2 = '</a>';
+                        } else {
+                            continue;
+                        }
+                        
+                        $current_class = "";
+                        if (isset($sub_menu) && (substr($sub_menu, 0, 3) == substr($menu['menu'.$key][0][0], 0, 3)))
+                            $current_class = " on";
+
+                        $button_title = $menu['menu'.$key][0][1];
+                    ?>
+                    
+                    <li class="gnb_li<?php echo $current_class;?>">
+                        <div class="gnb_oparea_wr">
+                            <div class="gnb_oparea">
+                                <div class="menu_btn"><i class="ri-menu-line"></i>Menu</div>
+                                <?php echo print_menu1('menu'.$key, 1); ?>
+                            </div>
+                        </div>
+                    </li>
+                    <?php
+                    $jj++;
+                    }     //end foreach
+                    ?>
+                </ul>
+            </nav>
+        </div>
         <div class="container_wr">
+
+        <!-- 대시보드에서만 nav제거 -->
+        <script>
+            $(function() {
+                if($('#container_title').find('h1').text() == '관리자메인') {
+                    $('#gnbs').hide();
+                }
+            });
+
+            $(function() {
+                $('#gnbs').find('div.gnb_oparea ul').addClass('gnbs_ul');
+            });
+            
+        </script>
