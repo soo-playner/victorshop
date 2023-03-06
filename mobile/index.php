@@ -39,8 +39,8 @@ $notice_row = sql_fetch($notice_sql);
 
     <div id="main_card">
             <a href="/page.php?id=deposit"><div class='dual left'><img src="<?=$token_symbol_img?>" alt=""> <?=$token_symbol?></div></a>
-            <a href="/shop"><div class='dual right'>
-			<span class='symbol_icon'><i class="ri-store-2-line "></span></i>VCT - SHOP</div></a>
+            <a href="http://www.victorscore.com"><div class='dual right'>
+			<span class='symbol_icon'><i class="ri-gamepad-line" style="font-weight:500;font-size:24px;"></span></i>E스포츠 예측게임</div></a>
             <!-- <div class="wallet_link_bar"></div> -->
     </div>
 
