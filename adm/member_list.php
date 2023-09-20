@@ -101,7 +101,11 @@ $colspan = 7;
 
 </form>
 
-
+<style>
+    #fmemberlist table{color:#666}
+    
+    .tbl_head01 tbody tr:nth-child(2n) td{border-bottom:1px solid #666;}
+</style>
 
 
 <form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
@@ -338,6 +342,10 @@ function fmemberlist_submit(f)
 
     return true;
 }
+
+$('table tr').on('click', function(){
+
+});
 </script>
 
 <link href="<?=G5_ADMIN_URL?>/css/scss/include/new_default.css" rel="stylesheet">

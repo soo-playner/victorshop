@@ -1,3 +1,4 @@
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
@@ -1579,9 +1580,9 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                 return false;
             }
 
+            // console.log("결제코인금액 :: " + sell_price_total);
 
-
-            estimate_gas('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', sell_price_total / '<?= $exchange_rate ?>', (estimateGas, estimateData) => { // 추가
+            estimate_gas('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', sell_price_total , (estimateGas, estimateData) => { // 추가
 
                 var cal_gas = estimateGas * web3.utils.toWei(gas.toString(), 'gwei') / 1000000000000000000
                 var user_eth = $(".eth_balance").text().split(" ")
@@ -1615,8 +1616,8 @@ if (function_exists('is_use_easypay') && is_use_easypay('global_nhnkcp')) {  // 
                     'display': 'flex'
                 })
 
-
-                send_token_for_pay('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', sell_price_total / '<?= $exchange_rate ?>', '<?= $wallet_key_decrypt ?>', gas, estimateGas, (error, res) => {
+                
+                send_token_for_pay('<?= $wallet_addr ?>', '<?= VCT_COMPANY_ADDR ?>', '<?= VCT_CONTRACT ?>', '<?= $token_decimal_numeric ?>', sell_price_total , '<?= $wallet_key_decrypt ?>', gas, estimateGas, (error, res) => {
 
                     var after_res = res.split(':');
                     dialog.modal('hide');

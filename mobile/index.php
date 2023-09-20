@@ -2,7 +2,7 @@
 // if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 if(!$is_member){
-	alert("로그인 페이지로 이동합니다.",G5_BBS_URL."/login.php");
+	goto_url(G5_BBS_URL."/login.php");
 }else{
 	echo "<script>App.sendUserId('{$member['mb_id']}');</script>";
 }
